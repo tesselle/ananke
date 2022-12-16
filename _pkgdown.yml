@@ -1,0 +1,20 @@
+url: https://packages.tesselle.org/ananke
+
+template:
+  package: tekton
+  opengraph:
+    twitter:
+      creator: "@nfrerebeau"
+
+reference:
+- title: OxCal Tools
+  contents:
+  - has_concept("OxCal tools")
+
+navbar:
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: OxCal
+        href: articles/oxcal.html
