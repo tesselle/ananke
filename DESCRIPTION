@@ -19,9 +19,10 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
+    arkhe (>= 1.1.0),
     graphics,
-    V8
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    V8
 VignetteBuilder: knitr

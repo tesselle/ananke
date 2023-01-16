@@ -222,6 +222,9 @@ oxcal_parse.OxCalFiles <- function(file) {
 #' @rdname oxcal_parse
 #' @export
 oxcal_parse.character <- function(file) {
+  ## Validation
+  arkhe::needs("V8")
+
   ox <- V8::v8()
   ox$eval("ocd={};")
   ox$eval("calib={};")
