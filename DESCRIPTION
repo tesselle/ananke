@@ -21,8 +21,18 @@ RoxygenNote: 7.2.1
 Imports: 
     arkhe (>= 1.1.0),
     graphics,
+    methods,
+    utils
 Suggests: 
     knitr,
     rmarkdown,
     V8
 VignetteBuilder: knitr
+Collate: 
+    'AllClasses.R'
+    'AllGenerics.R'
+    'ananke-package.R'
+    'calibrate.R'
+    'mutators.R'
+    'oxcal.R'
+    'zzz.R'
