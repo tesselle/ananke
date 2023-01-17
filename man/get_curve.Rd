@@ -13,6 +13,8 @@ get_curve(x, ...)
 }
 \arguments{
 \item{x}{A \code{\link{character}} string naming a calibration curve}
+
+\item{...}{Currently not used.}
 }
 \value{
 A three-column \code{\link{data.frame}}: calibrated age BP, uncalibrated age BP and

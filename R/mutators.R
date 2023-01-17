@@ -41,3 +41,12 @@ setMethod(
     curve
   }
 )
+
+#' @export
+#' @rdname mutators
+#' @aliases get_calendar,CalibratedAges-method
+setMethod(
+  f = "get_calendar",
+  signature = "CalibratedAges",
+  definition = function(x) x@calendar
+)

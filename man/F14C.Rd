@@ -25,6 +25,8 @@ F14C_to_BP14C(ratios, errors, ...)
 \item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the
 ages/ratios.}
 
+\item{...}{Currently not used.}
+
 \item{ratios}{A \code{\link{numeric}} vector giving the F14C ratios.}
 }
 \value{

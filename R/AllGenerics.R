@@ -21,10 +21,142 @@ NULL
 #' @aliases get set
 NULL
 
+#' @rdname mutators
+#' @aliases get_calendar-method
+setGeneric(
+  name = "get_calendar",
+  def = function(x) standardGeneric("get_calendar")
+)
+
+# Time Scale ===================================================================
+## BP --------------------------------------------------------------------------
+#' Before Present
+#'
+#' Converts between BP (Before Present) and CE (Common Era) or b2k (before 2000)
+#' time scales.
+#' @param object An object.
+#' @return
+#'  * `BP_to_CE()` and `BP_to_b2k()` return an object of the same sort as
+#'    `object` with a new time scale.
+#'  * `is_BP()` returns a [`logical`] scalar.
+#' @note
+#'  There is no year \eqn{0} in BCE/CE scale.
+#' @example inst/examples/ex-calendar.R
+#' @author N. Frerebeau
+#' @family time scales
+#' @docType methods
+#' @name BP
+#' @rdname BP
+NULL
+
+#' @rdname BP
+#' @aliases BP_to_CE-method
+setGeneric(
+  name = "BP_to_CE",
+  def = function(object) standardGeneric("BP_to_CE")
+)
+
+#' @rdname BP
+#' @aliases BP_to_b2k-method
+setGeneric(
+  name = "BP_to_b2k",
+  def = function(object) standardGeneric("BP_to_b2k")
+)
+
+#' @rdname BP
+#' @aliases is_BP-method
+setGeneric(
+  name = "is_BP",
+  def = function(object) standardGeneric("is_BP")
+)
+
+## CE --------------------------------------------------------------------------
+#' Common Era
+#'
+#' Converts between CE (Common Era) and BP (Before Present) or b2k (before 2000)
+#' time scales.
+#' @param object An object.
+#' @return
+#'  * `CE_to_BP()` and `CE_to_b2k()` return an object of the same sort as
+#'    `object` with a new time scale.
+#'  * `is_CE()` returns a [`logical`] scalar.
+#' @note
+#'  There is no year \eqn{0} in BCE/CE scale.
+#' @example inst/examples/ex-calendar.R
+#' @author N. Frerebeau
+#' @family time scales
+#' @docType methods
+#' @name CE
+#' @rdname CE
+NULL
+
+#' @rdname CE
+#' @aliases CE_to_BP-method
+setGeneric(
+  name = "CE_to_BP",
+  def = function(object) standardGeneric("CE_to_BP")
+)
+
+#' @rdname CE
+#' @aliases CE_to_b2k-method
+setGeneric(
+  name = "CE_to_b2k",
+  def = function(object) standardGeneric("CE_to_b2k")
+)
+
+#' @rdname CE
+#' @aliases is_CE-method
+setGeneric(
+  name = "is_CE",
+  def = function(object) standardGeneric("is_CE")
+)
+
+## b2k -------------------------------------------------------------------------
+#' Before 2000
+#'
+#' Converts b2k (before 2000) and between BP (Before Present) or CE (Common Era)
+#' time scales.
+#' @param object An object.
+#' @return
+#'  * `b2k_to_CE()` and `b2k_to_BP()` return an object of the same sort as
+#'    `object` with a new time scale.
+#'  * `is_b2k()` returns a [`logical`] scalar.
+#' @note
+#'  There is no year \eqn{0} in BCE/CE scale.
+#' @example inst/examples/ex-calendar.R
+#' @author N. Frerebeau
+#' @family time scales
+#' @docType methods
+#' @name b2k
+#' @rdname b2k
+NULL
+
+#' @rdname b2k
+#' @aliases b2k_to_BP-method
+setGeneric(
+  name = "b2k_to_BP",
+  def = function(object) standardGeneric("b2k_to_BP")
+)
+
+#' @rdname b2k
+#' @aliases b2k_to_CE-method
+setGeneric(
+  name = "b2k_to_CE",
+  def = function(object) standardGeneric("b2k_to_CE")
+)
+
+#' @rdname b2k
+#' @aliases is_b2k-method
+setGeneric(
+  name = "is_b2k",
+  def = function(object) standardGeneric("is_b2k")
+)
+
 # Calibration ==================================================================
 #' 14C Calibration Curve
 #'
 #' @param x A [`character`] string naming a calibration curve
+#' @param ... Currently not used.
 #' @return
 #'  A three-column [`data.frame`]: calibrated age BP, uncalibrated age BP and
 #'  standard deviation.
@@ -90,6 +222,7 @@ setGeneric(
 #' @param ratios A [`numeric`] vector giving the F14C ratios.
 #' @param errors A [`numeric`] vector giving the standard deviation of the
 #'  ages/ratios.
+#' @param ... Currently not used.
 #' @return
 #'  A two-column [`data.frame`].
 #' @references

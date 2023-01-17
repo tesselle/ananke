@@ -5,13 +5,20 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
+\alias{get_calendar}
+\alias{get_calendar-method}
 \alias{names,CalibratedAges-method}
 \alias{names<-,CalibratedAges-method}
+\alias{get_calendar,CalibratedAges-method}
 \title{Get or Set Parts of an Object}
 \usage{
+get_calendar(x)
+
 \S4method{names}{CalibratedAges}(x)
 
 \S4method{names}{CalibratedAges}(x) <- value
+
+\S4method{get_calendar}{CalibratedAges}(x)
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}

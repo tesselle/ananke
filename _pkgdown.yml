@@ -7,6 +7,9 @@ template:
       creator: "@nfrerebeau"
 
 reference:
+- title: Time scales
+  contents:
+  - has_concept("time scales")
 - title: Radiocarbon tools
   contents:
   - has_concept("radiocarbon tools")
