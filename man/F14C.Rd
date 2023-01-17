@@ -42,7 +42,8 @@ Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
 \seealso{
 Other radiocarbon tools: 
 \code{\link{calibrate}()},
-\code{\link{get_curve}()}
+\code{\link{get_curve}()},
+\code{\link{plot_14C}}
 }
 \author{
 N. Frerebeau

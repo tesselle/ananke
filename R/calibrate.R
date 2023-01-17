@@ -12,7 +12,7 @@ setMethod(
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
-                        eps = 1e-05) {
+                        drop = TRUE, eps = 1e-05) {
     ## Validation
     n <- length(ages)
     if (is.null(names)) names <- paste0("X", seq_len(n))
@@ -74,11 +74,8 @@ setMethod(
     dens <- do.call(rbind, dens)
 
     if (anyNA(dens)) {
-      warning(
-        "Some dates have calibrated probabilities outside the user-defined time range.",
-        "\nConsider changing the time range to a wider interval.",
-        call. = FALSE
-      )
+      msg <- "Consider changing the time range to a narrower interval."
+      warning(msg, call. = FALSE)
     }
 
     ## Normalize
@@ -86,6 +83,13 @@ setMethod(
       dens <- dens / rowSums(dens, na.rm = TRUE)
       dens[dens < eps] <- 0
       dens <- dens / rowSums(dens, na.rm = TRUE)
+    }
+
+    ## Drop
+    if (drop) {
+      keep <- colSums(dens, na.rm = TRUE) > 0
+      dens <- dens[, keep, drop = FALSE]
+      from <- max(calibration_range[keep])
     }
 
     .CalibratedAges(

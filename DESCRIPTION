@@ -21,6 +21,7 @@ RoxygenNote: 7.2.1
 Imports: 
     arkhe (>= 1.1.0),
     graphics,
+    grDevices,
     methods,
     utils
 Suggests: 
@@ -36,4 +37,6 @@ Collate:
     'calibrate.R'
     'mutators.R'
     'oxcal.R'
+    'plot.R'
+    'utilities.R'
     'zzz.R'

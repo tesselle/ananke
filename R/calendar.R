@@ -81,6 +81,19 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname BP
+#' @aliases BP_to_CE,CalibratedAges-method
+setMethod(
+  f = "BP_to_CE",
+  signature = "CalibratedAges",
+  definition = function(object){
+    if (is_CE(object)) return(object) # Check current scale
+    start <- BP_to_CE(object@start)
+    methods::initialize(object, object@.Data, start = start, calendar = "CE")
+  }
+)
+
 ## BP to b2k -------------------------------------------------------------------
 #' @export
 #' @rdname BP

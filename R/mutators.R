@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "names",
   signature = "CalibratedAges",
-  definition = function(x) x@events
+  definition = function(x) x@labels
 )
 
 #' @export

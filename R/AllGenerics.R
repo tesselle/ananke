@@ -194,6 +194,8 @@ setGeneric(
 #' @param normalize A [`logical`] scalar: should the calibration be normalized?
 #' @param F14C A [`logical`] scalar: should the calibration be carried out in
 #'  F14C space?
+#' @param drop A [`logical`] scalar: should years with zero probability be
+#'  discarded? If `TRUE` (the default), results in a narrower time range.
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
 #'  calibration values will be removed.
 #' @param ... Currently not used.
@@ -250,3 +252,31 @@ setGeneric(
   def = function(ratios, errors, ...) standardGeneric("F14C_to_BP14C"),
   valueClass = "data.frame"
 )
+
+#' Plot Calibrated Radiocarbon Ages
+#'
+#' @param x A [`CalibratedAges-class`] object.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x,
+#'  y and z axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Other [graphical parameters][graphics::par] may also be passed as
+#'  arguments to this function.
+#' @return
+#'  `plot()` is called it for its side-effects: it results in a graphic
+#'  being displayed. Invisibly returns `x`.
+#' @example inst/examples/ex-14c-calibrate.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family radiocarbon tools
+#' @name plot_14C
+#' @rdname plot_14C
+NULL

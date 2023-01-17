@@ -21,6 +21,7 @@ calibrate(ages, errors, ...)
   resolution = 1,
   normalize = TRUE,
   F14C = FALSE,
+  drop = TRUE,
   eps = 1e-05
 )
 }
@@ -58,6 +59,9 @@ resolution (in years) of the calibration.}
 \item{F14C}{A \code{\link{logical}} scalar: should the calibration be carried out in
 F14C space?}
 
+\item{drop}{A \code{\link{logical}} scalar: should years with zero probability be
+discarded? If \code{TRUE} (the default), results in a narrower time range.}
+
 \item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
 calibration values will be removed.}
 }
@@ -71,7 +75,21 @@ Calibrates radiocarbon dates.
 Adapted from \code{\link[rcarbon:calibrate]{rcarbon::calibrate()}}.
 }
 \examples{
+## Calibrate a single date
+calBP <- calibrate(130, 20)
+plot(calBP)
 
+## Convert BP scale to CE
+calCE <- BP_to_CE(calBP)
+plot(calCE)
+
+## Calibrate multiple dates
+cal <- calibrate(
+  ages = c(5000, 4500),
+  errors = c(45, 35),
+  names = c("X", "Y")
+)
+plot(cal, panel.first = graphics::grid())
 }
 \references{
 Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
@@ -80,7 +98,8 @@ Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
 \seealso{
 Other radiocarbon tools: 
 \code{\link{F14C}},
-\code{\link{get_curve}()}
+\code{\link{get_curve}()},
+\code{\link{plot_14C}}
 }
 \author{
 N. Frerebeau

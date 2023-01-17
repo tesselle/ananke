@@ -13,6 +13,7 @@
 \alias{BP_to_CE,numeric-method}
 \alias{BP_to_CE,matrix-method}
 \alias{BP_to_CE,array-method}
+\alias{BP_to_CE,CalibratedAges-method}
 \alias{BP_to_b2k,numeric-method}
 \alias{BP_to_b2k,matrix-method}
 \alias{BP_to_b2k,array-method}
@@ -31,6 +32,8 @@ is_BP(object)
 \S4method{BP_to_CE}{matrix}(object)
 
 \S4method{BP_to_CE}{array}(object)
+
+\S4method{BP_to_CE}{CalibratedAges}(object)
 
 \S4method{BP_to_b2k}{numeric}(object)
 
