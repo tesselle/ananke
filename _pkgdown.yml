@@ -7,6 +7,9 @@ template:
       creator: "@nfrerebeau"
 
 reference:
+- title: Allen's Interval Algebra
+  contents:
+  - has_concept("Allen's intervals")
 - title: Time scales
   contents:
   - has_concept("time scales")
@@ -27,3 +30,5 @@ navbar:
       menu:
       - text: OxCal
         href: articles/oxcal.html
+      - text: Bibliography
+        href: articles/bibliography.html
