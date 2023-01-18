@@ -15,6 +15,14 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
+## Overview
+
+A toolkit for temporal reasoning. **ananke** allows to describe and
+analyze finite time intervals. It includes tools for radiocarbon
+calibration and Bayesian chronological modeling. It also provides
+classes and methods for the representation of archaeological sequence
+diagrams in the framework of Dye and Buck (2015).
+
 ## Installation
 
 You can install the released version of **ananke** from
@@ -36,3 +44,18 @@ remotes::install_github("tesselle/ananke")
 Please note that the **ananke** project is released with a [Contributor
 Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
 to this project, you agree to abide by its terms.
+
+## References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-dye2015" class="csl-entry">
+
+Dye, Thomas S., and Caitlin E. Buck. 2015. “Archaeological Sequence
+Diagrams and Bayesian Chronological Models.” *Journal of Archaeological
+Science* 63 (November): 84–93.
+<https://doi.org/10.1016/j.jas.2015.08.008>.
+
+</div>
+
+</div>

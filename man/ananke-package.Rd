@@ -5,9 +5,9 @@
 \alias{ananke-package}
 \alias{_PACKAGE}
 \alias{ananke}
-\title{ananke: Bayesian Chronological Modeling}
+\title{ananke: Analysis of Time Intervals and Temporal Reasoning}
 \description{
-What the package does (one paragraph).
+A toolkit for temporal reasoning. This package allows to describe and analyze finite time intervals. It includes tools for radiocarbon calibration and Bayesian chronological modeling. It also provides classes and methods for the representation of archaeological sequence diagrams in the framework of Dye and Buck (2015) \doi{10.1016/j.jas.2015.08.008}.
 }
 \details{
 \tabular{ll}{

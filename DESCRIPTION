@@ -1,11 +1,16 @@
 Package: ananke
-Title: Bayesian Chronological Modeling
+Title: Analysis of Time Intervals and Temporal Reasoning
 Version: 0.0.0.9000
 Authors@R: 
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne"))
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
-Description: What the package does (one paragraph).
+Description: A toolkit for temporal reasoning. This package allows to describe 
+    and analyze finite time intervals. It includes tools for radiocarbon 
+    calibration and Bayesian chronological modeling.
+    It also provides classes and methods for the representation of 
+    archaeological sequence diagrams in the framework of Dye and Buck (2015) 
+    <doi:10.1016/j.jas.2015.08.008>.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/ananke/,
     https://github.com/tesselle/ananke
