@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname calibrate
-#' @aliases calibrate,numeric,numeric-method
+#' @rdname c14_calibrate
+#' @aliases c14_calibrate,numeric,numeric-method
 setMethod(
-  f = "calibrate",
+  f = "c14_calibrate",
   signature = signature(ages = "numeric", errors = "numeric"),
   definition = function(ages, errors, names = NULL, curves = "intcal20",
                         reservoir_offsets = 0, reservoir_errors = 0,
@@ -38,7 +38,7 @@ setMethod(
     curve_range <- vector(mode = "list", length = length(curve_unique))
     names(curve_range) <- curve_unique
     for (i in seq_along(curve_unique)) {
-      tmp <- get_curve(curve_unique[[i]])
+      tmp <- c14_curve(curve_unique[[i]])
 
       if (F14C) {
         tmp_f14 <- BP14C_to_F14C(tmp[, 2], tmp[, 3])
@@ -121,6 +121,23 @@ calibrate_F14C <- function (age, error, calf14, calf14error, eps = 1e-05) {
   dens[dens < eps] <- 0
   dens
 }
+
+#' @export
+#' @rdname c14_curve
+#' @aliases c14_curve,character-method
+setMethod(
+  f = "c14_curve",
+  signature = "character",
+  definition = function(x) {
+    curve_dir <- system.file("curves", package = "ananke")
+    curve_path <- file.path(curve_dir, paste0(x, ".14c"))
+    curve <- utils::read.table(curve_path, header = FALSE, sep = ",", dec = ".",
+                               strip.white = TRUE, comment.char = "#")
+    curve <- curve[, c(1, 2, 3)]
+    colnames(curve) <- c("CALBP", "14CBP", "sigma")
+    curve
+  }
+)
 
 #' @export
 #' @rdname F14C

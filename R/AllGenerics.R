@@ -199,12 +199,12 @@ setGeneric(
 #' @references
 #'  Heaton, Timothy J, Peter Köhler, Martin Butzin, Edouard Bard, Ron W Reimer,
 #'  William E N Austin, Christopher Bronk Ramsey, et al. (2020). Marine20 The
-#'  Marine Radiocarbon Age Calibration Curve (0–55,000 Cal BP).
+#'  Marine Radiocarbon Age Calibration Curve (0-55,000 Cal BP).
 #'  *Radiocarbon*, 62(4): 779-820. \doi{10.1017/RDC.2020.68}.
 #'
 #'  Hogg, Alan G, Timothy J Heaton, Quan Hua, Jonathan G Palmer, Chris SM
-#'  Turney, John Southon, Alex Bayliss, et al. (2020). SHCal20 Southern Hemisphere
-#'  Calibration, 0–55,000 Years Cal BP. *Radiocarbon*, 62(4): 759-78.
+#'  Turney, John Southon, Alex Bayliss, et al. (2020). SHCal20 Southern
+#'  Hemisphere Calibration, 0-55,000 Years Cal BP. *Radiocarbon*, 62(4): 759-78.
 #'  \doi{10.1017/RDC.2020.59}.
 #'
 #'  Hogg, Alan G, Quan Hua, Paul G Blackwell, Mu Niu, Caitlin E Buck, Thomas P
@@ -212,17 +212,17 @@ setGeneric(
 #'  Calibration, 0-50,000 Years Cal BP. *Radiocarbon*, 55(4): 1889-1903.
 #'  \doi{10.2458/azu_js_rc.55.16783}.
 #'
-#'  Hua, Quan, and Mike Barbetti (2004). Review of Tropospheric Bomb 14C Data for
-#'  Carbon Cycle Modeling and Age Calibration Purposes. *Radiocarbon*,
+#'  Hua, Quan, and Mike Barbetti (2004). Review of Tropospheric Bomb 14C Data
+#'  for Carbon Cycle Modeling and Age Calibration Purposes. *Radiocarbon*,
 #'  46(3): 1273-1298. \doi{10.1017/S0033822200033142}.
 #'
 #'  Hua, Quan, Mike Barbetti, and Andrzej Z Rakowski (2013). Atmospheric
-#'  Radiocarbon for the Period 1950–2010. *Radiocarbon*, 55(4): 2059‑2072.
+#'  Radiocarbon for the Period 1950-2010. *Radiocarbon*, 55(4): 2059‑2072.
 #'  \doi{10.2458/azu_js_rc.v55i2.16177}.
 #'
 #'  Hua, Quan, Jocelyn C Turnbull, Guaciara M Santos, Andrzej Z Rakowski,
 #'  Santiago Ancapichún, Ricardo De Pol-Holz, Samuel Hammer, et al. (2022).
-#'  Atmospheric Radiocarbon for the Period 1950–2019. *Radiocarbon*,
+#'  Atmospheric Radiocarbon for the Period 1950-2019. *Radiocarbon*,
 #'  64(4): 723‑745. \doi{10.1017/RDC.2021.95}.
 #'
 #'  Hughen, K., S. Lehman, J. Southon, J. Overpeck, O. Marchal, C. Herring,
@@ -232,7 +232,7 @@ setGeneric(
 #'
 #'  Hughen, Konrad A, Mike G L Baillie, Edouard Bard, J Warren Beck, Chanda J H
 #'  Bertrand, Paul G Blackwell, Caitlin E Buck, et al. (2004). Marine04 Marine
-#'  Radiocarbon Age Calibration, 0–26 cal kyr BP. *Radiocarbon*,
+#'  Radiocarbon Age Calibration, 0-26 cal kyr BP. *Radiocarbon*,
 #'  46(3): 1059‑1086. \doi{10.1017/S0033822200033002}.
 #'
 #'  Kueppers, Lara M., John Southon, Paul Baer, and John Harte (2004). Dead Wood
@@ -241,46 +241,46 @@ setGeneric(
 #'  \doi{10.1007/s00442-004-1689-x}.
 #'
 #'  McCormac, F G, A G Hogg, P G Blackwell, C E Buck, T F G Higham, and P J
-#'  Reimer (2004). Shcal04 Southern Hemisphere Calibration, 0–11.0 cal kyr BP.
+#'  Reimer (2004). Shcal04 Southern Hemisphere Calibration, 0-11.0 cal kyr BP.
 #'  *Radiocarbon*, 46(3): 1087‑1092. \doi{10.1017/S0033822200033014}.
 #'
 #'  Reimer, P J, M G L Baillie, E Bard, A Bayliss, J W Beck, P G Blackwell,
 #'  C Bronk Ramsey, et al. (2009). IntCal09 and Marine09 Radiocarbon Age
-#'  Calibration Curves, 0–50,000 Years cal BP. *Radiocarbon*, 51(4): 1111‑1150.
+#'  Calibration Curves, 0-50,000 Years cal BP. *Radiocarbon*, 51(4): 1111‑1150.
 #'  \doi{10.1017/S0033822200034202}.
 #'
 #'  Reimer, Paula J, William E N Austin, Edouard Bard, Alex Bayliss, Paul G
 #'  Blackwell, Christopher Bronk Ramsey, Martin Butzin, et al. (2020).
 #'  The IntCal20 Northern Hemisphere Radiocarbon Age Calibration Curve
-#'  (0–55 cal kBP). *Radiocarbon*, 62(4): 725‑757. \doi{10.1017/RDC.2020.41}.
+#'  (0-55 cal kBP). *Radiocarbon*, 62(4): 725‑757. \doi{10.1017/RDC.2020.41}.
 #'
 #'  Reimer, Paula J, Mike G L Baillie, Edouard Bard, Alex Bayliss,
 #'  J Warren Beck, Chanda J H Bertrand, Paul G Blackwell, et al. (2004).
-#'  Intcal04 Terrestrial Radiocarbon Age Calibration, 0–26 cal kyr BP.
+#'  Intcal04 Terrestrial Radiocarbon Age Calibration, 0-26 cal kyr BP.
 #'  *Radiocarbon*, 46(3): 1029‑1058. \doi{10.1017/S0033822200032999}.
 #'
 #'  Reimer, Paula J, Edouard Bard, Alex Bayliss, J Warren Beck, Paul G
 #'  Blackwell, Christopher Bronk Ramsey, Caitlin E Buck, et al. (2013).
-#'  IntCal13 and Marine13 Radiocarbon Age Calibration Curves 0–50,000
+#'  IntCal13 and Marine13 Radiocarbon Age Calibration Curves 0-50,000
 #'  Years cal BP. *Radiocarbon*, 55(4): 1869‑1887.
 #'  \doi{10.2458/azu_js_rc.55.16947}.
 #'
 #'  Stuiver, Minze, Paula J. Reimer, Edouard Bard, J. Warren Beck, G. S. Burr,
 #'  Konrad A. Hughen, Bernd Kromer, Gerry McCormac, Johannes Van Der Plicht, and
-#'  Marco Spurk (1998). INTCAL98 Radiocarbon Age Calibration, 24,000–0 cal BP.
+#'  Marco Spurk (1998). INTCAL98 Radiocarbon Age Calibration, 24,000-0 cal BP.
 #'  *Radiocarbon*, 40(3): 1041‑1083. \doi{10.1017/S0033822200019123}.
 #'
 #'  Stuiver, Minze, Paula J. Reimer, and Thomas F. Braziunas. (1998).
 #'  High-Precision Radiocarbon Age Calibration for Terrestrial and Marine
 #'  Samples. *Radiocarbon*, 40(3): 1127‑1151. \doi{10.1017/S0033822200019172}.
-#' @example inst/examples/ex-14c-calibrate.R
+#' @example inst/examples/ex-14c-curve.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
-#' @aliases get_curve-method
+#' @aliases c14_curve-method
 setGeneric(
-  name = "get_curve",
-  def = function(x, ...) standardGeneric("get_curve"),
+  name = "c14_curve",
+  def = function(x, ...) standardGeneric("c14_curve"),
   valueClass = "data.frame"
 )
 
@@ -323,10 +323,10 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
-#' @aliases calibrate-method
+#' @aliases c14_curve-method
 setGeneric(
-  name = "calibrate",
-  def = function(ages, errors, ...) standardGeneric("calibrate"),
+  name = "c14_calibrate",
+  def = function(ages, errors, ...) standardGeneric("c14_calibrate"),
   valueClass = "CalibratedAges"
 )
 
