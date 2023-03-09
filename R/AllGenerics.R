@@ -28,6 +28,35 @@ setGeneric(
   def = function(x) standardGeneric("get_calendar")
 )
 
+#' @rdname mutators
+#' @aliases get_years-method
+setGeneric(
+  name = "get_years",
+  def = function(x) standardGeneric("get_years")
+)
+
+## Subset ----------------------------------------------------------------------
+#' Extract or Replace Parts of an Object
+#'
+#' Operators acting on objects to extract or replace parts.
+#' @param x An object from which to extract element(s) or in which to replace
+#'  element(s).
+#' @param i,j Indices specifying elements to extract or replace.
+#' @param drop A [`logical`] scalar: should the result be coerced to
+#'  the lowest possible dimension? This only works for extracting elements,
+#'  not for the replacement.
+# @param value A possible value for the element(s) of `x`.
+#' @param ... Currently not used.
+#' @return
+#'  A subsetted object.
+# @example inst/examples/ex-subset.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name subset
+#' @rdname subset
+NULL
+
 # Time Scale ===================================================================
 ## BP --------------------------------------------------------------------------
 #' Before Present
@@ -153,6 +182,7 @@ setGeneric(
 )
 
 # Radiocarbon ==================================================================
+## Calibration curve -----------------------------------------------------------
 #' 14C Calibration Curve
 #'
 #' @param x A [`character`] string naming a calibration curve (see details).
@@ -284,6 +314,7 @@ setGeneric(
   valueClass = "data.frame"
 )
 
+## Calibration -----------------------------------------------------------------
 #' 14C Calibration
 #'
 #' Calibrates radiocarbon dates.
@@ -323,7 +354,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
-#' @aliases c14_curve-method
+#' @aliases c14_calibrate-method
 setGeneric(
   name = "c14_calibrate",
   def = function(ages, errors, ...) standardGeneric("c14_calibrate"),
@@ -366,9 +397,76 @@ setGeneric(
   valueClass = "data.frame"
 )
 
+## Combine ---------------------------------------------------------------------
+#' 14C Calibration
+#'
+#' Combines radiocarbon dates.
+#' @param ages A [`numeric`] vector giving the BP ages to be calibrated.
+#' @param errors A [`numeric`] vector giving the standard deviation of the ages
+#'  to be calibrated.
+#' @param groups A [`factor`] in the sense that `as.factor(groups)` defines the
+#'  the groups to combine with. If `NULL` (the default), all dates are combined.
+#'  `NA`s will be treated as isolated dates.
+#' @param ... Currently not used.
+#' @return
+#'  A [`data.frame`] with the following columns:
+#'  \tabular{ll}{
+#'  `groups` \tab Group names                      \cr
+#'  `ages`   \tab Combined 14C ages                \cr
+#'  `errors` \tab Combined 14C standard deviations \cr
+#'  `chi2`   \tab Chi-squared test statistic       \cr
+#'  `p`      \tab Chi-squared test p-value         \cr
+#'  }
+#' @references
+#'  Ward, G. K. and Wilson, S. R. (1978). Procedures for Comparing and Combining
+#'  Radiocarbon Age Determinations: A Critique. *Archaeometry* 20(1): 19‑31.
+#'  \doi{10.1111/j.1475-4754.1978.tb00208.x}.
+#' @example inst/examples/ex-14c-combine.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family radiocarbon tools
+#' @aliases c14_combine-method
+setGeneric(
+  name = "c14_combine",
+  def = function(ages, errors, ...) standardGeneric("c14_combine"),
+  valueClass = "data.frame"
+)
+
+## HPDI ------------------------------------------------------------------------
+#' HPD Regions
+#'
+#' @param object A [`numeric`] vector giving the coordinates of the points where
+#'  the density is estimated or a [`CalibratedAges-class`] object.
+#' @param density A [`numeric`] vector giving the estimated density values.
+#'  If `density` is missing and `object` is a `ǹumeric` vector, density
+#'  estimates will be computed from `object`.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param ... Further parameters to be passed to [stats::density()].
+#' @return
+#'  A [`list`] of `numeric` [`matrix`] giving the lower and upper boundaries of
+#'  the HPD interval and associated probabilities.
+#' @references
+#'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
+#'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.
+#' @example inst/examples/ex-14c-calibrate.R
+#' @author N. Frerebeau
+#' @family statistics
+#' @docType methods
+#' @rdname hpdi
+#' @aliases hpdi-method
+setGeneric(
+  name = "hpdi",
+  def = function(object, density, ...) standardGeneric("hpdi")
+)
+
+## Plot ------------------------------------------------------------------------
 #' Plot Calibrated Radiocarbon Ages
 #'
 #' @param x A [`CalibratedAges-class`] object.
+#' @param interval A [`logical`] scalar: should highest posterior density
+#'  interval be drawn?
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x,
@@ -390,8 +488,23 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
-#' @name plot_14C
-#' @rdname plot_14C
+#' @name c14_plot
+#' @rdname c14_plot
+NULL
+
+# Statistics ===================================================================
+#' Median
+#'
+#' @param x A [`CalibratedAges-class`] object.
+#' @param na.rm A [`logical`] scalar: should NA values be stripped before the
+#'  computation proceeds?
+#' @param ... Currently not used.
+#' @example inst/examples/ex-14c-calibrate.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name median
+#' @rdname median
 NULL
 
 # Allen Interval Algebra =======================================================

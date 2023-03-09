@@ -2,6 +2,7 @@
   ## Set package options
   op <- options()
   op.ananke <- list(
+    ananke.grid = 512,
     ananke.progress = interactive(),
     ananke.oxcal = ""
   )

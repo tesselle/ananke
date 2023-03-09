@@ -2,6 +2,88 @@
 #' @include AllGenerics.R
 NULL
 
+# Combine ======================================================================
+#' @export
+#' @rdname c14_combine
+#' @aliases c14_combine,numeric,numeric-method
+setMethod(
+  f = "c14_combine",
+  signature = c(ages = "numeric", errors = "numeric"),
+  definition = function(ages, errors, groups = NULL) {
+    ## Validation
+    n <- length(ages)
+    if (is.null(groups)) groups <- "X"
+    if (length(groups) == 1) groups <- rep(groups, n)
+    groups <- factor(x = groups, levels = unique(groups))
+
+    arkhe::assert_missing(ages)
+    arkhe::assert_missing(errors)
+    arkhe::assert_length(errors, n)
+    arkhe::assert_length(groups, n)
+
+    ## Empty groups must be treated as NA
+    groups[groups == ""] <- NA
+
+    ## Groups with only one date must be treated as NA
+    counts <- table(groups)
+    one <- groups %in% names(counts)[counts == 1]
+
+    # NA group will be removed
+    # We need to keep isolated dates
+    k <- one | is.na(groups)
+    solo <- NULL
+    if (any(k)) {
+      solo <- data.frame(
+        groups = as.character(groups[k]),
+        ages = ages[k],
+        errors = errors[k],
+        chi2 = NA_real_,
+        p = NA_real_
+      )
+    }
+
+    combined <- NULL
+    if (all(!k)) {
+      groups[k] <- NA
+      groups <- droplevels(groups)
+
+      ## split() removes NA group
+      ages <- split(ages, f = groups)
+      errors <- split(errors, f = groups)
+      cmbn <- mapply(
+        FUN = combine,
+        ages = ages,
+        errors = errors,
+        SIMPLIFY = FALSE
+      )
+      combined <- data.frame(names(cmbn), do.call(rbind, cmbn))
+      colnames(combined) <- c("groups", "ages", "errors", "chi2", "p")
+    }
+
+    final <- rbind(solo, combined, make.row.names = FALSE)
+    final
+  }
+)
+
+combine <- function(ages, errors) {
+  ## On calcule la moyenne pondérée
+  w <- 1 / errors^2 # Facteur de pondération
+  moy <- stats::weighted.mean(x = ages, w = w)
+
+  ## On calcule l'incertitude associée à la moyenne pondérée
+  err <- sum(1 / errors^2)^(-1 / 2)
+
+  ## On calcule la statistique du test
+  chi2 <- sum(((ages - moy) / errors)^2)
+
+  ## On calcule la valeur-p
+  p <- 1 - stats::pchisq(chi2, df = length(ages))
+
+  ## On stocke les résultats
+  c(moy, err, chi2, p)
+}
+
+# Calibrate ====================================================================
 #' @export
 #' @rdname c14_calibrate
 #' @aliases c14_calibrate,numeric,numeric-method
@@ -112,16 +194,17 @@ calibrate_BP14C <- function(age, error, mu, tau, eps = 1e-05) {
   dens[dens < eps] <- 0
   dens
 }
-calibrate_F14C <- function (age, error, calf14, calf14error, eps = 1e-05) {
+calibrate_F14C <- function (age, error, mu, tau, eps = 1e-05) {
   f14 <- BP14C_to_F14C(age, error)
-  p1 <- (f14$ages - calf14)^2
-  p2 <- 2 * (f14$errors^2 + calf14error^2)
-  p3 <- sqrt(f14$errors^2 + calf14error^2)
+  p1 <- (f14$ages - mu)^2
+  p2 <- 2 * (f14$errors^2 + tau^2)
+  p3 <- sqrt(f14$errors^2 + tau^2)
   dens <- exp(-p1 / p2) / p3
   dens[dens < eps] <- 0
   dens
 }
 
+# Calibration curve ============================================================
 #' @export
 #' @rdname c14_curve
 #' @aliases c14_curve,character-method
@@ -129,6 +212,9 @@ setMethod(
   f = "c14_curve",
   signature = "character",
   definition = function(x) {
+    if (!(x %in% c("intcal20", "intcal13", "intcal09")))
+      stop("TODO", call. = FALSE)
+
     curve_dir <- system.file("curves", package = "ananke")
     curve_path <- file.path(curve_dir, paste0(x, ".14c"))
     curve <- utils::read.table(curve_path, header = FALSE, sep = ",", dec = ".",
@@ -139,6 +225,7 @@ setMethod(
   }
 )
 
+# F14C <> BP14C ================================================================
 #' @export
 #' @rdname F14C
 #' @aliases BP14C_to_F14C,numeric,numeric-method

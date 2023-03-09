@@ -7,18 +7,25 @@
 \alias{set}
 \alias{get_calendar}
 \alias{get_calendar-method}
+\alias{get_years}
+\alias{get_years-method}
 \alias{names,CalibratedAges-method}
 \alias{names<-,CalibratedAges-method}
 \alias{get_calendar,CalibratedAges-method}
+\alias{get_years,CalibratedAges-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_calendar(x)
+
+get_years(x)
 
 \S4method{names}{CalibratedAges}(x)
 
 \S4method{names}{CalibratedAges}(x) <- value
 
 \S4method{get_calendar}{CalibratedAges}(x)
+
+\S4method{get_years}{CalibratedAges}(x)
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}
@@ -30,6 +37,10 @@ An object of the same sort as \code{x} with the new values assigned.
 }
 \description{
 Getters and setters to extract or replace parts of an object.
+}
+\seealso{
+Other mutators: 
+\code{\link{subset}()}
 }
 \author{
 N. Frerebeau

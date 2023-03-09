@@ -33,3 +33,15 @@ setMethod(
   signature = "CalibratedAges",
   definition = function(x) x@calendar
 )
+
+#' @export
+#' @rdname mutators
+#' @aliases get_years,CalibratedAges-method
+setMethod(
+  f = "get_years",
+  signature = "CalibratedAges",
+  definition = function(x) {
+    resolution <- if (is_CE(x)) x@resolution else x@resolution * -1
+    seq(from = x@start, by = resolution, length.out = ncol(x))
+  }
+)

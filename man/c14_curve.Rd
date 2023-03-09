@@ -146,7 +146,8 @@ Samples. \emph{Radiocarbon}, 40(3): 1127‑1151. \doi{10.1017/S0033822200019172}
 Other radiocarbon tools: 
 \code{\link{F14C}},
 \code{\link{c14_calibrate}()},
-\code{\link{plot_14C}}
+\code{\link{c14_combine}()},
+\code{\link{c14_plot}}
 }
 \author{
 N. Frerebeau
