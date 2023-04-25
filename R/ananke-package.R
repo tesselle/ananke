@@ -28,3 +28,8 @@
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
+
+#' @import arkhe
+#' @import chronos
+#' @importFrom methods as new setGeneric setMethod setValidity .valueClassTest
+NULL

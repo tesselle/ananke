@@ -11,6 +11,32 @@ URL: https://packages.tesselle.org/ananke/,
 BugReports: https://github.com/tesselle/ananke/issues
 Depends: 
     R (>= 3.3)
+Imports: 
+    arkhe,
+    chronos,
+    graphics,
+    grDevices,
+    methods
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    vdiffr (>= 1.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+LazyData: true
+Collate: 
+    'AllClasses.R'
+    'AllGenerics.R'
+    'ananke-package.R'
+    'data.R'
+    'interval.R'
+    'plot.R'
+    'radiocarbon.R'
+    'reexport.R'
+    'statistics.R'
+    'subset.R'
+    'utilities.R'
