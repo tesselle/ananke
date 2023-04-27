@@ -195,11 +195,11 @@ setMethod(
     }
 
     time_series <- chronos::series(
-      object = t(dens),
+      data = t(dens),
       scale = era("BP"),
-      labels = names,
       start = from,
-      increment = resolution
+      frequency = 1 / resolution,
+      names = names
     )
     cal <- .CalibratedAges(
       time_series,
@@ -305,10 +305,10 @@ setMethod(
     if (normalize_spd) spd <- spd / sum(spd, na.rm = TRUE)
 
     time_series <- chronos::series(
-      object = spd,
+      data = spd,
       scale = era(object),
       start = start(object),
-      increment = object@time_increment
+      frequency = frequency(object)
     )
     .CalibratedSPD(time_series)
   }
