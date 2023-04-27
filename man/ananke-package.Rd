@@ -17,6 +17,20 @@ What the package does (one paragraph).
 \strong{License:} \tab GPL-3 \cr
 }
 }
+\section{Package options}{
+
+\code{ananke} uses the following \code{\link[=options]{options()}} to configure behavior:
+\itemize{
+\item \code{ananke.grid}: a \code{\link{numeric}} value specifying the number of equally
+spaced points at which densities are to be estimated (defaults to
+\eqn{512}). Should be a power of \eqn{2}.
+\item \code{ananke.progress}: a \code{\link{logical}} scalar. Should progress bars be
+displayed?
+\item \code{ananke.verbose}: a \code{\link{logical}} scalar. Should \R report extra information
+on progress? Defaults to \code{TRUE}.
+}
+}
+
 \seealso{
 Useful links:
 \itemize{

@@ -32,7 +32,8 @@ This class inherits from \code{\linkS4class{TimeSeries}}.
 }
 \seealso{
 Other classes: 
-\code{\link{CalibratedSPD-class}}
+\code{\link{CalibratedSPD-class}},
+\code{\link{ProxyRecord-class}}
 }
 \author{
 N. Frerebeau

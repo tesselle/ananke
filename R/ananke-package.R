@@ -6,6 +6,16 @@
 #'   **License:** \tab GPL-3 \cr
 #'  }
 #'
+#' @section Package options:
+#'  `ananke` uses the following [options()] to configure behavior:
+#'  * `ananke.grid`: a [`numeric`] value specifying the number of equally
+#'    spaced points at which densities are to be estimated (defaults to
+#'    \eqn{512}). Should be a power of \eqn{2}.
+#'  * `ananke.progress`: a [`logical`] scalar. Should progress bars be
+#'    displayed?
+#'  * `ananke.verbose`: a [`logical`] scalar. Should \R report extra information
+#'    on progress? Defaults to `TRUE`.
+#'
 #' @author
 #'  **Full list of authors and contributors** (alphabetic order):
 #'

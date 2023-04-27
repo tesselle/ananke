@@ -352,6 +352,75 @@ setGeneric(
   valueClass = "CalibratedSPD"
 )
 
+# Proxy Records ================================================================
+#' Layer-Counted Proxy Records Uncertainties
+#'
+#' Represents layer-counted proxy records as sequences of probability
+#' distributions on absolute, error-free time axes.
+#' @param depth A [`numeric`] vector giving the depth at which proxy values and
+#'  calendar ages were measured (in decreasing order).
+#' @param proxy A [`numeric`] vector giving the proxy values.
+#' @param proxy_error A [`numeric`] vector giving the proxy uncertainties.
+#' @param time A [`numeric`] vector giving the calendar ages (in years).
+#' @param time_error A [`numeric`] vector giving the calendar age uncertainties
+#'  (in years).
+#' @param start A length-one [`numeric`] vector specifying the starting value of
+#'  the temporal sequence at which densities are to be estimated (in years).
+#' @param end A length-one [`numeric`] vector specifying the end value of the
+#'  temporal sequence at which densities are to be estimated (in cal BP years).
+#' @param by A length-one [`numeric`] vector specifying the increment of
+#'  the temporal sequence at which densities are to be estimated (in years).
+#' @param n An [`integer`] specifying the number of item to choose.
+#' @param verbose A [`logical`] scalar: should extra information be reported?
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param ... Currently not used.
+#' @return
+#'  A [`ProxyRecord-class`] object.
+#' @references
+#'  Boers, N., Goswami, B. & Ghil, M. (2017). A Complete Representation of
+#'  Uncertainties in Layer-Counted Paleoclimatic Archives. *Climate of the
+#'  Past*, 13(9): 1169-1180. \doi{10.5194/cp-13-1169-2017}.
+#' @example inst/examples/ex-proxy.R
+#' @author N. Frerebeau
+#' @family modeling tools
+#' @docType methods
+#' @aliases proxy_record-method
+setGeneric(
+  name = "proxy_record",
+  def = function(depth, ...) standardGeneric("proxy_record"),
+  valueClass = "ProxyRecord"
+)
+
+#' Plot Layer-Counted Proxy Records Uncertainties
+#'
+#' @param x A [`ProxyRecord-class`] object.
+#' @param xlim A length-two [`numeric`] vector giving the x limits of the plot.
+#' @param ylim A length-two [`numeric`] vector giving the y limits of the plot.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x,
+#'  y and z axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Other [graphical parameters][graphics::par] may also be passed as
+#'  arguments to this function.
+#' @return
+#'  `plot()` is called it for its side-effects: it results in a graphic
+#'  being displayed. Invisibly returns `x`.
+#' @example inst/examples/ex-proxy.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family modeling tools
+#' @name proxy_plot
+#' @rdname proxy_plot
+NULL
+
 # Statistics ===================================================================
 #' Mean
 #'
