@@ -21,6 +21,8 @@ What the package does (one paragraph).
 
 \code{ananke} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
+\item \code{ananke.calendar}: a \code{\linkS4class{TimeScale}} object (default calendar
+for printing).
 \item \code{ananke.grid}: a \code{\link{numeric}} value specifying the number of equally
 spaced points at which densities are to be estimated (defaults to
 \eqn{512}). Should be a power of \eqn{2}.

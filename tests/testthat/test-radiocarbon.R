@@ -37,20 +37,20 @@ test_that("Calibrate a single 14C date", {
   ## IntCal20
   ## (OxCal v4.4: 5905-5595 calBP)
   intcal20 <- c14_calibrate(5000, 45, curves = "intcal20")
-  r99 <- hpdi(intcal20, level = 0.997)
-  expect_equal(r99[[1]][1, ], c(start = 5903, stop = 5597, p = 1))
+  r99 <- interval_hdr(intcal20, level = 0.997, calendar = BP())
+  expect_equal(r99[[1]][1, ], c(start = 5903, end = 5597, p = 1))
 
   ## IntCal13
   ## (OxCal v4.4: 5905-5603 calBP)
   intcal13 <- c14_calibrate(5000, 45, curves = "intcal13", from = 45000, to = 0)
-  r99 <- hpdi(intcal13, level = 0.997)
-  expect_equal(r99[[1]][1, ], c(start = 5904, stop = 5603, p = 1))
+  r99 <- interval_hdr(intcal13, level = 0.997, calendar = BP())
+  expect_equal(r99[[1]][1, ], c(start = 5904, end = 5603, p = 1))
 
   ## IntCal09
   ## (OxCal v4.4: 5906-5603 calBP)
   intcal09 <- c14_calibrate(5000, 45, curves = "intcal09", from = 45000, to = 0)
-  r99 <- hpdi(intcal09, level = 0.997)
-  expect_equal(r99[[1]][1, ], c(start = 5904, stop = 5603, p = 1))
+  r99 <- interval_hdr(intcal09, level = 0.997, calendar = BP())
+  expect_equal(r99[[1]][1, ], c(start = 5904, end = 5603, p = 1))
 })
 test_that("Out of calibration range", {
   expect_warning(c14_calibrate(52000, 200, curve = "intcal20"), "is out of range")
@@ -68,26 +68,24 @@ test_that("Out of calibration range", {
 
 })
 test_that("Calibrate multiple 14C dates", {
-  BP <- c14_calibrate(
+  cal <- c14_calibrate(
     ages = c(5000, 4500),
     errors = c(45, 35),
     names = c("X", "Y")
   )
 
-  plot_cal_BP <- function() {
-    plot(BP, panel.first = graphics::grid())
-  }
-  vdiffr::expect_doppelganger("plot_cal_BP", plot_cal_BP)
-
-  CE <- project(BP, "CE")
   plot_cal_CE <- function() {
-    plot(CE, panel.first = graphics::grid())
+    plot(cal, panel.first = graphics::grid())
   }
   vdiffr::expect_doppelganger("plot_cal_CE", plot_cal_CE)
 
-  b2k <- project(BP, "b2k")
+  plot_cal_BP <- function() {
+    plot(cal, panel.first = graphics::grid(), calendar = BP())
+  }
+  vdiffr::expect_doppelganger("plot_cal_BP", plot_cal_BP)
+
   plot_cal_b2k <- function() {
-    plot(b2k, panel.first = graphics::grid())
+    plot(cal, panel.first = graphics::grid(), calendar = b2k())
   }
   vdiffr::expect_doppelganger("plot_cal_b2k", plot_cal_b2k)
 })

@@ -1,49 +1,41 @@
 # REEXPORT
 
-#' @importFrom chronos era
+#' @importFrom aion calendar
 #' @export
-chronos::era
+aion::calendar
 
-#' @importFrom chronos era_label
+#' @importFrom aion BP
 #' @export
-chronos::era_label
+aion::BP
 
-#' @importFrom chronos era_name
+#' @importFrom aion b2k
 #' @export
-chronos::era_name
+aion::b2k
 
-#' @importFrom chronos era_epoch
+#' @importFrom aion BC
 #' @export
-chronos::era_epoch
+aion::BC
 
-#' @importFrom chronos era_scale
+#' @importFrom aion BCE
 #' @export
-chronos::era_scale
+aion::BCE
 
-#' @importFrom chronos era_direction
+#' @importFrom aion AD
 #' @export
-chronos::era_direction
+aion::AD
 
-#' @importFrom chronos era_unit
+#' @importFrom aion CE
 #' @export
-chronos::era_unit
+aion::CE
 
-#' @importFrom chronos era_days
+#' @importFrom aion start
 #' @export
-chronos::era_days
+aion::start
 
-#' @importFrom chronos start
+#' @importFrom aion end
 #' @export
-chronos::start
+aion::start
 
-#' @importFrom chronos time
+#' @importFrom aion time
 #' @export
-chronos::time
-
-#' @importFrom chronos project
-#' @export
-chronos::project
-
-#' @importFrom chronos hpdi
-#' @export
-chronos::hpdi
+aion::time

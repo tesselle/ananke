@@ -6,36 +6,15 @@
 \alias{plot,ProxyRecord,missing-method}
 \title{Plot Layer-Counted Proxy Records Uncertainties}
 \usage{
-\S4method{plot}{ProxyRecord,missing}(x, y, ...)
+\S4method{plot}{ProxyRecord,missing}(x, calendar = getOption("ananke.calendar"), ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{ProxyRecord}} object.}
 
-\item{...}{Other \link[graphics:par]{graphical parameters} may also be passed as
-arguments to this function.}
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
 
-\item{xlim}{A length-two \code{\link{numeric}} vector giving the x limits of the plot.}
-
-\item{ylim}{A length-two \code{\link{numeric}} vector giving the y limits of the plot.}
-
-\item{main}{A \code{\link{character}} string giving a main title for the plot.}
-
-\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
-
-\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x,
-y and z axis labels) appear on the plot?}
-
-\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
-
-\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
-plot?}
-
-\item{panel.first}{An an \code{expression} to be evaluated after the plot axes are
-set up but before any plotting takes place. This can be useful for drawing
-background grids.}
-
-\item{panel.last}{An \code{expression} to be evaluated after plotting has taken
-place but before the axes, title and box are added.}
+\item{...}{Further parameters to be passed to \code{\link[graphics:image]{graphics::image()}}.}
 }
 \value{
 \code{plot()} is called it for its side-effects: it results in a graphic
@@ -49,15 +28,16 @@ Plot Layer-Counted Proxy Records Uncertainties
 ## Get NGRIP records
 data("ngrip2010", package = "folio")
 ngrip2010 <- subset(ngrip2010, !is.na(MCE))
-ngrip2010 <- ngrip2010[nrow(ngrip2010): 1, ] # Sort in chronological order
+ngrip2010 <- ngrip2010[nrow(ngrip2010):1, ] # Sort in chronological order
 
 ## Replicate fig. 3d from Boers et al. (2017)
-ngrip_record <- proxy_record(
+ngrip_record <- proxy_ensemble(
   depth = ngrip2010$depth,
   proxy = ngrip2010$delta,
   proxy_error = 0.01,
   time = ngrip2010$age,
   time_error = ngrip2010$MCE,
+  calendar = b2k(), # /!\
   by = 20,
   n = 30
 )
@@ -67,7 +47,7 @@ plot(ngrip_record)
 }
 \seealso{
 Other modeling tools: 
-\code{\link{proxy_record}()}
+\code{\link{proxy_ensemble}()}
 }
 \author{
 N. Frerebeau

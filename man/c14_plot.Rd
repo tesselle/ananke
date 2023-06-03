@@ -9,10 +9,12 @@
 \usage{
 \S4method{plot}{CalibratedAges,missing}(
   x,
+  calendar = getOption("ananke.calendar"),
   density = TRUE,
   interval = TRUE,
   level = 0.954,
   warnings = TRUE,
+  sort = TRUE,
   decreasing = TRUE,
   main = NULL,
   sub = NULL,
@@ -21,13 +23,14 @@
   frame.plot = FALSE,
   panel.first = NULL,
   panel.last = NULL,
+  col.density = "grey",
+  col.interval = "#77AADD",
   ...
 )
 
 \S4method{plot}{CalibratedSPD,missing}(
   x,
-  xlim = NULL,
-  ylim = NULL,
+  calendar = getOption("ananke.calendar"),
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),
@@ -41,16 +44,21 @@
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} or \code{\linkS4class{CalibratedSPD}} object.}
 
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
+
 \item{density}{A \code{\link{logical}} scalar: should density be drawn?}
 
-\item{interval}{A \code{\link{logical}} scalar: should highest posterior density
-interval be drawn?}
+\item{interval}{A \code{\link{logical}} scalar: should highest density region be drawn?}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 
 \item{warnings}{A \code{\link{logical}} scalar: should warnings be plotted?}
 
-\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?}
+\item{sort}{A \code{\link{logical}} scalar: should the data be sorted?}
+
+\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?
+Only used if \code{sort} is \code{TRUE}.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
 
@@ -71,12 +79,10 @@ background grids.}
 \item{panel.last}{An \code{expression} to be evaluated after plotting has taken
 place but before the axes, title and box are added.}
 
+\item{col.density, col.interval}{A specification for the plotting colors.}
+
 \item{...}{Other \link[graphics:par]{graphical parameters} may also be passed as
 arguments to this function.}
-
-\item{xlim}{A length-two \code{\link{numeric}} vector giving the x limits of the plot.}
-
-\item{ylim}{A length-two \code{\link{numeric}} vector giving the y limits of the plot.}
 }
 \value{
 \code{plot()} is called it for its side-effects: it results in a graphic
@@ -96,18 +102,15 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, panel.first = graphics::grid())
+plot(cal, panel.first = graphics::grid(), calendar = BP())
 
 plot(cal, density = TRUE, interval = FALSE)
-plot(cal, density = FALSE, interval = TRUE)
+plot(cal, density = FALSE, interval = TRUE, lwd = 4, tcl = 0)
 
-## Convert BP scale to CE
-CE <- project(cal, "CE")
-plot(CE)
-
-## Convert BP scale to b2k
-b2k <- project(cal, "b2k")
-plot(b2k)
+\donttest{
+## Out of 14C range?
+plot(c14_calibrate(130, 20))
+}
 }
 \seealso{
 Other radiocarbon tools: 
@@ -115,7 +118,7 @@ Other radiocarbon tools:
 \code{\link{c14_calibrate}()},
 \code{\link{c14_combine}()},
 \code{\link{c14_curve}()},
-\code{\link{spd}()}
+\code{\link{c14_spd}()}
 }
 \author{
 N. Frerebeau

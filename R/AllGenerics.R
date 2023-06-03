@@ -297,14 +297,15 @@ setGeneric(
 #' Plot Calibrated Radiocarbon Ages
 #'
 #' @param x A [`CalibratedAges-class`] or [`CalibratedSPD-class`] object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
 #' @param density A [`logical`] scalar: should density be drawn?
-#' @param interval A [`logical`] scalar: should highest posterior density
-#'  interval be drawn?
+#' @param interval A [`logical`] scalar: should highest density region be drawn?
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param warnings A [`logical`] scalar: should warnings be plotted?
+#' @param sort A [`logical`] scalar: should the data be sorted?
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
-#' @param xlim A length-two [`numeric`] vector giving the x limits of the plot.
-#' @param ylim A length-two [`numeric`] vector giving the y limits of the plot.
+#'  Only used if `sort` is `TRUE`.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x,
@@ -317,6 +318,7 @@ setGeneric(
 #'  background grids.
 #' @param panel.last An `expression` to be evaluated after plotting has taken
 #'  place but before the axes, title and box are added.
+#' @param col.density,col.interval A specification for the plotting colors.
 #' @param ... Other [graphical parameters][graphics::par] may also be passed as
 #'  arguments to this function.
 #' @return
@@ -345,11 +347,37 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
-#' @aliases spd-method
+#' @aliases c14_spd-method
 setGeneric(
-  name = "spd",
-  def = function(object, ...) standardGeneric("spd"),
+  name = "c14_spd",
+  def = function(object, ...) standardGeneric("c14_spd"),
   valueClass = "CalibratedSPD"
+)
+
+# Interval =====================================================================
+## HDR -------------------------------------------------------------------------
+#' Highest Density Regions
+#'
+#' @param x A [`CalibratedAges-class`] object.
+#' @param y Currently not used.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param ... Currently not used.
+#' @return
+#'  Returns a [`list`] of `numeric` [`matrix`].
+#' @references
+#'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
+#'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.
+#' @example inst/examples/ex-14c-hdr.R
+#' @seealso [stats::density()], [arkhe::interval_hdr()]
+#' @author N. Frerebeau
+#' @family statistics
+#' @docType methods
+#' @aliases interval_hdr-method
+setGeneric(
+  name = "interval_hdr",
+  def = getGeneric("interval_hdr", package = "arkhe")
 )
 
 # Proxy Records ================================================================
@@ -364,6 +392,8 @@ setGeneric(
 #' @param time A [`numeric`] vector giving the calendar ages (in years).
 #' @param time_error A [`numeric`] vector giving the calendar age uncertainties
 #'  (in years).
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `time` (see [calendar()]).
 #' @param start A length-one [`numeric`] vector specifying the starting value of
 #'  the temporal sequence at which densities are to be estimated (in years).
 #' @param end A length-one [`numeric`] vector specifying the end value of the
@@ -384,32 +414,19 @@ setGeneric(
 #' @author N. Frerebeau
 #' @family modeling tools
 #' @docType methods
-#' @aliases proxy_record-method
+#' @aliases proxy_ensemble-method
 setGeneric(
-  name = "proxy_record",
-  def = function(depth, ...) standardGeneric("proxy_record"),
+  name = "proxy_ensemble",
+  def = function(depth, ...) standardGeneric("proxy_ensemble"),
   valueClass = "ProxyRecord"
 )
 
 #' Plot Layer-Counted Proxy Records Uncertainties
 #'
 #' @param x A [`ProxyRecord-class`] object.
-#' @param xlim A length-two [`numeric`] vector giving the x limits of the plot.
-#' @param ylim A length-two [`numeric`] vector giving the y limits of the plot.
-#' @param main A [`character`] string giving a main title for the plot.
-#' @param sub A [`character`] string giving a subtitle for the plot.
-#' @param ann A [`logical`] scalar: should the default annotation (title and x,
-#'  y and z axis labels) appear on the plot?
-#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
-#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
-#'  plot?
-#' @param panel.first An an `expression` to be evaluated after the plot axes are
-#'  set up but before any plotting takes place. This can be useful for drawing
-#'  background grids.
-#' @param panel.last An `expression` to be evaluated after plotting has taken
-#'  place but before the axes, title and box are added.
-#' @param ... Other [graphical parameters][graphics::par] may also be passed as
-#'  arguments to this function.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param ... Further parameters to be passed to [graphics::image()].
 #' @return
 #'  `plot()` is called it for its side-effects: it results in a graphic
 #'  being displayed. Invisibly returns `x`.
@@ -427,6 +444,8 @@ NULL
 #' @param x A [`CalibratedAges-class`] object.
 #' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
 #'  computation proceeds?
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
 #' @param ... Currently not used.
 #' @example inst/examples/ex-14c-statistics.R
 #' @author N. Frerebeau
@@ -441,6 +460,8 @@ NULL
 #' @param x A [`CalibratedAges-class`] object.
 #' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
 #'  computation proceeds?
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
 #' @param ... Currently not used.
 #' @example inst/examples/ex-14c-statistics.R
 #' @author N. Frerebeau

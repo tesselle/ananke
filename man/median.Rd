@@ -7,7 +7,7 @@
 \alias{median,CalibratedAges,missing-method}
 \title{Median}
 \usage{
-\S4method{median}{CalibratedAges}(x, na.rm = FALSE, ...)
+\S4method{median}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = getOption("ananke.calendar"))
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} object.}
@@ -16,13 +16,16 @@
 computation proceeds?}
 
 \item{...}{Currently not used.}
+
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
 }
 \description{
 Median
 }
 \examples{
 ## Calibrate a single date
-cal <- c14_calibrate(130, 20)
+cal <- c14_calibrate(300, 20)
 
 ## Statistics
 median(cal)
@@ -30,12 +33,14 @@ mean(cal)
 
 ## Plot
 plot(cal, panel.first = graphics::grid())
-abline(v = median(cal), lty = 2, col = "blue")
-abline(v = mean(cal), lty = 2, col = "red")
+
+## Need to set 'calendar' to NULL
+abline(v = median(cal, calendar = NULL), lty = 2, col = "blue")
+abline(v = mean(cal, calendar = NULL), lty = 2, col = "red")
 }
 \seealso{
 Other statistics: 
-\code{\link{hpdi,CalibratedAges,missing-method}},
+\code{\link{interval_hdr}()},
 \code{\link{mean}()}
 }
 \author{

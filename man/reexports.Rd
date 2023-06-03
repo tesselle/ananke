@@ -3,18 +3,15 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{era}
-\alias{era_label}
-\alias{era_name}
-\alias{era_epoch}
-\alias{era_scale}
-\alias{era_direction}
-\alias{era_unit}
-\alias{era_days}
+\alias{calendar}
+\alias{BP}
+\alias{b2k}
+\alias{BC}
+\alias{BCE}
+\alias{AD}
+\alias{CE}
 \alias{start}
 \alias{time}
-\alias{project}
-\alias{hpdi}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -22,6 +19,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{chronos}{\code{\link[chronos]{era}}, \code{\link[chronos:era_get]{era_days}}, \code{\link[chronos:era_get]{era_direction}}, \code{\link[chronos:era_get]{era_epoch}}, \code{\link[chronos:era_get]{era_label}}, \code{\link[chronos:era_get]{era_name}}, \code{\link[chronos:era_get]{era_scale}}, \code{\link[chronos:era_get]{era_unit}}, \code{\link[chronos]{hpdi}}, \code{\link[chronos]{project}}, \code{\link[chronos]{start}}, \code{\link[chronos]{time}}}
+  \item{aion}{\code{\link[aion:gregorian]{AD}}, \code{\link[aion:gregorian]{BC}}, \code{\link[aion:gregorian]{BCE}}, \code{\link[aion:gregorian]{BP}}, \code{\link[aion:gregorian]{CE}}, \code{\link[aion:gregorian]{b2k}}, \code{\link[aion]{calendar}}, \code{\link[aion]{start}}, \code{\link[aion]{start}}, \code{\link[aion]{time}}}
 }}
 

@@ -2,37 +2,33 @@
 #' @include AllGenerics.R
 NULL
 
-# HPDI =========================================================================
-#' HPD Regions
-#'
-#' @param object A [`CalibratedAges-class`] object.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @return
-#'  A [`list`] of `numeric` [`matrix`] giving the lower and upper boundaries of
-#'  the HPD interval and associated probabilities.
-#' @references
-#'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
-#'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.
-#' @example inst/examples/ex-14c-hpdi.R
-#' @author N. Frerebeau
-#' @family statistics
-#' @docType methods
-#' @aliases hpdi,CalibratedAges,missing-method
+# HDR ==========================================================================
 #' @export
+#' @rdname interval_hdr
+#' @aliases interval_hdr,CalibratedAges,missing-method
 setMethod(
-  f = "hpdi",
-  signature = c(object = "CalibratedAges", density = "missing"),
-  definition = function(object, level = 0.954) {
-    hpd <- apply(
-      X = object,
+  f = "interval_hdr",
+  signature = c(x = "CalibratedAges", y = "missing"),
+  definition = function(x, level = 0.954,
+                        calendar = getOption("ananke.calendar")) {
+    hdr <- apply(
+      X = x,
       MARGIN = 2,
-      FUN = function(x, years, level) hpdi(years, density = x, level = level),
-      years = time(object),
+      FUN = function(y, x, level, ...) arkhe::interval_hdr(x, y, level, ...),
+      x = time(x, calendar = NULL),
       level = level,
       simplify = FALSE
     )
-
-    names(hpd) <- names(object)
-    hpd
+    names(hdr) <- colnames(x)
+    if (is.null(calendar)) return(hdr)
+    lapply(
+      X = hdr,
+      FUN = function(x, calendar) {
+        x[, 1] <- aion::as_year(x[, 1], calendar = calendar)
+        x[, 2] <- aion::as_year(x[, 2], calendar = calendar)
+        x
+      },
+      calendar = calendar
+    )
   }
 )

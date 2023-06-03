@@ -1,0 +1,21 @@
+url: https://packages.tesselle.org/ananke
+
+template:
+  package: tekton
+  opengraph:
+    twitter:
+      creator: "@nfrerebeau"
+
+reference:
+- title: Radiocarbon tools
+  contents:
+  - has_concept("radiocarbon tools")
+- title: Statistics
+  contents:
+  - has_concept("statistics")
+- title: Mutators
+  contents:
+  - has_concept("mutators")
+- title: Datasets
+  contents:
+  - has_concept("datasets")

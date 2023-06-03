@@ -191,14 +191,13 @@ setMethod(
       keep_to <- length(keep_zero) - which.max(rev(keep_zero)) + 1 # Last TRUE
       keep <- seq(from = keep_from, to = keep_to, by = 1)
       dens <- dens[, keep, drop = FALSE]
-      from <- max(calibration_range[keep])
+      calibration_range <- calibration_range[keep]
     }
 
-    time_series <- chronos::series(
-      data = t(dens),
-      scale = era("BP"),
-      start = from,
-      frequency = 1 / resolution,
+    time_series <- aion::series(
+      object = t(dens),
+      time = calibration_range,
+      calendar = BP(),
       names = names
     )
     cal <- .CalibratedAges(
@@ -290,10 +289,10 @@ setMethod(
 
 # SPD ==========================================================================
 #' @export
-#' @rdname spd
-#' @aliases spd,CalibratedAges-method
+#' @rdname c14_spd
+#' @aliases c14_spd,CalibratedAges-method
 setMethod(
-  f = "spd",
+  f = "c14_spd",
   signature = "CalibratedAges",
   definition = function(object, normalize_date = FALSE, normalize_spd = FALSE) {
     ## Check
@@ -304,11 +303,9 @@ setMethod(
     spd <- colSums(dens, na.rm = TRUE)
     if (normalize_spd) spd <- spd / sum(spd, na.rm = TRUE)
 
-    time_series <- chronos::series(
-      data = spd,
-      scale = era(object),
-      start = start(object),
-      frequency = frequency(object)
+    time_series <- aion::series(
+      object = spd,
+      time = object@time
     )
     .CalibratedSPD(time_series)
   }

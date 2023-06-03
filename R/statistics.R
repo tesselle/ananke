@@ -4,19 +4,20 @@ NULL
 
 #' @export
 #' @method median CalibratedAges
-median.CalibratedAges <- function(x, na.rm = FALSE, ...) {
-  i <- apply(
+median.CalibratedAges <- function(x, na.rm = FALSE, ...,
+                                  calendar = getOption("ananke.calendar")) {
+  apply(
     X = x,
     MARGIN = 2,
-    FUN = function(x, na.rm) {
+    FUN = function(x, y, na.rm) {
       if (na.rm) x <- x[!is.na(x)]
       z <- cumsum(x)
-      which.min(abs(z - max(z) / 2))
+      i <- which.min(abs(z - max(z) / 2))
+      y[i]
     },
+    y = aion::time(x, calendar = calendar),
     na.rm = na.rm
   )
-  years <- time(x)
-  years[i]
 }
 
 #' @export
@@ -26,7 +27,8 @@ setMethod("median", c(x = "CalibratedAges"), median.CalibratedAges)
 
 #' @export
 #' @method mean CalibratedAges
-mean.CalibratedAges <- function(x, na.rm = FALSE, ...) {
+mean.CalibratedAges <- function(x, na.rm = FALSE, ...,
+                                calendar = getOption("ananke.calendar")) {
   apply(
     X = x,
     MARGIN = 2,
@@ -38,7 +40,7 @@ mean.CalibratedAges <- function(x, na.rm = FALSE, ...) {
       }
       stats::weighted.mean(x = x, w = w)
     },
-    x = time(x),
+    x = aion::time(x, calendar = calendar),
     na.rm = na.rm
   )
 }

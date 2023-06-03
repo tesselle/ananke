@@ -3,15 +3,15 @@
 NULL
 
 #' @export
-#' @rdname proxy_record
-#' @aliases proxy_record,numeric-method
+#' @rdname proxy_ensemble
+#' @aliases proxy_ensemble,numeric-method
 setMethod(
-  f = "proxy_record",
-  signature = "numeric",
-  definition = function(depth, proxy, proxy_error, time, time_error,
+  f = "proxy_ensemble",
+  signature = c("numeric"),
+  definition = function(depth, proxy, proxy_error, time, time_error, calendar,
                         start = NULL, end = NULL, by = NULL, n = 30,
-                        progress = getOption("chronos.progress"),
-                        verbose = getOption("chronos.verbose")) {
+                        progress = getOption("ananke.progress"),
+                        verbose = getOption("ananke.verbose")) {
     ## Validation
     k <- length(depth)
     arkhe::assert_decreasing(depth)
@@ -22,12 +22,12 @@ setMethod(
 
     ## Missing values
     if (is.null(start)) start <- time[[1L]]
-    if (is.null(end)) end <- time[[length(time)]]
+    if (is.null(end))   end <- time[[k]]
     if (is.null(by)) {
       grid <- getOption("ananke.grid")
       by <- ((end - start) / (grid - 1))
     }
-    if (start > end & by > 0) by <- by * -1
+    if (start > end && by > 0) by <- by * -1
 
     ## Build a matrix to contain the p(t|zi) densities
     ## Rows will refer to depth
@@ -103,11 +103,10 @@ setMethod(
 
     if (progress) close(pb)
 
-    time_series <- chronos::series(
-      data = Y,
-      scale = era("b2k"),
-      start = start,
-      delta = abs(by)
+    time_series <- aion::series(
+      object = Y,
+      time = t_grid,
+      calendar = calendar
     )
     .ProxyRecord(
       time_series,
@@ -119,10 +118,21 @@ setMethod(
 
 #' @export
 #' @method plot ProxyRecord
-plot.ProxyRecord <- function(x, ...) {
-  z <- x@density[nrow(x@density):1, ]
+plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
+  ## Get data
+  years <- x@time
+  z <- apply(X = x@density, MARGIN = 1,
+             FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5)
   z[z == 0] <- NA
-  graphics::image(x = sort(time(x)), y = x@proxy, z = z, ylab = "Proxy")
+
+  ## Plot
+  graphics::image(x = years, y = x@proxy, z = t(z),
+                  xlab = format(calendar), ylab = "Proxy",
+                  xaxt = "n", yaxt = "n", ...)
+
+  ## Construct axes
+  axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
+  graphics::axis(side = 2, las = 1)
 
   m <- apply(
     X = x@density,
@@ -130,7 +140,7 @@ plot.ProxyRecord <- function(x, ...) {
     FUN = function(w, x, na.rm) stats::weighted.mean(x = x, w = w),
     x = x@proxy
   )
-  graphics::lines(x = time(x), y = m, col = "red")
+  graphics::lines(x = years, y = m, col = "red")
 
   invisible(x)
 }

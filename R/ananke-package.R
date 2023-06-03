@@ -8,6 +8,8 @@
 #'
 #' @section Package options:
 #'  `ananke` uses the following [options()] to configure behavior:
+#'  * `ananke.calendar`: a [`TimeScale-class`] object (default calendar
+#'    for printing).
 #'  * `ananke.grid`: a [`numeric`] value specifying the number of equally
 #'    spaced points at which densities are to be estimated (defaults to
 #'    \eqn{512}). Should be a power of \eqn{2}.
@@ -40,6 +42,6 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @import chronos
+#' @import aion
 #' @importFrom methods as new setGeneric setMethod setValidity .valueClassTest
 NULL

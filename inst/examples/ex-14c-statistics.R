@@ -1,5 +1,5 @@
 ## Calibrate a single date
-cal <- c14_calibrate(130, 20)
+cal <- c14_calibrate(300, 20)
 
 ## Statistics
 median(cal)
@@ -7,5 +7,7 @@ mean(cal)
 
 ## Plot
 plot(cal, panel.first = graphics::grid())
-abline(v = median(cal), lty = 2, col = "blue")
-abline(v = mean(cal), lty = 2, col = "red")
+
+## Need to set 'calendar' to NULL
+abline(v = median(cal, calendar = NULL), lty = 2, col = "blue")
+abline(v = mean(cal, calendar = NULL), lty = 2, col = "red")

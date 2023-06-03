@@ -8,15 +8,12 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, panel.first = graphics::grid())
+plot(cal, panel.first = graphics::grid(), calendar = BP())
 
 plot(cal, density = TRUE, interval = FALSE)
-plot(cal, density = FALSE, interval = TRUE)
+plot(cal, density = FALSE, interval = TRUE, lwd = 4, tcl = 0)
 
-## Convert BP scale to CE
-CE <- project(cal, "CE")
-plot(CE)
-
-## Convert BP scale to b2k
-b2k <- project(cal, "b2k")
-plot(b2k)
+\donttest{
+## Out of 14C range?
+plot(c14_calibrate(130, 20))
+}

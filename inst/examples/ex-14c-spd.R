@@ -11,8 +11,8 @@ cal <- c14_calibrate(
   reservoir_errors = 43,
   from = 50000, to = 0
 )
-plot(cal)
+plot(cal, level = 0.68)
 
 ## SPD
-s <- spd(cal)
+s <- c14_spd(cal)
 plot(s)
