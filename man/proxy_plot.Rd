@@ -46,10 +46,10 @@ plot(ngrip_record)
 }
 }
 \seealso{
-Other modeling tools: 
+Other proxy tools: 
 \code{\link{proxy_ensemble}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{modeling tools}
+\concept{proxy tools}

@@ -92,10 +92,10 @@ Uncertainties in Layer-Counted Paleoclimatic Archives. \emph{Climate of the
 Past}, 13(9): 1169-1180. \doi{10.5194/cp-13-1169-2017}.
 }
 \seealso{
-Other modeling tools: 
+Other proxy tools: 
 \code{\link{proxy_plot}}
 }
 \author{
 N. Frerebeau
 }
-\concept{modeling tools}
+\concept{proxy tools}

@@ -430,7 +430,7 @@ setGeneric(
 #'  Past*, 13(9): 1169-1180. \doi{10.5194/cp-13-1169-2017}.
 #' @example inst/examples/ex-proxy.R
 #' @author N. Frerebeau
-#' @family modeling tools
+#' @family proxy tools
 #' @docType methods
 #' @aliases proxy_ensemble-method
 setGeneric(
@@ -451,7 +451,7 @@ setGeneric(
 #' @example inst/examples/ex-proxy.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family modeling tools
+#' @family proxy tools
 #' @name proxy_plot
 #' @rdname proxy_plot
 NULL
