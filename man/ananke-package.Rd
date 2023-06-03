@@ -5,7 +5,7 @@
 \alias{ananke-package}
 \alias{_PACKAGE}
 \alias{ananke}
-\title{ananke: Quantitative Chronology}
+\title{ananke: Quantitative Chronology in Archaeology}
 \description{
 What the package does (one paragraph).
 }
