@@ -46,7 +46,7 @@ NULL
 ## Calibration curve -----------------------------------------------------------
 #' 14C Calibration Curve
 #'
-#' @param x A [`character`] string naming a calibration curve (see details).
+#' @param object A [`character`] vector naming calibration curves (see details).
 #' @param ... Currently not used.
 #' @details
 #'  The following calibration curves are available:
@@ -85,8 +85,8 @@ NULL
 #' }
 #'
 #' @return
-#'  A three-column [`data.frame`]: calibrated age BP, uncalibrated age BP and
-#'  standard deviation.
+#'  A `list` of three-column [`data.frame`]: calibrated age BP, uncalibrated
+#'  age BP and standard deviation.
 #' @references
 #'  Heaton, Timothy J, Peter Köhler, Martin Butzin, Edouard Bard, Ron W Reimer,
 #'  William E N Austin, Christopher Bronk Ramsey, et al. (2020). Marine20 The
@@ -171,8 +171,7 @@ NULL
 #' @aliases c14_curve-method
 setGeneric(
   name = "c14_curve",
-  def = function(x, ...) standardGeneric("c14_curve"),
-  valueClass = "data.frame"
+  def = function(object, ...) standardGeneric("c14_curve")
 )
 
 ## Calibration -----------------------------------------------------------------
@@ -210,7 +209,8 @@ setGeneric(
 #'  Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
 #' @note
-#'  Adapted from [rcarbon::calibrate()] by Andrew Bevan and Enrico Crema.
+#'  Adapted from [Bchron::BchronCalibrate()] by Andrew Parnell and
+#'  [rcarbon::calibrate()] by Andrew Bevan and Enrico Crema.
 #' @example inst/examples/ex-14c-calibrate.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -220,6 +220,24 @@ setGeneric(
   name = "c14_calibrate",
   def = function(ages, errors, ...) standardGeneric("c14_calibrate"),
   valueClass = "CalibratedAges"
+)
+
+#' Uncalibrate a Radiocarbon Date
+#'
+#' @param object A [`CalibratedAges-class`] object or a [`numeric`] vector of
+#'  calibrated ages (BP).
+#' @param curves A [`character`] vector specifying the calibration curve to be
+#'  used. Different curves can be specified.
+#' @param curves description
+#' @param ... Currently not used.
+#' @example inst/examples/ex-14c-uncalibrate.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family radiocarbon tools
+#' @aliases c14_uncalibrate-method
+setGeneric(
+  name = "c14_uncalibrate",
+  def = function(object, ...) standardGeneric("c14_uncalibrate")
 )
 
 #' F14C

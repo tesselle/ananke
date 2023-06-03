@@ -39,3 +39,7 @@ aion::start
 #' @importFrom aion time
 #' @export
 aion::time
+
+#' @importFrom arkhe interval_hdr
+#' @export
+arkhe::interval_hdr

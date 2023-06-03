@@ -5,20 +5,24 @@
 \alias{c14_curve}
 \alias{c14_curve-method}
 \alias{c14_curve,character-method}
+\alias{c14_curve,CalibratedAges-method}
+\alias{c14_curve,.CalibratedAges-method}
 \title{14C Calibration Curve}
 \usage{
-c14_curve(x, ...)
+c14_curve(object, ...)
 
-\S4method{c14_curve}{character}(x)
+\S4method{c14_curve}{character}(object)
+
+\S4method{c14_curve}{CalibratedAges}(object)
 }
 \arguments{
-\item{x}{A \code{\link{character}} string naming a calibration curve (see details).}
+\item{object}{A \code{\link{character}} vector naming calibration curves (see details).}
 
 \item{...}{Currently not used.}
 }
 \value{
-A three-column \code{\link{data.frame}}: calibrated age BP, uncalibrated age BP and
-standard deviation.
+A \code{list} of three-column \code{\link{data.frame}}: calibrated age BP, uncalibrated
+age BP and standard deviation.
 }
 \description{
 14C Calibration Curve
@@ -62,7 +66,11 @@ The following calibration curves are available:
 \examples{
 ## IntCal20
 intcal20 <- c14_curve("intcal20")
-head(intcal20)
+head(intcal20[[1]])
+
+## IntCal
+intcal <- c14_curve(c("intcal09", "intcal13", "intcal20"))
+lapply(X = intcal, FUN = head)
 }
 \references{
 Heaton, Timothy J, Peter Köhler, Martin Butzin, Edouard Bard, Ron W Reimer,
@@ -148,7 +156,8 @@ Other radiocarbon tools:
 \code{\link{c14_calibrate}()},
 \code{\link{c14_combine}()},
 \code{\link{c14_plot}},
-\code{\link{c14_spd}()}
+\code{\link{c14_spd}()},
+\code{\link{c14_uncalibrate}()}
 }
 \author{
 N. Frerebeau

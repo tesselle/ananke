@@ -98,9 +98,9 @@ setMethod(
     ## Validation
     n <- length(ages)
     if (is.null(names)) names <- paste0("X", seq_len(n))
-    if (length(curves) == 1) curves <- rep(curves, n)
-    if (length(reservoir_offsets) == 1) reservoir_offsets <- rep(reservoir_offsets, n)
-    if (length(reservoir_errors) == 1) reservoir_errors <- rep(reservoir_errors, n)
+    if (length(curves) != n) curves <- rep(curves, n)
+    if (length(reservoir_offsets) != n) reservoir_offsets <- rep(reservoir_offsets, n)
+    if (length(reservoir_errors) != n ) reservoir_errors <- rep(reservoir_errors, n)
 
     arkhe::assert_missing(ages)
     arkhe::assert_missing(errors)
@@ -116,26 +116,26 @@ setMethod(
 
     ## Calibration curve
     curves <- tolower(curves)
-    curve_unique <- unique(curves)
-    curve_range <- vector(mode = "list", length = length(curve_unique))
-    names(curve_range) <- curve_unique
-    for (i in seq_along(curve_unique)) {
-      tmp <- c14_curve(curve_unique[[i]])
+    curve_data <- c14_curve(unique(curves))
+    curve_range <- lapply(
+      X = curve_data,
+      FUN = function(x, xout) {
+        if (F14C) {
+          x_f14 <- BP14C_to_F14C(x[, 2], x[, 3])
+          x[, 2] <- x_f14$ages
+          x[, 3] <- x_f14$errors
+        }
 
-      if (F14C) {
-        tmp_f14 <- BP14C_to_F14C(tmp[, 2], tmp[, 3])
-        tmp[, 2] <- tmp_f14$ages
-        tmp[, 3] <- tmp_f14$errors
-      }
-
-      curve_range[[i]] <- list(
-        mu = stats::approx(tmp[, 1], tmp[, 2], xout = calibration_range)$y,
-        tau = stats::approx(tmp[, 1], tmp[, 3], xout = calibration_range)$y,
-        max_cal = max(tmp[, 1]),
-        max_age = max(tmp[, 2]),
-        min_age = min(tmp[, 2])
-      )
-    }
+        list(
+          mu = stats::approx(x[, 1], x[, 2], xout = xout)$y,
+          tau = stats::approx(x[, 1], x[, 3], xout = xout)$y,
+          max_cal = max(x[, 1]),
+          max_age = max(x[, 2]),
+          min_age = min(x[, 2])
+        )
+      },
+      xout = calibration_range
+    )
 
     ## Marine reservoir offset
     ages <- ages - reservoir_offsets
@@ -200,7 +200,7 @@ setMethod(
       calendar = BP(),
       names = names
     )
-    cal <- .CalibratedAges(
+    .CalibratedAges(
       time_series,
       ages = ages,
       errors = errors,
@@ -238,25 +238,142 @@ calibrate_check <- function(names, status) {
   }
 }
 
+# Uncalibrate ==================================================================
+#' @export
+#' @rdname c14_uncalibrate
+#' @aliases c14_uncalibrate,numeric-method
+setMethod(
+  f = "c14_uncalibrate",
+  signature = c(object = "numeric"),
+  definition = function(object, curves = "intcal20") {
+    ## Validation
+    n <- length(object)
+    if (length(curves) != n) curves <- rep(curves, n)
+    uncal <- rep(NA_real_, n)
+
+    ## Calibration curve
+    curve_data <- c14_curve(unique(tolower(curves)))
+
+    for (i in seq_len(n)) {
+      uncal[i] <- stats::approx(
+        x = curve_data[[i]][, 1],
+        y = curve_data[[i]][, 2],
+        xout = object[i],
+        rule = 1)$y
+    }
+    uncal
+  }
+)
+
+#' @export
+#' @rdname c14_uncalibrate
+#' @aliases c14_uncalibrate,CalibratedAges-method
+setMethod(
+  f = "c14_uncalibrate",
+  signature = c(object = "CalibratedAges"),
+  definition = function(object, ...) {
+
+    method <- list(...)$method %||% c("L-BFGS-B")
+
+    ## Function to be optimized
+    opt_fun <- function(param, curve, samples, ...) {
+      cal <- c14_calibrate(
+        ages = round(param[1]),
+        errors = round(param[2]),
+        curves = curve
+      )
+      s1 <- samples
+      s2 <- c14_sample(cal)
+
+      dens1 <- stats::density(s1, from = min(c(s1, s2)), to = max(c(s1, s2)))$y
+      dens2 <- stats::density(s2, from = min(c(s1, s2)), to = max(c(s1, s2)))$y
+      dens1 <- dens1 / sum(dens1)
+      dens2 <- dens2 / sum(dens2)
+      int <- dens1 * log(dens1 / dens2)
+      int <- int[dens1 > 0]
+      int <- int[!is.infinite(int)]
+      sum(int)
+    }
+
+    n <- NCOL(object)
+    spl <- c14_sample(object)
+    curves <- object@curves
+    opt_mean <- opt_sd <- numeric(n)
+    for (i in seq_len(n)) {
+      cal_spl <- spl[, i]
+      init_mean <- methods::callGeneric(
+        object = stats::median(cal_spl),
+        curves = curves[[i]]
+      )
+      init_sd <- stats::sd(cal_spl)
+
+      opt_run <- stats::optim(
+        par = c(init_mean, init_sd),
+        fn = opt_fun,
+        method = method,
+        curve = curves[[i]],
+        samples = cal_spl,
+        lower = c(-Inf, 1),
+        ...
+      )
+      opt_mean[[i]] <- round(opt_run$par[1])
+      opt_sd[[i]] <- round(opt_run$par[2])
+    }
+
+    data.frame(mean = opt_mean, sd = opt_sd)
+  }
+)
+
+c14_sample <- function(object, n = 100, calendar = BP()) {
+  apply(
+    X = object,
+    MARGIN = 2,
+    FUN = function(prob, size, x) {
+      sample(x, size = size, replace = TRUE, prob = prob)
+    },
+    x = aion::time(object, calendar = calendar),
+    size = n
+  )
+}
+
 # Calibration curve ============================================================
 #' @export
 #' @rdname c14_curve
 #' @aliases c14_curve,character-method
 setMethod(
   f = "c14_curve",
-  signature = "character",
-  definition = function(x) {
+  signature = c(object = "character"),
+  definition = function(object) {
     curve_ok <- c("intcal20", "intcal13", "intcal09", "intcal04",
                   "marine20", "marine13", "marine09", "marine04")
-    x <- match.arg(x, choices = curve_ok, several.ok = FALSE)
+    object <- match.arg(object, choices = curve_ok, several.ok = TRUE)
 
-    curve_dir <- system.file("extdata", package = "ananke")
-    curve_path <- file.path(curve_dir, paste0(x, ".14c"))
-    curve <- utils::read.table(curve_path, header = FALSE, sep = ",", dec = ".",
-                               strip.white = TRUE, comment.char = "#")
-    curve <- curve[, c(1, 2, 3)]
-    colnames(curve) <- c("CALBP", "AGE", "ERROR")
-    curve
+    curves <- lapply(
+      X = object,
+      FUN = function(x) {
+        curve_dir <- system.file("extdata", package = "ananke")
+        curve_path <- file.path(curve_dir, paste0(x, ".14c"))
+        curve <- utils::read.table(curve_path, header = FALSE, sep = ",",
+                                   dec = ".", strip.white = TRUE,
+                                   comment.char = "#")
+        curve <- curve[, c(1, 2, 3)]
+        colnames(curve) <- c("CALBP", "AGE", "ERROR")
+        curve
+      }
+    )
+    names(curves) <- object
+    curves
+  }
+)
+
+#' @export
+#' @rdname c14_curve
+#' @aliases c14_curve,.CalibratedAges-method
+setMethod(
+  f = "c14_curve",
+  signature = c(object = "CalibratedAges"),
+  definition = function(object) {
+    methods::callGeneric(object@curves)
   }
 )
 

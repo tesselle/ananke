@@ -52,7 +52,8 @@ Other radiocarbon tools:
 \code{\link{c14_calibrate}()},
 \code{\link{c14_combine}()},
 \code{\link{c14_curve}()},
-\code{\link{c14_plot}}
+\code{\link{c14_plot}},
+\code{\link{c14_uncalibrate}()}
 }
 \author{
 N. Frerebeau

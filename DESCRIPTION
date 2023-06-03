@@ -31,6 +31,7 @@ LazyData: true
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
+    'ananke-internal.R'
     'ananke-package.R'
     'data.R'
     'interval.R'
@@ -40,6 +41,5 @@ Collate:
     'reexport.R'
     'statistics.R'
     'subset.R'
-    'utilities.R'
     'validate.R'
     'zzz.R'

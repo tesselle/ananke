@@ -72,7 +72,8 @@ A \code{\linkS4class{CalibratedAges}} object.
 Calibrates radiocarbon dates.
 }
 \note{
-Adapted from \code{\link[rcarbon:calibrate]{rcarbon::calibrate()}} by Andrew Bevan and Enrico Crema.
+Adapted from \code{\link[Bchron:BchronCalibrate]{Bchron::BchronCalibrate()}} by Andrew Parnell and
+\code{\link[rcarbon:calibrate]{rcarbon::calibrate()}} by Andrew Bevan and Enrico Crema.
 }
 \examples{
 ## Calibrate a single date
@@ -105,7 +106,8 @@ Other radiocarbon tools:
 \code{\link{c14_combine}()},
 \code{\link{c14_curve}()},
 \code{\link{c14_plot}},
-\code{\link{c14_spd}()}
+\code{\link{c14_spd}()},
+\code{\link{c14_uncalibrate}()}
 }
 \author{
 N. Frerebeau
