@@ -324,7 +324,7 @@ setMethod(
   }
 )
 
-c14_sample <- function(object, n = 100, calendar = BP()) {
+c14_sample <- function(object, n = 10000, calendar = BP()) {
   apply(
     X = object,
     MARGIN = 2,

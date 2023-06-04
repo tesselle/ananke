@@ -120,7 +120,7 @@ setMethod(
 #' @method plot ProxyRecord
 plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
   ## Get data
-  years <- x@time
+  years <- aion::time(x, calendar = NULL)
   z <- apply(X = x@density, MARGIN = 1,
              FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5)
   z[z == 0] <- NA

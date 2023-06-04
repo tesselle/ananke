@@ -41,7 +41,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   graphics::plot.new()
 
   ## Set plotting coordinates
-  years <- x@time
+  years <- aion::time(x, calendar = NULL)
   xlim <- range(years)
   ylim <- c(1, n_dates + 1.5)
   graphics::plot.window(xlim = xlim, ylim = ylim)
@@ -143,7 +143,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
     graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
   }
 
-  invisible(x)
+  invisible(x) # /!\ sorted! /!\
 }
 
 #' @export
@@ -174,7 +174,7 @@ plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),
   graphics::plot.new()
 
   ## Set plotting coordinates
-  years <- x@time
+  years <- aion::time(x, calendar = NULL)
   xlim <- range(years)
   ylim <- range(x)
   graphics::plot.window(xlim = xlim, ylim = ylim)

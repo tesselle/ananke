@@ -15,7 +15,7 @@ setMethod(
       X = x,
       MARGIN = 2,
       FUN = function(y, x, level, ...) arkhe::interval_hdr(x, y, level, ...),
-      x = time(x, calendar = NULL),
+      x = aion::time(x, calendar = NULL),
       level = level,
       simplify = FALSE
     )

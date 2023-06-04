@@ -326,8 +326,8 @@ setGeneric(
 #'  Only used if `sort` is `TRUE`.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
-#' @param ann A [`logical`] scalar: should the default annotation (title and x,
-#'  y and z axis labels) appear on the plot?
+#' @param ann A [`logical`] scalar: should the default annotation (title and x
+#'  and y labels) appear on the plot?
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param frame.plot A [`logical`] scalar: should a box be drawn around the
 #'  plot?
