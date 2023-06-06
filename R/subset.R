@@ -10,22 +10,29 @@ NULL
 setMethod(
   f = "[",
   signature = c(x = "CalibratedAges"),
-  function(x, i, j, ..., drop = FALSE) {
-    z <- methods::callNextMethod() # Method for `TimeSeries`
-
-    if (is.null(dim(z)) || isTRUE(drop)) return(z)
-
+  function(x, i, j, k, drop = TRUE) {
+    z <- x@.Data
+    time <- x@time
     ages <- x@ages
     errors <- x@errors
     curves <- x@curves
     status <- x@status
+
+    z <- z[i, j, k, drop = drop]
+    if (!missing(i)) {
+      if (is.character(i)) i <- match(i, dimnames(x)[1L])
+      time <- time[i]
+    }
     if (!missing(j)) {
+      if (is.character(j)) j <- match(j, dimnames(x)[2L])
       ages <- ages[j]
       errors <- errors[j]
       curves <- curves[j]
       status <- status[j]
     }
-    methods::initialize(x, z, ages = ages, errors = errors,
+
+    if (isTRUE(drop)) return(z)
+    methods::initialize(x, z, time = time, ages = ages, errors = errors,
                         curves = curves, status = status)
   }
 )

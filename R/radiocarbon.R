@@ -415,7 +415,7 @@ setMethod(
     ## Check
     calibrate_check(object@labels, object@status)
 
-    dens <- t(object)
+    dens <- t(object[, , 1, drop = TRUE])
     if (normalize_date) dens <- dens / rowSums(dens, na.rm = TRUE)
     spd <- colSums(dens, na.rm = TRUE)
     if (normalize_spd) spd <- spd / sum(spd, na.rm = TRUE)

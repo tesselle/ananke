@@ -26,12 +26,12 @@ NULL
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
 #'  element(s).
-#' @param i,j Indices specifying elements to extract or replace.
+#' @param i,j,k Indices specifying elements to extract or replace.
 #' @param drop A [`logical`] scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
 # @param value A possible value for the element(s) of `x`.
-#' @param ... Currently not used.
+# @param ... Currently not used.
 #' @return
 #'  A subsetted object.
 # @example inst/examples/ex-subset.R
@@ -317,9 +317,13 @@ setGeneric(
 #' @param x A [`CalibratedAges-class`] or [`CalibratedSPD-class`] object.
 #' @param calendar A [`TimeScale-class`] object specifying the target calendar
 #'  (see [calendar()]).
-#' @param density A [`logical`] scalar: should density be drawn?
 #' @param interval A [`logical`] scalar: should highest density region be drawn?
 #' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Only used if `interval` is `TRUE`.
+#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
+#'  flipped from side 2 (left) to 4 (right)?
+#' @param ncol An [`integer`] specifying the number of columns to use.
+#'  Defaults to 1.
 #' @param warnings A [`logical`] scalar: should warnings be plotted?
 #' @param sort A [`logical`] scalar: should the data be sorted?
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?

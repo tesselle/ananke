@@ -121,8 +121,11 @@ setMethod(
 plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
   ## Get data
   years <- aion::time(x, calendar = NULL)
-  z <- apply(X = x@density, MARGIN = 1,
-             FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5)
+  z <- apply(
+    X = x@density,
+    MARGIN = 1,
+    FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5
+  )
   z[z == 0] <- NA
 
   ## Plot
@@ -131,7 +134,7 @@ plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
                   xaxt = "n", yaxt = "n", ...)
 
   ## Construct axes
-  axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
+  year_axis(x = years, side = 1, format = TRUE, calendar = calendar)
   graphics::axis(side = 2, las = 1)
 
   m <- apply(
@@ -140,7 +143,7 @@ plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
     FUN = function(w, x, na.rm) stats::weighted.mean(x = x, w = w),
     x = x@proxy
   )
-  graphics::lines(x = years, y = m, col = "red")
+  graphics::lines(x = years, y = m, col = "black", lwd = 2)
 
   invisible(x)
 }

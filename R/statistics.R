@@ -6,10 +6,12 @@ NULL
 #' @method median CalibratedAges
 median.CalibratedAges <- function(x, na.rm = FALSE, ...,
                                   calendar = getOption("ananke.calendar")) {
+
   apply(
     X = x,
     MARGIN = 2,
     FUN = function(x, y, na.rm) {
+      print(x)
       if (na.rm) x <- x[!is.na(x)]
       z <- cumsum(x)
       i <- which.min(abs(z - max(z) / 2))

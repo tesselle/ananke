@@ -6,15 +6,13 @@
 \alias{[,CalibratedAges-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{CalibratedAges}(x, i, j, ..., drop = FALSE)
+\S4method{[}{CalibratedAges}(x, i, j, k, drop = TRUE)
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
 element(s).}
 
-\item{i, j}{Indices specifying elements to extract or replace.}
-
-\item{...}{Currently not used.}
+\item{i, j, k}{Indices specifying elements to extract or replace.}
 
 \item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
 the lowest possible dimension? This only works for extracting elements,

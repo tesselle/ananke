@@ -1,6 +1,6 @@
 ## Calibrate a single date
 cal <- c14_calibrate(300, 20)
-plot(cal)
+plot(cal, panel.first = year_grid())
 
 ## Calibrate multiple dates
 cal <- c14_calibrate(
@@ -8,10 +8,9 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, panel.first = graphics::grid(), calendar = BP())
-
-plot(cal, density = TRUE, interval = FALSE)
-plot(cal, density = FALSE, interval = TRUE, lwd = 4, tcl = 0)
+plot(cal, calendar = BP(), flip = TRUE)
+plot(cal, interval = FALSE, ncol = 2)
+image(cal)
 
 \donttest{
 ## Out of 14C range?

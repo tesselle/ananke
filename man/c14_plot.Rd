@@ -10,9 +10,10 @@
 \S4method{plot}{CalibratedAges,missing}(
   x,
   calendar = getOption("ananke.calendar"),
-  density = TRUE,
   interval = TRUE,
   level = 0.954,
+  flip = FALSE,
+  ncol = 1,
   warnings = TRUE,
   sort = TRUE,
   decreasing = TRUE,
@@ -47,11 +48,16 @@
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[=calendar]{calendar()}}).}
 
-\item{density}{A \code{\link{logical}} scalar: should density be drawn?}
-
 \item{interval}{A \code{\link{logical}} scalar: should highest density region be drawn?}
 
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Only used if \code{interval} is \code{TRUE}.}
+
+\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
+flipped from side 2 (left) to 4 (right)?}
+
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
+Defaults to 1.}
 
 \item{warnings}{A \code{\link{logical}} scalar: should warnings be plotted?}
 
@@ -94,7 +100,7 @@ Plot Calibrated Radiocarbon Ages
 \examples{
 ## Calibrate a single date
 cal <- c14_calibrate(300, 20)
-plot(cal)
+plot(cal, panel.first = year_grid())
 
 ## Calibrate multiple dates
 cal <- c14_calibrate(
@@ -102,10 +108,9 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, panel.first = graphics::grid(), calendar = BP())
-
-plot(cal, density = TRUE, interval = FALSE)
-plot(cal, density = FALSE, interval = TRUE, lwd = 4, tcl = 0)
+plot(cal, calendar = BP(), flip = TRUE)
+plot(cal, interval = FALSE, ncol = 2)
+image(cal)
 
 \donttest{
 ## Out of 14C range?
