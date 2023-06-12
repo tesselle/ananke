@@ -8,13 +8,6 @@
 \description{
 An S4 class to store proxy records.
 }
-\section{Slots}{
-
-\describe{
-\item{\code{year}}{A \code{\link{numeric}} vector giving the time points at which the
-distribution is estimated.}
-}}
-
 \note{
 This class inherits from \code{\linkS4class{TimeSeries}}.
 }

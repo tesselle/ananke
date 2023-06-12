@@ -68,8 +68,6 @@ NULL
 #' Proxy Record
 #'
 #' An S4 class to store proxy records.
-#' @slot year A [`numeric`] vector giving the time points at which the
-#'  distribution is estimated.
 #' @note
 #'  This class inherits from [`TimeSeries-class`].
 #' @author N. Frerebeau

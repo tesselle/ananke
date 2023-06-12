@@ -33,6 +33,7 @@ Collate:
     'AllGenerics.R'
     'ananke-internal.R'
     'ananke-package.R'
+    'coerce.R'
     'data.R'
     'interval.R'
     'plot.R'

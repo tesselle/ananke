@@ -26,6 +26,7 @@ Operators acting on objects to extract or replace parts.
 }
 \seealso{
 Other mutators: 
+\code{\link{data.frame}},
 \code{\link{mutators}}
 }
 \author{

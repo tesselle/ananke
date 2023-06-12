@@ -19,6 +19,7 @@ Getters and setters to extract or replace parts of an object.
 }
 \seealso{
 Other mutators: 
+\code{\link{data.frame}},
 \code{\link{subset}()}
 }
 \author{

@@ -42,6 +42,23 @@ NULL
 #' @rdname subset
 NULL
 
+## Coerce ----------------------------------------------------------------------
+#' Coerce to a Data Frame
+#'
+#' @param x An object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]). If `NULL`, *rata die* are returned.
+#' @param ... Further parameters to be passed to [data.frame()].
+#' @return
+#'  A [`data.frame`] with an extra `time` column.
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name data.frame
+#' @rdname data.frame
+NULL
+
 # Radiocarbon ==================================================================
 ## Calibration curve -----------------------------------------------------------
 #' 14C Calibration Curve
