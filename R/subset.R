@@ -10,7 +10,7 @@ NULL
 setMethod(
   f = "[",
   signature = c(x = "CalibratedAges"),
-  function(x, i, j, k, drop = TRUE) {
+  function(x, i, j, k, drop = FALSE) {
     z <- x@.Data
     time <- x@.Time
     ages <- x@ages

@@ -6,7 +6,7 @@
 \alias{[,CalibratedAges-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{CalibratedAges}(x, i, j, k, drop = TRUE)
+\S4method{[}{CalibratedAges}(x, i, j, k, drop = FALSE)
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

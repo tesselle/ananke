@@ -88,7 +88,7 @@ cal <- c14_calibrate(
 )
 plot(cal, calendar = BP(), flip = TRUE)
 plot(cal, interval = FALSE, ncol = 2)
-image(cal)
+plot(cal[, 1, ], col.interval = "red")
 
 \donttest{
 ## Out of 14C range?
