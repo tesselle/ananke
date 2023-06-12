@@ -354,6 +354,56 @@ setGeneric(
 #' @rdname c14_plot
 NULL
 
+#' Plot a Radiocarbon Event Count Ensemble
+#'
+#' @param x An [`RECE-class`] object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param ... Further parameters to be passed to [graphics::image()].
+#' @return
+#'  `image()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
+#' @references
+#'  Carleton, W. C. (2021). Evaluating Bayesian Radiocarbon‐dated Event Count
+#'  (REC) Models for the Study of Long‐term Human and Environmental Processes.
+#'  *Journal of Quaternary Science*, 36(1): 110‑23. \doi{10.1002/jqs.3256}.
+#' @author N. Frerebeau
+#' @family modeling tools
+#' @name rec_image
+#' @rdname rec_image
+NULL
+
+## RECE ------------------------------------------------------------------------
+#' Radiocarbon Event Count
+#'
+#' @param object A [`CalibratedAges-class`] object.
+#' @param from length-one [`numeric`] vector specifying the earliest data to
+#'  calibrate for (in cal BP years).
+#' @param to A length-one [`numeric`] vector specifying the latest data to
+#'  calibrate for (in cal BP years).
+#' @param resolution A length-one [`numeric`] vector specifying the temporal
+#'  resolution (in years) of the calibration.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `from` and `to` (see [calendar()]). Defaults to [CE()].
+#' @param n An [`integer`] specifying the number of item to choose randomly.
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param ... Currently not used.
+#' @return
+#'  An [`RECE-class`] object.
+#' @references
+#'  Carleton, W. C. (2021). Evaluating Bayesian Radiocarbon‐dated Event Count
+#'  (REC) Models for the Study of Long‐term Human and Environmental Processes.
+#'  *Journal of Quaternary Science*, 36(1): 110‑23. \doi{10.1002/jqs.3256}.
+#' @author N. Frerebeau
+#' @family radiocarbon tools
+#' @docType methods
+#' @aliases c14_ensemble-method
+setGeneric(
+  name = "c14_ensemble",
+  def = function(object, ...) standardGeneric("c14_ensemble"),
+  valueClass = "RECE"
+)
+
 ## SPD -------------------------------------------------------------------------
 #' Summed Probability Distributions
 #'

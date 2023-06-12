@@ -6,8 +6,8 @@ median(cal)
 mean(cal)
 
 ## Plot
-plot(cal, panel.first = graphics::grid())
+plot(cal, calendar = CE(), panel.first = graphics::grid())
 
-## Need to set 'calendar' to NULL
-abline(v = median(cal, calendar = NULL), lty = 2, col = "blue")
-abline(v = mean(cal, calendar = NULL), lty = 2, col = "red")
+## Need to set 'calendar'
+abline(v = median(cal, calendar = CE()), lty = 2, col = "blue")
+abline(v = mean(cal, calendar = CE()), lty = 2, col = "red")

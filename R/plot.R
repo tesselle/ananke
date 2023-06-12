@@ -46,20 +46,24 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
       xi <- c(x[lb], x[d0], x[ub])
       yi <- c(0, y[d0], 0)
 
-      h <- arkhe::interval_hdr(as.numeric(x), y, level = level)
-
       graphics::polygon(xi, yi, border = NA, ...)
       graphics::lines(xi, yi, lty = "solid")
 
       if (isTRUE(interval)) {
+        h <- arkhe::interval_hdr(as.numeric(x), y, level = level)
+
         for (i in seq_len(nrow(h))) {
-          is_in_h <- xi >= h[i, "start"] & xi <= h[i, "end"]
-          graphics::polygon(
-            x = c(utils::head(xi[is_in_h], 1), xi[is_in_h], utils::tail(xi[is_in_h], 1)),
-            y = c(0, yi[is_in_h], 0),
-            border = NA,
-            col = fill.interval
-          )
+          debut <- h[i, "start"]
+          fin <- h[i, "end"]
+          if (debut < fin) {
+            is_in_h <- xi >= debut & xi <= fin
+          } else {
+            is_in_h <- xi <= debut & xi >= fin
+          }
+          xh <- xi[is_in_h]
+          yh <- yi[is_in_h]
+          graphics::polygon(x = c(xh[1], xh, xh[length(xh)]), y = c(0, yh, 0),
+                            border = NA, col = fill.interval)
         }
         graphics::segments(
           x0 = h[, "start"], x1 = h[, "end"], y0 = 0, y1 = 0,
@@ -114,56 +118,28 @@ plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),
   n <- NCOL(x)
 
   ## Graphical parameters
-  lwd <- list(...)$lwd %||% graphics::par("lwd")
-  lty <- list(...)$lty %||% graphics::par("lty")
-  border <- list(...)$border %||% c("black")
   col <- list(...)$col %||% c("grey")
   if (length(col) != n) col <- rep(col, length.out = n)
   col <- grDevices::adjustcolor(col, alpha.f = 0.5)
 
-  ## Open new window
-  grDevices::dev.hold()
-  on.exit(grDevices::dev.flush(), add = TRUE)
-  graphics::plot.new()
-
-  ## Set plotting coordinates
-  years <- aion::time(x, calendar = NULL)
-  xlim <- range(years)
-  ylim <- range(x)
-  graphics::plot.window(xlim = xlim, ylim = ylim)
-
-  ## Evaluate pre-plot expressions
-  panel.first
-
   ## Plot
-  seq_series <- seq_len(n)
-  for (i in seq_series) {
-    xi <- c(years, rev(years))
-    yi <- c(x[, i, drop = TRUE], rep(0, NROW(x)))
-    graphics::polygon(xi, yi, border = NA, col = col[i])
-    graphics::lines(years, x, lty = lty, lwd = lwd, col = border)
+  panel_density <- function(x, y, ...) {
+    graphics::polygon(x = c(x, rev(x)), y = c(y, rep(0, length(y))),
+                      border = NA, ...)
+    graphics::lines(x, y, col = "black")
   }
 
-  ## Evaluate post-plot and pre-axis expressions
-  panel.last
-
-  ## Construct Axis
-  if (axes) {
-    aion::year_axis(x = years, side = 1, format = TRUE, calendar = calendar)
-    graphics::axis(side = 2, las = 1)
-  }
-
-  ## Plot frame
-  if (frame.plot) {
-    graphics::box()
-  }
-
-  ## Add annotation
-  if (ann) {
-    xlab <- aion::format(calendar)
-    ylab <- "Density"
-    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
-  }
+  methods::callNextMethod(
+    x, facet = "multiple",
+    calendar = calendar,
+    panel = panel_density,
+    main = main, sub = sub, ann = ann, axes = axes,
+    frame.plot = frame.plot,
+    panel.first = panel.first,
+    panel.last = panel.last,
+    col = col,
+    ...
+  )
 
   invisible(x)
 }
@@ -172,3 +148,82 @@ plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),
 #' @rdname c14_plot
 #' @aliases plot,CalibratedSPD,missing-method
 setMethod("plot", c(x = "CalibratedSPD", y = "missing"), plot.CalibratedSPD)
+
+#' @export
+#' @method image RECE
+image.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
+  ## Binary array
+  bin <- array(FALSE, dim = c(nrow(x), max(x), ncol(x)))
+  for (j in seq_len(ncol(x))) {
+    z <- x[, j, , drop = TRUE]
+    for (i in seq_along(z)) {
+      bin[i, z[i], j] <- z[i] > 0
+    }
+  }
+  bin <- apply(X = bin, MARGIN = c(1, 2), FUN = sum)
+  bin[bin == 0] <- NA
+
+  ## Add annotation
+  years <- aion::time(x, calendar = NULL)
+
+  ## Plot
+  graphics::image(
+    x = years,
+    y = seq_len(max(x)),
+    z = log(bin),
+    col = col,
+    # ylim = ylim,
+    xlab = format(calendar), ylab = "Count",
+    xaxt = "n", yaxt = "n", ...
+  )
+
+  ## Construct axes
+  aion::year_axis(side = 1, format = TRUE, calendar = calendar,
+                  current_calendar = NULL)
+  graphics::axis(side = 2, at = seq_len(max(x)), las = 1)
+
+  invisible(x)
+}
+
+#' @export
+#' @rdname rec_image
+#' @aliases image,RECE,missing-method
+setMethod("image", c(x = "RECE"), image.RECE)
+
+#' @export
+#' @method plot ProxyRecord
+plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
+  ## Get data
+  years <- aion::time(x, calendar = NULL)
+  z <- apply(
+    X = x@density,
+    MARGIN = 1,
+    FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5
+  )
+  z[z == 0] <- NA
+
+  ## Plot
+  graphics::image(x = years, y = x@proxy, z = t(z),
+                  xlab = format(calendar), ylab = "Proxy",
+                  xaxt = "n", yaxt = "n", ...)
+
+  ## Construct axes
+  aion::year_axis(side = 1, format = TRUE, calendar = calendar,
+                  current_calendar = NULL)
+  graphics::axis(side = 2, las = 1)
+
+  m <- apply(
+    X = x@density,
+    MARGIN = 1,
+    FUN = function(w, x, na.rm) stats::weighted.mean(x = x, w = w),
+    x = x@proxy
+  )
+  graphics::lines(x = years, y = m, col = "black", lwd = 2)
+
+  invisible(x)
+}
+
+#' @export
+#' @rdname proxy_plot
+#' @aliases plot,ProxyRecord,missing-method
+setMethod("plot", c(x = "ProxyRecord", y = "missing"), plot.ProxyRecord)

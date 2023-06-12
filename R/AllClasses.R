@@ -49,6 +49,21 @@ NULL
   contains = "TimeSeries"
 )
 
+#' Radiocarbon Event Count Ensemble
+#'
+#' An S4 class to represent a radiocarbon event count ensemble.
+#' @note
+#'  This class inherits from [`TimeSeries-class`].
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases RECE-class
+#' @keywords internal
+.RECE <- setClass(
+  Class = "RECE",
+  contains = "TimeSeries"
+)
+
 # Proxy Record =================================================================
 #' Proxy Record
 #'

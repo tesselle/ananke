@@ -58,7 +58,7 @@ cal <- c14_calibrate(
 )
 
 ## Plot
-plot(cal, panel.first = graphics::grid())
+plot(cal, flip = TRUE, yaxt = "n", cex.lab = 0.7)
 ```
 
 ![](man/figures/README-calibration-1.png)<!-- -->

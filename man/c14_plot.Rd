@@ -100,7 +100,7 @@ Plot Calibrated Radiocarbon Ages
 \examples{
 ## Calibrate a single date
 cal <- c14_calibrate(300, 20)
-plot(cal, panel.first = year_grid())
+plot(cal, panel.first = graphics::grid())
 
 ## Calibrate multiple dates
 cal <- c14_calibrate(
@@ -123,6 +123,7 @@ Other radiocarbon tools:
 \code{\link{c14_calibrate}()},
 \code{\link{c14_combine}()},
 \code{\link{c14_curve}()},
+\code{\link{c14_ensemble}()},
 \code{\link{c14_spd}()},
 \code{\link{c14_uncalibrate}()}
 }

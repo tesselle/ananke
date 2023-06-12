@@ -12,7 +12,7 @@ setMethod(
   signature = c(x = "CalibratedAges"),
   function(x, i, j, k, drop = TRUE) {
     z <- x@.Data
-    time <- x@time
+    time <- x@.Time
     ages <- x@ages
     errors <- x@errors
     curves <- x@curves
@@ -32,7 +32,7 @@ setMethod(
     }
 
     if (isTRUE(drop)) return(z)
-    methods::initialize(x, z, time = time, ages = ages, errors = errors,
+    methods::initialize(x, z, .Time = time, ages = ages, errors = errors,
                         curves = curves, status = status)
   }
 )

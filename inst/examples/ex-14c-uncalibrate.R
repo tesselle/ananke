@@ -1,3 +1,4 @@
+\dontrun{
 ## Calibrate multiple dates
 cal <- c14_calibrate(
   ages = c(5000, 4500),
@@ -7,4 +8,4 @@ cal <- c14_calibrate(
 
 ## Uncalibrate
 c14_uncalibrate(cal)
-
+}
