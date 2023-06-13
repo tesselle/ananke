@@ -9,11 +9,12 @@ setMethod(
   f = "proxy_ensemble",
   signature = c("numeric"),
   definition = function(depth, proxy, proxy_error, time, time_error, calendar,
-                        start = NULL, end = NULL, by = NULL, n = 30,
+                        from = NULL, to = NULL, by = NULL, n = 30,
                         progress = getOption("ananke.progress"),
                         verbose = getOption("ananke.verbose")) {
     ## Validation
     k <- length(depth)
+    arkhe::assert_positive(depth)
     arkhe::assert_decreasing(depth)
     arkhe::assert_length(proxy, k)
     arkhe::assert_length(time, k)
@@ -21,19 +22,19 @@ setMethod(
     if (length(proxy_error) != k) proxy_error <- rep(proxy_error, k)
 
     ## Missing values
-    if (is.null(start)) start <- time[[1L]]
-    if (is.null(end))   end <- time[[k]]
+    if (is.null(from)) from <- time[[1L]]
+    if (is.null(to))   to <- time[[k]]
     if (is.null(by)) {
       grid <- getOption("ananke.grid")
-      by <- ((end - start) / (grid - 1))
+      by <- ((to - from) / (grid - 1))
     }
-    if (start > end && by > 0) by <- by * -1
+    if (from > to && by > 0) by <- by * -1
 
     ## Build a matrix to contain the p(t|zi) densities
     ## Rows will refer to depth
     ## Columns will refer to the time density
     if (verbose) cat("Computing p(t|zi) densities...", sep = "\n")
-    t_grid <- seq(from = start, to = end, by = by)
+    t_grid <- seq(from = from, to = to, by = by)
 
     t_z <- .mapply(
       FUN = function(min, max, x) {

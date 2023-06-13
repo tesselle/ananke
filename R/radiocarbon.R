@@ -411,7 +411,7 @@ setMethod(
 setMethod(
   f = "c14_ensemble",
   signature = "CalibratedAges",
-  definition = function(object, from = NULL, to = NULL, resolution = 10, n = 100,
+  definition = function(object, from = NULL, to = NULL, by = 10, n = 100,
                         calendar = BP(), progress = getOption("ananke.progress")) {
     ## Check
     calibrate_check(object@labels, object@status)
@@ -420,7 +420,7 @@ setMethod(
     rd <- aion::time(object, calendar = NULL)
     if (is.null(from)) from <- aion::start(object, calendar = calendar)
     if (is.null(to)) to <- aion::end(object, calendar = calendar)
-    grid_years <- seq(from = from, to = to, by = resolution * sign(to - from))
+    grid_years <- seq(from = from, to = to, by = by * sign(to - from))
     grid_rd <- aion::fixed(grid_years, calendar = calendar)
 
     ## Align 14C date densities onto the grid

@@ -150,8 +150,8 @@ plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),
 setMethod("plot", c(x = "CalibratedSPD", y = "missing"), plot.CalibratedSPD)
 
 #' @export
-#' @method image RECE
-image.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
+#' @method plot RECE
+plot.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
   ## Binary array
   bin <- array(FALSE, dim = c(nrow(x), max(x), ncol(x)))
   for (j in seq_len(ncol(x))) {
@@ -173,8 +173,11 @@ image.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
     z = log(bin),
     col = col,
     # ylim = ylim,
-    xlab = format(calendar), ylab = "Count",
-    xaxt = "n", yaxt = "n", ...
+    xlab = format(calendar),
+    ylab = "Count",
+    xaxt = "n",
+    yaxt = "n",
+    ...
   )
 
   ## Construct axes
@@ -186,9 +189,9 @@ image.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
 }
 
 #' @export
-#' @rdname rec_image
-#' @aliases image,RECE,missing-method
-setMethod("image", c(x = "RECE"), image.RECE)
+#' @rdname rec_plot
+#' @aliases plot,RECE,missing-method
+setMethod("plot", c(x = "RECE"), plot.RECE)
 
 #' @export
 #' @method plot ProxyRecord

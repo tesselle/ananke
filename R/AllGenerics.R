@@ -385,9 +385,10 @@ NULL
 #'  (REC) Models for the Study of Long‐term Human and Environmental Processes.
 #'  *Journal of Quaternary Science*, 36(1): 110‑23. \doi{10.1002/jqs.3256}.
 #' @author N. Frerebeau
-#' @family modeling tools
-#' @name rec_image
-#' @rdname rec_image
+#' @docType methods
+#' @family radiocarbon tools
+#' @name rec_plot
+#' @rdname rec_plot
 NULL
 
 ## RECE ------------------------------------------------------------------------
@@ -398,7 +399,7 @@ NULL
 #'  calibrate for (in cal BP years).
 #' @param to A length-one [`numeric`] vector specifying the latest data to
 #'  calibrate for (in cal BP years).
-#' @param resolution A length-one [`numeric`] vector specifying the temporal
+#' @param by A length-one [`numeric`] vector specifying the temporal
 #'  resolution (in years) of the calibration.
 #' @param calendar A [`TimeScale-class`] object specifying the calendar of
 #'  `from` and `to` (see [calendar()]). Defaults to [CE()].
@@ -474,8 +475,9 @@ setGeneric(
 #'
 #' Represents layer-counted proxy records as sequences of probability
 #' distributions on absolute, error-free time axes.
-#' @param depth A [`numeric`] vector giving the depth at which proxy values and
-#'  calendar ages were measured (in decreasing order).
+#' @param depth A positive [`numeric`] vector giving the depth at which proxy
+#'  values and calendar ages were measured. It must be in decreasing order
+#'  (i.e. in chronological order).
 #' @param proxy A [`numeric`] vector giving the proxy values.
 #' @param proxy_error A [`numeric`] vector giving the proxy uncertainties.
 #' @param time A [`numeric`] vector giving the calendar ages (in years).
@@ -483,13 +485,13 @@ setGeneric(
 #'  (in years).
 #' @param calendar A [`TimeScale-class`] object specifying the calendar of
 #'  `time` (see [calendar()]).
-#' @param start A length-one [`numeric`] vector specifying the starting value of
+#' @param from A length-one [`numeric`] vector specifying the starting value of
 #'  the temporal sequence at which densities are to be estimated (in years).
-#' @param end A length-one [`numeric`] vector specifying the end value of the
+#' @param to A length-one [`numeric`] vector specifying the end value of the
 #'  temporal sequence at which densities are to be estimated (in cal BP years).
 #' @param by A length-one [`numeric`] vector specifying the increment of
 #'  the temporal sequence at which densities are to be estimated (in years).
-#' @param n An [`integer`] specifying the number of item to choose.
+#' @param n An [`integer`] specifying the number of item to choose randomly.
 #' @param verbose A [`logical`] scalar: should extra information be reported?
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
 #' @param ... Currently not used.

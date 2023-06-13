@@ -16,8 +16,8 @@ proxy_ensemble(depth, ...)
   time,
   time_error,
   calendar,
-  start = NULL,
-  end = NULL,
+  from = NULL,
+  to = NULL,
   by = NULL,
   n = 30,
   progress = getOption("ananke.progress"),
@@ -25,8 +25,9 @@ proxy_ensemble(depth, ...)
 )
 }
 \arguments{
-\item{depth}{A \code{\link{numeric}} vector giving the depth at which proxy values and
-calendar ages were measured (in decreasing order).}
+\item{depth}{A positive \code{\link{numeric}} vector giving the depth at which proxy
+values and calendar ages were measured. It must be in decreasing order
+(i.e. in chronological order).}
 
 \item{...}{Currently not used.}
 
@@ -42,16 +43,16 @@ calendar ages were measured (in decreasing order).}
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
 \code{time} (see \code{\link[=calendar]{calendar()}}).}
 
-\item{start}{A length-one \code{\link{numeric}} vector specifying the starting value of
+\item{from}{A length-one \code{\link{numeric}} vector specifying the starting value of
 the temporal sequence at which densities are to be estimated (in years).}
 
-\item{end}{A length-one \code{\link{numeric}} vector specifying the end value of the
+\item{to}{A length-one \code{\link{numeric}} vector specifying the end value of the
 temporal sequence at which densities are to be estimated (in cal BP years).}
 
 \item{by}{A length-one \code{\link{numeric}} vector specifying the increment of
 the temporal sequence at which densities are to be estimated (in years).}
 
-\item{n}{An \code{\link{integer}} specifying the number of item to choose.}
+\item{n}{An \code{\link{integer}} specifying the number of item to choose randomly.}
 
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
 

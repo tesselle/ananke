@@ -13,7 +13,7 @@ c14_ensemble(object, ...)
   object,
   from = NULL,
   to = NULL,
-  resolution = 10,
+  by = 10,
   n = 100,
   calendar = BP(),
   progress = getOption("ananke.progress")
@@ -30,7 +30,7 @@ calibrate for (in cal BP years).}
 \item{to}{A length-one \code{\link{numeric}} vector specifying the latest data to
 calibrate for (in cal BP years).}
 
-\item{resolution}{A length-one \code{\link{numeric}} vector specifying the temporal
+\item{by}{A length-one \code{\link{numeric}} vector specifying the temporal
 resolution (in years) of the calibration.}
 
 \item{n}{An \code{\link{integer}} specifying the number of item to choose randomly.}
@@ -59,7 +59,8 @@ Other radiocarbon tools:
 \code{\link{c14_curve}()},
 \code{\link{c14_plot}},
 \code{\link{c14_spd}()},
-\code{\link{c14_uncalibrate}()}
+\code{\link{c14_uncalibrate}()},
+\code{\link{rec_plot}}
 }
 \author{
 N. Frerebeau
