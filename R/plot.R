@@ -192,33 +192,51 @@ setMethod("image", c(x = "RECE"), image.RECE)
 
 #' @export
 #' @method plot ProxyRecord
-plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"), ...) {
+plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"),
+                             iqr = TRUE,
+                             xlab = NULL, ylab = NULL,
+                             col = grDevices::hcl.colors(12, "YlOrRd", rev = TRUE),
+                             col.mean = "black", col.iqr = col.mean,
+                             lty.mean = 1, lty.iqr = 3,
+                             lwd.mean = 2, lwd.iqr = lwd.mean, ...) {
   ## Get data
   years <- aion::time(x, calendar = NULL)
   z <- apply(
     X = x@density,
     MARGIN = 1,
-    FUN = function(d) (d - min(d)) / max(d - min(d)) * 1.5
+    FUN = function(d) (d - min(d)) / max(d - min(d))
   )
   z[z == 0] <- NA
 
   ## Plot
-  graphics::image(x = years, y = x@proxy, z = t(z),
-                  xlab = format(calendar), ylab = "Proxy",
-                  xaxt = "n", yaxt = "n", ...)
+  graphics::image(
+    x = years,
+    y = x@proxy,
+    z = t(z),
+    col = col,
+    xaxt = "n",
+    yaxt = "n",
+    xlab = xlab %||% format(calendar),
+    ylab = ylab %||% "Proxy",
+    ...
+  )
 
   ## Construct axes
   aion::year_axis(side = 1, format = TRUE, calendar = calendar,
                   current_calendar = NULL)
   graphics::axis(side = 2, las = 1)
 
-  m <- apply(
-    X = x@density,
-    MARGIN = 1,
-    FUN = function(w, x, na.rm) stats::weighted.mean(x = x, w = w),
-    x = x@proxy
-  )
-  graphics::lines(x = years, y = m, col = "black", lwd = 2)
+  if (isTRUE(iqr)) {
+    m <- mean(x)
+    graphics::lines(x = years, y = m, col = col.mean,
+                    lty = lty.mean, lwd = lwd.mean)
+
+    q <- quantile(x, probs = c(0.25, 0.75))
+    graphics::lines(x = years, y = q[, 1], col = col.iqr,
+                    lty = lty.iqr, lwd = lwd.iqr)
+    graphics::lines(x = years, y = q[, 2], col = col.iqr,
+                    lty = lty.iqr, lwd = lwd.iqr)
+  }
 
   invisible(x)
 }

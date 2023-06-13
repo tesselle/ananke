@@ -51,7 +51,8 @@ Hyndman, R. J. (1996). Computing and graphing highest density regions.
 
 Other statistics: 
 \code{\link{mean}()},
-\code{\link{median}()}
+\code{\link{median}()},
+\code{\link{quantile}()}
 }
 \author{
 N. Frerebeau

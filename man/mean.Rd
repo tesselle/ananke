@@ -5,9 +5,13 @@
 \alias{mean}
 \alias{mean,CalibratedAges-method}
 \alias{mean,CalibratedAges,missing-method}
+\alias{mean,ProxyRecord-method}
+\alias{mean,ProxyRecord,missing-method}
 \title{Mean}
 \usage{
 \S4method{mean}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = getOption("ananke.calendar"))
+
+\S4method{mean}{ProxyRecord}(x, na.rm = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} object.}
@@ -20,19 +24,27 @@ computation proceeds?}
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[=calendar]{calendar()}}).}
 }
+\value{
+A \code{\link{numeric}} vector.
+}
 \description{
 Mean
 }
 \examples{
-## Calibrate a single date
-cal <- c14_calibrate(300, 20)
+## Calibrate multiple dates
+cal <- c14_calibrate(
+  ages = c(5000, 4500),
+  errors = c(45, 35),
+  names = c("X", "Y")
+)
 
 ## Statistics
+quantile(cal)
 median(cal)
 mean(cal)
 
 ## Plot
-plot(cal, calendar = CE(), panel.first = graphics::grid())
+plot(cal, calendar = CE())
 
 ## Need to set 'calendar'
 abline(v = median(cal, calendar = CE()), lty = 2, col = "blue")
@@ -41,7 +53,8 @@ abline(v = mean(cal, calendar = CE()), lty = 2, col = "red")
 \seealso{
 Other statistics: 
 \code{\link{interval_hdr}()},
-\code{\link{median}()}
+\code{\link{median}()},
+\code{\link{quantile}()}
 }
 \author{
 N. Frerebeau
