@@ -480,6 +480,8 @@ setGeneric(
 #'  (i.e. in chronological order).
 #' @param proxy A [`numeric`] vector giving the proxy values.
 #' @param proxy_error A [`numeric`] vector giving the proxy uncertainties.
+#' @param step A length-one [`numeric`] vector specifying the step size
+#'  (in units of `proxy`) at which proxy records densities are to be estimated.
 #' @param time A [`numeric`] vector giving the calendar ages (in years).
 #' @param time_error A [`numeric`] vector giving the calendar age uncertainties
 #'  (in years).

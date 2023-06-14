@@ -8,7 +8,8 @@ NULL
 setMethod(
   f = "proxy_ensemble",
   signature = c("numeric"),
-  definition = function(depth, proxy, proxy_error, time, time_error, calendar,
+  definition = function(depth, proxy, proxy_error, step,
+                        time, time_error, calendar,
                         from = NULL, to = NULL, by = NULL, n = 30,
                         progress = getOption("ananke.progress"),
                         verbose = getOption("ananke.verbose")) {
@@ -54,7 +55,7 @@ setMethod(
     ## Columns will refer to the proxy density
     if (verbose) cat("Computing p(x|zi) densities...", sep = "\n")
     d <- 2 * max(proxy_error)
-    x_grid <- c(min(proxy) - d, sort(unique(proxy)), max(proxy) + d)
+    x_grid <- seq(from = min(proxy) - d, to = max(proxy) + d, by = step)
 
     x_z <- .mapply(
       FUN = function(mean, sd, x) {
