@@ -171,8 +171,6 @@ plot.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
     x = years,
     y = seq_len(max(x)),
     z = log(bin),
-    col = col,
-    # ylim = ylim,
     xlab = format(calendar),
     ylab = "Count",
     xaxt = "n",
@@ -191,7 +189,7 @@ plot.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
 #' @export
 #' @rdname rec_plot
 #' @aliases plot,RECE,missing-method
-setMethod("plot", c(x = "RECE"), plot.RECE)
+setMethod("plot", c(x = "RECE", y = "missing"), plot.RECE)
 
 #' @export
 #' @method plot ProxyRecord

@@ -4,10 +4,13 @@
 \name{data.frame}
 \alias{data.frame}
 \alias{as.data.frame,CalibratedAges-method}
+\alias{as.data.frame,RECE-method}
 \alias{as.data.frame,ProxyRecord-method}
 \title{Coerce to a Data Frame}
 \usage{
 \S4method{as.data.frame}{CalibratedAges}(x, ..., calendar = getOption("ananke.calendar"))
+
+\S4method{as.data.frame}{RECE}(x, ..., calendar = getOption("ananke.calendar"))
 
 \S4method{as.data.frame}{ProxyRecord}(x, ..., calendar = getOption("ananke.calendar"))
 }

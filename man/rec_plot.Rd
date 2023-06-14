@@ -3,11 +3,10 @@
 \docType{methods}
 \name{rec_plot}
 \alias{rec_plot}
-\alias{plot,RECE,ANY-method}
 \alias{plot,RECE,missing-method}
 \title{Plot a Radiocarbon Event Count Ensemble}
 \usage{
-\S4method{plot}{RECE,ANY}(x, calendar = getOption("ananke.calendar"), ...)
+\S4method{plot}{RECE,missing}(x, calendar = getOption("ananke.calendar"), ...)
 }
 \arguments{
 \item{x}{An \code{\linkS4class{RECE}} object.}
