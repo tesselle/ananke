@@ -10,7 +10,7 @@ setMethod(
   f = "interval_hdr",
   signature = c(x = "CalibratedAges", y = "missing"),
   definition = function(x, level = 0.954,
-                        calendar = getOption("ananke.calendar")) {
+                        calendar = getOption("ananke.calendar"), ...) {
     hdr <- apply(
       X = x,
       MARGIN = 2,

@@ -3,6 +3,7 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{interval_hdr}
 \alias{calendar}
 \alias{BP}
 \alias{b2k}
@@ -12,6 +13,8 @@
 \alias{CE}
 \alias{start}
 \alias{time}
+\alias{plot}
+\alias{image}
 \alias{year_axis}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -20,6 +23,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{aion}{\code{\link[aion:gregorian]{AD}}, \code{\link[aion:gregorian]{BC}}, \code{\link[aion:gregorian]{BCE}}, \code{\link[aion:gregorian]{BP}}, \code{\link[aion:gregorian]{CE}}, \code{\link[aion:gregorian]{b2k}}, \code{\link[aion]{calendar}}, \code{\link[aion]{start}}, \code{\link[aion]{start}}, \code{\link[aion]{time}}, \code{\link[aion]{year_axis}}}
+  \item{aion}{\code{\link[aion:gregorian]{AD}}, \code{\link[aion:gregorian]{b2k}}, \code{\link[aion:gregorian]{BC}}, \code{\link[aion:gregorian]{BCE}}, \code{\link[aion:gregorian]{BP}}, \code{\link[aion]{calendar}}, \code{\link[aion:gregorian]{CE}}, \code{\link[aion]{image}}, \code{\link[aion]{plot}}, \code{\link[aion]{start}}, \code{\link[aion]{start}}, \code{\link[aion]{time}}, \code{\link[aion]{year_axis}}}
+
+  \item{arkhe}{\code{\link[arkhe]{interval_hdr}}}
 }}
 

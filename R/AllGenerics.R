@@ -449,7 +449,6 @@ setGeneric(
 #' Highest Density Regions
 #'
 #' @param x A [`CalibratedAges-class`] object.
-#' @param y Currently not used.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param calendar A [`TimeScale-class`] object specifying the target calendar
 #'  (see [calendar()]).
@@ -464,11 +463,9 @@ setGeneric(
 #' @author N. Frerebeau
 #' @family statistics
 #' @docType methods
-#' @aliases interval_hdr-method
-setGeneric(
-  name = "interval_hdr",
-  def = getGeneric("interval_hdr", package = "arkhe")
-)
+#' @rdname interval_hdr
+#' @name hdr
+NULL
 
 # Proxy Records ================================================================
 #' Layer-Counted Proxy Records Uncertainties
