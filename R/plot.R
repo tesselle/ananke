@@ -5,102 +5,131 @@ NULL
 #' @export
 #' @method plot CalibratedAges
 plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
-                                interval = TRUE, level = 0.954,
-                                flip = FALSE, ncol = 1,
-                                warnings = TRUE, sort = TRUE, decreasing = TRUE,
+                                density = TRUE, interval = TRUE, level = 0.954,
+                                sort = TRUE, decreasing = TRUE,
                                 main = NULL, sub = NULL,
-                                ann = graphics::par("ann"), axes = TRUE,
-                                frame.plot = FALSE,
+                                axes = TRUE, frame.plot = FALSE,
+                                ann = graphics::par("ann"),
                                 panel.first = NULL, panel.last = NULL,
                                 col.density = "grey", col.interval = "#77AADD", ...) {
-  ## TODO
-  # panel <- match.arg(panel, several.ok = FALSE)
-  panel <- "density"
+  ## Check
+  calibrate_check(colnames(x), x@status)
 
-  ## Get data
+  ## Compute interval
   n <- NCOL(x)
+  lab <- labels(x)
 
   ## Graphical parameters
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
   if (length(col.density) != n) col.density <- rep(col.density, length.out = n)
   if (length(col.interval) != n) col.interval <- rep(col.interval, length.out = n)
   fill.density <- grDevices::adjustcolor(col.density, alpha.f = 0.5)
   fill.interval <- grDevices::adjustcolor(col.interval, alpha.f = 0.5)
 
+  ## Save and restore
+  mar <- graphics::par("mar")
+  mar[2] <- inch2line(lab, cex = cex.axis) + 0.5
+  old_par <- graphics::par(mar = mar)
+  on.exit(graphics::par(old_par))
+
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
+
+  ## Set plotting coordinates
+  xlim <- range(aion::time(x, calendar = NULL))
+  ylim <- c(1, n + 1)
+  if (!is.null(calendar)) xlim <- aion::as_year(xlim, calendar = calendar)
+  graphics::plot.window(xlim = xlim, ylim = ylim)
+
+  ## Evaluate pre-plot expressions
+  panel.first
+
   ## Reorder
+  k <- seq_len(n)
   if (sort) {
-    mid <- median(x)
-    k <- order(mid, decreasing = !decreasing)
+    mid <- median(x, calendar = NULL)
+    k <- order(mid, decreasing = decreasing)
     x <- x[, k, , drop = FALSE]
     col.density <- col.density[k]
     fill.density <- fill.density[k]
-    col.interval <- col.interval[k]
-    fill.interval <- fill.interval[k]
   }
+
+  ## Compute interval
+  hdr <- interval_hdr(x, level = level, calendar = calendar)
 
   ## Plot
-  if (panel == "density") {
-    panel_density <- function(x, y, ...) {
+  years <- aion::time(x, calendar = calendar)
+  tick_height <- graphics::par("tcl") * graphics::strheight("M") * -1
+  if (isFALSE(density)) tick_height <- 0
+
+  for (i in seq_len(n)) {
+    y <- x[, i, k = 1, drop = TRUE]
+    y <- (y - min(y)) / max(y - min(y)) * 0.9
+    if (isTRUE(density)) {
       d0 <- which(y > 0) # Keep only density > 0
       lb <- if (min(d0) > 1) min(d0) - 1 else min(d0)
-      ub <- if (max(d0) < length(x)) max(d0) + 1 else max(d0)
-      xi <- c(x[lb], x[d0], x[ub])
-      yi <- c(0, y[d0], 0)
+      ub <- if (max(d0) < length(years)) max(d0) + 1 else max(d0)
+      xi <- c(years[lb], years[d0], years[ub])
+      yi <- c(i, y[d0] + i, i)
 
-      graphics::polygon(xi, yi, border = NA, ...)
+      graphics::polygon(xi, yi, border = NA, col = fill.density[i])
       graphics::lines(xi, yi, lty = "solid")
+    }
 
-      if (isTRUE(interval)) {
-        h <- arkhe::interval_hdr(as.numeric(x), y, level = level)
+    if (isTRUE(interval)) {
+      h <- hdr[[i]]
 
-        for (i in seq_len(nrow(h))) {
-          debut <- h[i, "start"]
-          fin <- h[i, "end"]
-          if (debut < fin) {
-            is_in_h <- xi >= debut & xi <= fin
-          } else {
-            is_in_h <- xi <= debut & xi >= fin
-          }
+      if (isTRUE(density)) {
+        for (j in seq_len(nrow(h))) {
+          debut <- h[j, "start"]
+          fin <- h[j, "end"]
+          if (debut < fin) is_in_h <- xi >= debut & xi <= fin
+          else is_in_h <- xi <= debut & xi >= fin
           xh <- xi[is_in_h]
           yh <- yi[is_in_h]
-          graphics::polygon(x = c(xh[1], xh, xh[length(xh)]), y = c(0, yh, 0),
-                            border = NA, col = fill.interval)
+          graphics::polygon(x = c(xh[1], xh, xh[length(xh)]),
+                            y = c(i, yh, i),
+                            border = NA, col = fill.interval[i])
         }
-        graphics::segments(
-          x0 = h[, "start"], x1 = h[, "end"], y0 = 0, y1 = 0,
-          lend = 1
-        )
-        graphics::segments(
-          x0 = c(h[, "start"], h[, "end"]), x1 = c(h[, "start"], h[, "end"]),
-          y0 = 0, y1 = graphics::par("tcl") * graphics::strheight("M") * -1,
-          lend = 1
-        )
       }
+
+      graphics::segments(x0 = h[, "start"], x1 = h[, "end"],
+                         y0 = i, y1 = i, lend = 1,
+                         ...)
+      graphics::segments(x0 = c(h[, "start"], h[, "end"]),
+                         x1 = c(h[, "start"], h[, "end"]),
+                         y0 = i, y1 = i + tick_height, lend = 1,
+                         ...)
     }
-    methods::callNextMethod(
-      x, facet = "multiple",
-      calendar = calendar,
-      panel = panel_density,
-      flip = flip, ncol = ncol,
-      main = main, sub = sub, ann = ann, axes = axes,
-      frame.plot = frame.plot,
-      panel.first = panel.first,
-      panel.last = panel.last,
-      col = fill.density,
-      ...
-    )
   }
 
-  if (panel == "interval") stop("TODO", call. = FALSE)
+  ## Evaluate post-plot and pre-axis expressions
+  panel.last
 
-  # if (warnings) {
-  #   status <- x@status
-  #   graphics::text(x = xlim[1L], y = which(status == 1L), adj = c(0, 0),
-  #                  labels = "Date is out of range.", col = "red")
-  #   graphics::text(x = xlim[1L], y = which(status == 2L), adj = c(0, 0),
-  #                  labels = "Date may extent out of range.", col = "red")
-  # }
+  ## Construct Axis
+  if (axes) {
+    aion::year_axis(side = 1, format = TRUE, calendar = calendar,
+                    current_calendar = calendar)
+    graphics::mtext(lab[k], side = 2, at = seq_len(n), las = 1, padj = 0,
+                    cex = cex.axis, col.axis = col.axis, font = font.axis)
+  }
 
-  invisible(x) # /!\ sorted! /!\
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
+  }
+
+  ## Add annotation
+  if (ann) {
+    xlab <- if (is.null(calendar)) expression(italic("rata die")) else format(calendar)
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = NULL)
+  }
+
+  invisible(x)
 }
 
 #' @export
@@ -108,6 +137,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
 #' @aliases plot,CalibratedAges,missing-method
 setMethod("plot", c(x = "CalibratedAges", y = "missing"), plot.CalibratedAges)
 
+## SPD =========================================================================
 #' @export
 #' @method plot CalibratedSPD
 plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),

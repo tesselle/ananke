@@ -1,5 +1,5 @@
 # GENERIC METHODS
-#' @include AllClasses.R
+#' @include AllClasses.R reexport.R
 NULL
 
 # Tools ========================================================================
@@ -18,6 +18,22 @@ NULL
 #' @name mutators
 #' @rdname mutators
 #' @aliases get set
+NULL
+
+#' Find Labels from Object
+#'
+#' Find a suitable set of labels from an object for use in printing or plotting,
+#' for example.
+#' @param object An object from which to find labels.
+#' @param ... Currently not used.
+#' @return
+#'  A [`character`] vector.
+# @example inst/examples/ex-mutator.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name labels
+#' @rdname labels
 NULL
 
 ## Subset ----------------------------------------------------------------------
@@ -334,14 +350,10 @@ setGeneric(
 #' @param x A [`CalibratedAges-class`] or [`CalibratedSPD-class`] object.
 #' @param calendar A [`TimeScale-class`] object specifying the target calendar
 #'  (see [calendar()]).
+#' @param density A [`logical`] scalar: should density be drawn?
 #' @param interval A [`logical`] scalar: should highest density region be drawn?
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Only used if `interval` is `TRUE`.
-#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right)?
-#' @param ncol An [`integer`] specifying the number of columns to use.
-#'  Defaults to 1.
-#' @param warnings A [`logical`] scalar: should warnings be plotted?
 #' @param sort A [`logical`] scalar: should the data be sorted?
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
 #'  Only used if `sort` is `TRUE`.

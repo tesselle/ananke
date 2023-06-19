@@ -414,7 +414,7 @@ setMethod(
   definition = function(object, from = NULL, to = NULL, by = 10, n = 100,
                         calendar = BP(), progress = getOption("ananke.progress")) {
     ## Check
-    calibrate_check(object@labels, object@status)
+    calibrate_check(colnames(object), object@status)
 
     ## Get data
     rd <- aion::time(object, calendar = NULL)
@@ -483,7 +483,7 @@ setMethod(
   signature = "CalibratedAges",
   definition = function(object, normalize_date = FALSE, normalize_spd = FALSE) {
     ## Check
-    calibrate_check(object@labels, object@status)
+    calibrate_check(colnames(object), object@status)
 
     dens <- t(object[, , 1, drop = TRUE])
     if (normalize_date) dens <- dens / rowSums(dens, na.rm = TRUE)

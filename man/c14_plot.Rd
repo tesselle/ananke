@@ -10,18 +10,16 @@
 \S4method{plot}{CalibratedAges,missing}(
   x,
   calendar = getOption("ananke.calendar"),
+  density = TRUE,
   interval = TRUE,
   level = 0.954,
-  flip = FALSE,
-  ncol = 1,
-  warnings = TRUE,
   sort = TRUE,
   decreasing = TRUE,
   main = NULL,
   sub = NULL,
-  ann = graphics::par("ann"),
   axes = TRUE,
   frame.plot = FALSE,
+  ann = graphics::par("ann"),
   panel.first = NULL,
   panel.last = NULL,
   col.density = "grey",
@@ -48,18 +46,12 @@
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[=calendar]{calendar()}}).}
 
+\item{density}{A \code{\link{logical}} scalar: should density be drawn?}
+
 \item{interval}{A \code{\link{logical}} scalar: should highest density region be drawn?}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Only used if \code{interval} is \code{TRUE}.}
-
-\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right)?}
-
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
-Defaults to 1.}
-
-\item{warnings}{A \code{\link{logical}} scalar: should warnings be plotted?}
 
 \item{sort}{A \code{\link{logical}} scalar: should the data be sorted?}
 
@@ -70,13 +62,13 @@ Only used if \code{sort} is \code{TRUE}.}
 
 \item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
 
-\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
-and y labels) appear on the plot?}
-
 \item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
 
 \item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
 plot?}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y labels) appear on the plot?}
 
 \item{panel.first}{An an \code{expression} to be evaluated after the plot axes are
 set up but before any plotting takes place. This can be useful for drawing
@@ -108,13 +100,17 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = BP(), flip = TRUE)
-plot(cal, interval = FALSE, ncol = 2)
+plot(cal, calendar = BP(), panel.first = graphics::grid())
+plot(cal, interval = FALSE)
 plot(cal[, 1, ], col.interval = "red")
+
+plot(cal, density = FALSE, level = 0.68, lwd = 5)
+plot(cal, density = FALSE, level = 0.95, lwd = 5)
 
 \donttest{
 ## Out of 14C range?
-plot(c14_calibrate(130, 20))
+out <- c14_calibrate(130, 20)
+plot(out)
 }
 }
 \seealso{

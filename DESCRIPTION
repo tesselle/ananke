@@ -30,16 +30,17 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Collate: 
     'AllClasses.R'
+    'reexport.R'
     'AllGenerics.R'
     'ananke-internal.R'
     'ananke-package.R'
     'coerce.R'
     'data.R'
     'interval.R'
+    'mutators.R'
     'plot.R'
     'proxy.R'
     'radiocarbon.R'
-    'reexport.R'
     'statistics.R'
     'subset.R'
     'validate.R'

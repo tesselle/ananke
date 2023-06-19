@@ -42,6 +42,7 @@ head(as.data.frame(cal, calendar = NULL))
 }
 \seealso{
 Other mutators: 
+\code{\link{labels}()},
 \code{\link{mutators}},
 \code{\link{subset}()}
 }

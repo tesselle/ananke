@@ -58,10 +58,16 @@ cal <- c14_calibrate(
 )
 
 ## Plot
-plot(cal, flip = TRUE, yaxt = "n", cex.lab = 0.7)
+plot(cal)
 ```
 
 ![](man/figures/README-calibration-1.png)<!-- -->
+
+``` r
+plot(cal, density = FALSE, level = 0.95, lwd = 5)
+```
+
+![](man/figures/README-calibration-2.png)<!-- -->
 
 ## Contributing
 

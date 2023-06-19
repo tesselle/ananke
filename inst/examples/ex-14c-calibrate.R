@@ -8,11 +8,15 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = BP(), flip = TRUE)
-plot(cal, interval = FALSE, ncol = 2)
+plot(cal, calendar = BP(), panel.first = graphics::grid())
+plot(cal, interval = FALSE)
 plot(cal[, 1, ], col.interval = "red")
+
+plot(cal, density = FALSE, level = 0.68, lwd = 5)
+plot(cal, density = FALSE, level = 0.95, lwd = 5)
 
 \donttest{
 ## Out of 14C range?
-plot(c14_calibrate(130, 20))
+out <- c14_calibrate(130, 20)
+plot(out)
 }
