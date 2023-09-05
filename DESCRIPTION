@@ -37,6 +37,7 @@ Collate:
     'coerce.R'
     'data.R'
     'interval.R'
+    'lia.R'
     'mutators.R'
     'plot.R'
     'proxy.R'
