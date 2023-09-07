@@ -5,6 +5,11 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/tesselle/ananke/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/ananke/actions)
+[![codecov](https://codecov.io/gh/tesselle/ananke/branch/main/graph/badge.svg?token=UgoOXsZW86)](https://app.codecov.io/gh/tesselle/ananke)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/ananke/badge/main)](https://www.codefactor.io/repository/github/tesselle/ananke/overview/main)
+[![Dependencies](https://tinyverse.netlify.com/badge/ananke)](https://cran.r-project.org/package=ananke)
+
 <a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/ananke"
 alt="r-universe" /></a>

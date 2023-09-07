@@ -16,6 +16,11 @@ knitr::opts_chunk$set(
 # ananke
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/tesselle/ananke/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/ananke/actions)
+[![codecov](https://codecov.io/gh/tesselle/ananke/branch/main/graph/badge.svg?token=UgoOXsZW86)](https://app.codecov.io/gh/tesselle/ananke)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/ananke/badge/main)](https://www.codefactor.io/repository/github/tesselle/ananke/overview/main)
+[![Dependencies](https://tinyverse.netlify.com/badge/ananke)](https://cran.r-project.org/package=ananke)
+
 [![r-universe](https://tesselle.r-universe.dev/badges/ananke)](https://tesselle.r-universe.dev){.pkgdown-devel}
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
