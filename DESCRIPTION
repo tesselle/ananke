@@ -12,8 +12,8 @@ BugReports: https://github.com/tesselle/ananke/issues
 Depends: 
     R (>= 3.5)
 Imports: 
-    aion,
-    arkhe (>= 1.2.0),
+    aion (>= 1.0.2),
+    arkhe (>= 1.4.0),
     graphics,
     grDevices,
     methods
