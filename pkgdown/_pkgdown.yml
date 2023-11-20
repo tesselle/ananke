@@ -2,9 +2,6 @@ url: https://packages.tesselle.org/ananke
 
 template:
   package: tekton
-  opengraph:
-    twitter:
-      creator: "@nfrerebeau"
 
 reference:
 - title: Radiocarbon tools
