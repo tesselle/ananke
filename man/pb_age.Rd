@@ -106,7 +106,7 @@ Pb <- data.frame(
   z = c(38.5167, 38.51516, 38.51601)   # Pb208/Pb204
 )
 
-lia_age(Pb)
+pb_age(Pb)
 }
 \references{
 Albarède, F., Desaulty, A.-M. & Blichert-Toft, J. (2012). A Geological

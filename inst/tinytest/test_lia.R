@@ -5,8 +5,8 @@ Pb <- data.frame(
   z = c(38.5167, 38.51516, 38.51601)   # Pb208/Pb204
 )
 
-ratios <- lia_age(Pb)
+ratios <- pb_age(Pb)
 expect_equal_to_reference(ratios, file = "_snaps/lia.rds")
 
 colnames(Pb) <- c("a", "y", "z")
-expect_error(lia_age(Pb), "does not have components")
+expect_error(pb_age(Pb), "does not have components")
