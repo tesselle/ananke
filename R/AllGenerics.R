@@ -602,11 +602,10 @@ NULL
 #' @author N. Frerebeau, F. Albarede (original Matlab code)
 #' @docType methods
 #' @family isotope analysis
-#' @rdname lia_age
 #' @export
 setGeneric(
-  name = "lia_age",
-  def = function(x, y, z, ...) standardGeneric("lia_age"),
+  name = "pb_age",
+  def = function(x, y, z, ...) standardGeneric("pb_age"),
   valueClass = "data.frame"
 )
 

@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname lia_age
-#' @aliases lia_age,numeric,numeric,numeric-method
+#' @rdname pb_age
+#' @aliases pb_age,numeric,numeric,numeric-method
 setMethod(
-  f = "lia_age",
+  f = "pb_age",
   signature = c(x = "numeric", y = "numeric", z = "numeric"),
   definition = function(x, y, z, t0 = 3.8,
                         x_star = 18.75, y_star = 15.63, z_star = 38.86,
@@ -54,10 +54,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname lia_age
-#' @aliases lia_age,list,missing,missing-method
+#' @rdname pb_age
+#' @aliases pb_age,list,missing,missing-method
 setMethod(
-  f = "lia_age",
+  f = "pb_age",
   signature = c(x = "list", y = "missing", z = "missing"),
   definition = function(x, t0 = 3.8,
                         x_star = 18.75, y_star = 15.63, z_star = 38.86,
