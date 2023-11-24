@@ -10,7 +10,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/ananke/badge/main)](https://www.codefactor.io/repository/github/tesselle/ananke/overview/main)
 [![Dependencies](https://tinyverse.netlify.com/badge/ananke)](https://cran.r-project.org/package=ananke)
 
-<a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
+<a href="https://tesselle.r-universe.dev/ananke"
+class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/ananke"
 alt="r-universe" /></a>
 

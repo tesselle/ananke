@@ -119,8 +119,9 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   if (axes) {
     aion::year_axis(side = 1, format = TRUE, calendar = calendar,
                     current_calendar = calendar)
-    graphics::mtext(lab[k], side = 2, at = seq_len(n), las = 1, padj = 0,
-                    cex = cex.axis, col.axis = col.axis, font = font.axis)
+    graphics::axis(side = 2, at = seq_len(n), labels = lab[k], las = 2,
+                   lty = 0, cex.axis = cex.axis, col.axis = col.axis,
+                   font.axis = font.axis)
   }
 
   ## Plot frame
