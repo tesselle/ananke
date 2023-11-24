@@ -15,9 +15,9 @@ BP14C_to_F14C(ages, errors, ...)
 
 F14C_to_BP14C(ratios, errors, ...)
 
-\S4method{BP14C_to_F14C}{numeric,numeric}(ages, errors)
+\S4method{BP14C_to_F14C}{numeric,numeric}(ages, errors, lambda = 8033)
 
-\S4method{F14C_to_BP14C}{numeric,numeric}(ratios, errors)
+\S4method{F14C_to_BP14C}{numeric,numeric}(ratios, errors, lambda = 8033)
 }
 \arguments{
 \item{ages}{A \code{\link{numeric}} vector giving the radiocarbon ages.}
@@ -28,6 +28,9 @@ ages/ratios.}
 \item{...}{Currently not used.}
 
 \item{ratios}{A \code{\link{numeric}} vector giving the F14C ratios.}
+
+\item{lambda}{A length-one \code{\link{numeric}} vector specifying the mean-life of
+radiocarbon.}
 }
 \value{
 A two-column \code{\link{data.frame}}.

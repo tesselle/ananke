@@ -56,6 +56,8 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
     x <- x[, k, , drop = FALSE]
     col.density <- col.density[k]
     fill.density <- fill.density[k]
+    col.interval <- col.interval[k]
+    fill.interval <- fill.interval[k]
   }
 
   ## Compute interval
@@ -97,9 +99,12 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
         }
       }
 
-      graphics::segments(x0 = h[, "start"], x1 = h[, "end"],
-                         y0 = i, y1 = i, lend = 1,
-                         ...)
+      params <- list(x0 = h[, "start"], x1 = h[, "end"],
+                     y0 = i, y1 = i, lend = 1)
+      dots <- list(...)
+      dots <- utils::modifyList(dots, params)
+      if (isFALSE(density)) dots$col <- col.interval[i]
+      do.call(graphics::segments, dots)
       graphics::segments(x0 = c(h[, "start"], h[, "end"]),
                          x1 = c(h[, "start"], h[, "end"]),
                          y0 = i, y1 = i + tick_height, lend = 1,

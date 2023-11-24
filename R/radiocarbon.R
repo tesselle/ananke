@@ -122,8 +122,8 @@ setMethod(
       FUN = function(x, xout) {
         if (F14C) {
           x_f14 <- BP14C_to_F14C(x[, 2], x[, 3])
-          x[, 2] <- x_f14$ages
-          x[, 3] <- x_f14$errors
+          x[, 2] <- x_f14$ratio
+          x[, 3] <- x_f14$error
         }
 
         list(
@@ -147,10 +147,10 @@ setMethod(
     status <- integer(n)
     for (i in seq_len(n)) {
       d <- calibrate_fun(
-        age = ages[i],
+        x = ages[i],
         error = errors[i],
-        curve_range[[curves[i]]]$mu,
-        curve_range[[curves[i]]]$tau
+        mu = curve_range[[curves[i]]]$mu,
+        tau = curve_range[[curves[i]]]$tau
       )
 
       ## Check
@@ -178,6 +178,7 @@ setMethod(
     calibrate_check(names, status)
 
     ## Normalize
+    if (F14C & !normalize) normalize <- TRUE
     if (normalize) {
       dens <- dens / rowSums(dens, na.rm = TRUE)
       dens[dens < eps] <- 0
@@ -211,16 +212,20 @@ setMethod(
   }
 )
 
-calibrate_BP14C <- function(age, error, mu, tau) {
+calibrate_BP14C <- function(x, error, mu, tau) {
   tau <- error^2 + tau^2
-  dens <- stats::dnorm(age, mean = mu, sd = sqrt(tau))
+  dens <- stats::dnorm(x, mean = mu, sd = sqrt(tau))
   dens
 }
-calibrate_F14C <- function (age, error, mu, tau) {
-  f14 <- BP14C_to_F14C(age, error)
-  p1 <- (f14$ages - mu)^2
-  p2 <- 2 * (f14$errors^2 + tau^2)
-  p3 <- sqrt(f14$errors^2 + tau^2)
+calibrate_F14C <- function(x, error, mu, tau, convert = FALSE) {
+  if (convert) {
+    z <- BP14C_to_F14C(x, error)
+  } else {
+    z <- data.frame(ratio = x, error = error)
+  }
+  p1 <- (z$ratio - mu)^2
+  p2 <- 2 * (z$error^2 + tau^2)
+  p3 <- sqrt(z$error^2 + tau^2)
   dens <- exp(-p1 / p2) / p3
   dens
 }
@@ -384,10 +389,10 @@ setMethod(
 setMethod(
   f = "BP14C_to_F14C",
   signature = c(ages = "numeric", errors = "numeric"),
-  definition = function(ages, errors) {
-    ages <- exp(ages / -8033)
-    errors <- ages * errors / 8033
-    data.frame(ages = ages, errors = errors)
+  definition = function(ages, errors, lambda = 8033) {
+    ratios <- exp(ages / -lambda)
+    sigma <- ratios * errors / lambda
+    data.frame(ratio = ratios, error = sigma)
   }
 )
 
@@ -397,10 +402,10 @@ setMethod(
 setMethod(
   f = "F14C_to_BP14C",
   signature = c(ratios = "numeric", errors = "numeric"),
-  definition = function(ratios, errors) {
-    ages <- -8033 * log(ratios)
-    errors <- 8033 * errors / ages
-    data.frame(ages = ages, errors = errors)
+  definition = function(ratios, errors, lambda = 8033) {
+    ages <- -lambda * log(ratios)
+    sigma <- lambda * errors / ratios
+    data.frame(age = ages, error = sigma)
   }
 )
 

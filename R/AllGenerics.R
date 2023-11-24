@@ -230,7 +230,7 @@ setGeneric(
 #'  resolution (in years) of the calibration.
 #' @param normalize A [`logical`] scalar: should the calibration be normalized?
 #' @param F14C A [`logical`] scalar: should the calibration be carried out in
-#'  F14C space?
+#'  F14C space? If `TRUE`, `ages` must be expressed as F14C ratios.
 #' @param drop A [`logical`] scalar: should years with zero probability be
 #'  discarded? If `TRUE` (the default), results in a narrower time range.
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
@@ -280,6 +280,8 @@ setGeneric(
 #' @param ratios A [`numeric`] vector giving the F14C ratios.
 #' @param errors A [`numeric`] vector giving the standard deviation of the
 #'  ages/ratios.
+#' @param lambda A length-one [`numeric`] vector specifying the mean-life of
+#'  radiocarbon.
 #' @param ... Currently not used.
 #' @return
 #'  A two-column [`data.frame`].

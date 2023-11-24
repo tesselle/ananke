@@ -57,7 +57,7 @@ resolution (in years) of the calibration.}
 \item{normalize}{A \code{\link{logical}} scalar: should the calibration be normalized?}
 
 \item{F14C}{A \code{\link{logical}} scalar: should the calibration be carried out in
-F14C space?}
+F14C space? If \code{TRUE}, \code{ages} must be expressed as F14C ratios.}
 
 \item{drop}{A \code{\link{logical}} scalar: should years with zero probability be
 discarded? If \code{TRUE} (the default), results in a narrower time range.}
