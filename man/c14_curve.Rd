@@ -21,10 +21,10 @@ c14_curve(name, ...)
 }
 \value{
 A \code{list} of three-column \code{\link{data.frame}}:
-\describe{
-\item{\code{CALBP}}{Calibrated age BP.}
-\item{\code{AGE}}{Uncalibrated radiocarbon age.}
-\item{\code{ERROR}}{Standard deviation.}
+\tabular{ll}{
+\code{CALBP} \tab Calibrated age BP            \cr
+\code{AGE}   \tab Uncalibrated radiocarbon age \cr
+\code{ERROR} \tab Standard deviation           \cr
 }
 }
 \description{
@@ -145,7 +145,7 @@ Years cal BP. \emph{Radiocarbon}, 55(4): 1869‑1887.
 \doi{10.2458/azu_js_rc.55.16947}.
 
 Stuiver, Minze, Paula J. Reimer, Edouard Bard, J. Warren Beck, G. S. Burr,
-Konrad A. Hughen, Bernd Kromer, Gerry McCormac, Johannes Van Der Plicht, and
+Konrad A. Hughen, Bernd Kromer, Gerry McCormac, Johannes van der Plicht, and
 Marco Spurk (1998). INTCAL98 Radiocarbon Age Calibration, 24,000-0 cal BP.
 \emph{Radiocarbon}, 40(3): 1041‑1083. \doi{10.1017/S0033822200019123}.
 

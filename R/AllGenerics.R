@@ -119,10 +119,10 @@ NULL
 #'
 #' @return
 #'  A `list` of three-column [`data.frame`]:
-#'  \describe{
-#'    \item{`CALBP`}{Calibrated age BP.}
-#'    \item{`AGE`}{Uncalibrated radiocarbon age.}
-#'    \item{`ERROR`}{Standard deviation.}
+#'  \tabular{ll}{
+#'  `CALBP` \tab Calibrated age BP            \cr
+#'  `AGE`   \tab Uncalibrated radiocarbon age \cr
+#'  `ERROR` \tab Standard deviation           \cr
 #'  }
 #' @references
 #'  Heaton, Timothy J, Peter Köhler, Martin Butzin, Edouard Bard, Ron W Reimer,
@@ -194,7 +194,7 @@ NULL
 #'  \doi{10.2458/azu_js_rc.55.16947}.
 #'
 #'  Stuiver, Minze, Paula J. Reimer, Edouard Bard, J. Warren Beck, G. S. Burr,
-#'  Konrad A. Hughen, Bernd Kromer, Gerry McCormac, Johannes Van Der Plicht, and
+#'  Konrad A. Hughen, Bernd Kromer, Gerry McCormac, Johannes van der Plicht, and
 #'  Marco Spurk (1998). INTCAL98 Radiocarbon Age Calibration, 24,000-0 cal BP.
 #'  *Radiocarbon*, 40(3): 1041‑1083. \doi{10.1017/S0033822200019123}.
 #'
@@ -244,7 +244,7 @@ setGeneric(
 #' @return
 #'  A [`CalibratedAges-class`] object.
 #' @references
-#'  Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
+#'  Bronk Ramsey, C. (2008). Radiocarbon Dating: Revolutions in Understanding.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
 #' @note
 #'  Adapted from [Bchron::BchronCalibrate()] by Andrew Parnell and
@@ -266,7 +266,6 @@ setGeneric(
 #'  calibrated ages (BP).
 #' @param curves A [`character`] vector specifying the calibration curve to be
 #'  used. Different curves can be specified.
-#' @param curves description
 #' @param ... Currently not used.
 #' @example inst/examples/ex-14c-uncalibrate.R
 #' @author N. Frerebeau
@@ -292,7 +291,7 @@ setGeneric(
 #' @return
 #'  A [`data.frame`].
 #' @references
-#'  Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
+#'  Bronk Ramsey, C. (2008). Radiocarbon Dating: Revolutions in Understanding.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
 #'
 #'  van der Plicht, J., Hogg, A. (2006). A Note on Reporting Radiocarbon.
@@ -597,11 +596,11 @@ NULL
 #'  Reference values from Albarede & Juteau (1984).
 #' @return
 #'  A four columns [`data.frame`]:
-#'  \describe{
-#'   \item{`age`}{Geological model age (in Ma).}
-#'   \item{`mu`}{238U/204Pb ratio.}
-#'   \item{`kappa`}{232Th/238U ratio.}
-#'   \item{`f`}{}
+#'  \tabular{ll}{
+#'  `age`   \tab Geological model age (in Ma) \cr
+#'  `mu`    \tab 238U/204Pb ratio             \cr
+#'  `kappa` \tab 232Th/238U ratio             \cr
+#'  `f`     \tab                              \cr
 #'  }
 #' @references
 #'  Albarède, F., Desaulty, A.-M. & Blichert-Toft, J. (2012). A Geological

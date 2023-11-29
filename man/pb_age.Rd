@@ -85,11 +85,11 @@ criteria for the Newton–Raphson method).}
 }
 \value{
 A four columns \code{\link{data.frame}}:
-\describe{
-\item{\code{age}}{Geological model age (in Ma).}
-\item{\code{mu}}{238U/204Pb ratio.}
-\item{\code{kappa}}{232Th/238U ratio.}
-\item{\code{f}}{}
+\tabular{ll}{
+\code{age}   \tab Geological model age (in Ma) \cr
+\code{mu}    \tab 238U/204Pb ratio             \cr
+\code{kappa} \tab 232Th/238U ratio             \cr
+\code{f}     \tab                              \cr
 }
 }
 \description{

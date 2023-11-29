@@ -54,11 +54,11 @@ read_curve <- function(x) {
 #'  instead of radiocarbon ages?
 #' @return
 #'  A `list` of `list` with the following elements:
-#'  \describe{
-#'    \item{`mu`}{Interpolated values.}
-#'    \item{`tau`}{Interpolated errors.}
-#'    \item{`max`}{Maximum value of the calibration curve.}
-#'    \item{`min`}{Minimum value of the calibration curve.}
+#'  \tabular{ll}{
+#'  `mu`  \tab Interpolated values                    \cr
+#'  `tau` \tab Interpolated errors                    \cr
+#'  `max` \tab Maximum value of the calibration curve \cr
+#'  `min` \tab Minimum value of the calibration curve \cr
 #'  }
 #' @keywords internal
 #' @noRd
