@@ -51,8 +51,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   ## Reorder
   k <- seq_len(n)
   if (sort) {
-    mid <- median(x, calendar = NULL)
-    k <- order(mid, decreasing = decreasing)
+    k <- order(x@values, decreasing = decreasing && x@F14C)
     x <- x[, k, , drop = FALSE]
     col.density <- col.density[k]
     fill.density <- fill.density[k]

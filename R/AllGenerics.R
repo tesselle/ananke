@@ -79,7 +79,7 @@ NULL
 ## Calibration curve -----------------------------------------------------------
 #' 14C Calibration Curve
 #'
-#' @param object A [`character`] vector naming calibration curves (see details).
+#' @param name A [`character`] vector naming calibration curves (see details).
 #' @param ... Currently not used.
 #' @details
 #'  The following calibration curves are available:
@@ -118,8 +118,12 @@ NULL
 #' }
 #'
 #' @return
-#'  A `list` of three-column [`data.frame`]: calibrated age BP, uncalibrated
-#'  age BP and standard deviation.
+#'  A `list` of three-column [`data.frame`]:
+#'  \describe{
+#'    \item{`CALBP`}{Calibrated age BP.}
+#'    \item{`AGE`}{Uncalibrated radiocarbon age.}
+#'    \item{`ERROR`}{Standard deviation.}
+#'  }
 #' @references
 #'  Heaton, Timothy J, Peter Köhler, Martin Butzin, Edouard Bard, Ron W Reimer,
 #'  William E N Austin, Christopher Bronk Ramsey, et al. (2020). Marine20 The
@@ -204,20 +208,21 @@ NULL
 #' @aliases c14_curve-method
 setGeneric(
   name = "c14_curve",
-  def = function(object, ...) standardGeneric("c14_curve")
+  def = function(name, ...) standardGeneric("c14_curve")
 )
 
 ## Calibration -----------------------------------------------------------------
 #' 14C Calibration
 #'
 #' Calibrates radiocarbon dates.
-#' @param ages A [`numeric`] vector giving the BP ages to be calibrated.
-#' @param errors A [`numeric`] vector giving the standard deviation of the ages
-#'  to be calibrated.
-#' @param names A [`character`] vector specifying the names of the ages (e.g.
+#' @param values A [`numeric`] vector giving the BP ages or F14C values to be
+#'  calibrated.
+#' @param errors A [`numeric`] vector giving the standard deviation of the
+#'  values to be calibrated.
+#' @param names A [`character`] vector specifying the names of the samples (e.g.
 #'  laboratory codes).
 #' @param curves A [`character`] vector specifying the calibration curve to be
-#'  used. Different curves can be specified per dated sample.
+#'  used. Different curves can be specified per sample.
 #' @param reservoir_offsets A [`numeric`] vector giving the offset values for
 #'  any marine reservoir effect (defaults to 0; i.e. no offset).
 #' @param reservoir_errors A [`numeric`] vector giving the offset value errors
@@ -230,7 +235,7 @@ setGeneric(
 #'  resolution (in years) of the calibration.
 #' @param normalize A [`logical`] scalar: should the calibration be normalized?
 #' @param F14C A [`logical`] scalar: should the calibration be carried out in
-#'  F14C space? If `TRUE`, `ages` must be expressed as F14C ratios.
+#'  F14C space? If `TRUE`, `values` must be expressed as F14C.
 #' @param drop A [`logical`] scalar: should years with zero probability be
 #'  discarded? If `TRUE` (the default), results in a narrower time range.
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
@@ -251,7 +256,7 @@ setGeneric(
 #' @aliases c14_calibrate-method
 setGeneric(
   name = "c14_calibrate",
-  def = function(ages, errors, ...) standardGeneric("c14_calibrate"),
+  def = function(values, errors, ...) standardGeneric("c14_calibrate"),
   valueClass = "CalibratedAges"
 )
 
@@ -275,19 +280,25 @@ setGeneric(
 
 #' F14C
 #'
-#' Converts F14C ratio to 14C age.
+#' Converts F14C values to 14C ages.
 #' @param ages A [`numeric`] vector giving the radiocarbon ages.
-#' @param ratios A [`numeric`] vector giving the F14C ratios.
-#' @param errors A [`numeric`] vector giving the standard deviation of the
-#'  ages/ratios.
+#' @param values A [`numeric`] vector giving the F14C values.
+#' @param errors A [`numeric`] vector giving the standard deviations.
 #' @param lambda A length-one [`numeric`] vector specifying the mean-life of
-#'  radiocarbon.
+#'  radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).
+#' @param asymmetric A [`logical`] scalar: should asymmetric 14C errors be
+#'  returned?
 #' @param ... Currently not used.
 #' @return
-#'  A two-column [`data.frame`].
+#'  A [`data.frame`].
 #' @references
 #'  Bronk Ramsey, C. (2008). RADIOCARBON DATING: REVOLUTIONS IN UNDERSTANDING.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
+#'
+#'  van der Plicht, J., Hogg, A. (2006). A Note on Reporting Radiocarbon.
+#'  *Quaternary Geochronology*, 1(4): 237-240.
+#'  \doi{10.1016/j.quageo.2006.07.001}.
+#' @example inst/examples/ex-f14c.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
@@ -307,12 +318,12 @@ setGeneric(
 #' @aliases F14C_to_BP14C-method
 setGeneric(
   name = "F14C_to_BP14C",
-  def = function(ratios, errors, ...) standardGeneric("F14C_to_BP14C"),
+  def = function(values, errors, ...) standardGeneric("F14C_to_BP14C"),
   valueClass = "data.frame"
 )
 
 ## Combine ---------------------------------------------------------------------
-#' 14C Calibration
+#' Combine 14C
 #'
 #' Combines radiocarbon dates.
 #' @param ages A [`numeric`] vector giving the BP ages to be calibrated.

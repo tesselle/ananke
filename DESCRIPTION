@@ -37,6 +37,7 @@ Collate:
     'AllGenerics.R'
     'ananke-internal.R'
     'ananke-package.R'
+    'c14_curve.R'
     'coerce.R'
     'data.R'
     'interval.R'

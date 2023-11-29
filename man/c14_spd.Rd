@@ -32,7 +32,7 @@ data("ksarakil")
 
 ## Calibrate
 cal <- c14_calibrate(
-  ages = ksarakil$date,
+  values = ksarakil$date,
   errors = ksarakil$error,
   names = ksarakil$code,
   curves = "marine13",

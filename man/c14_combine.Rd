@@ -5,7 +5,7 @@
 \alias{c14_combine}
 \alias{c14_combine-method}
 \alias{c14_combine,numeric,numeric-method}
-\title{14C Calibration}
+\title{Combine 14C}
 \usage{
 c14_combine(ages, errors, ...)
 

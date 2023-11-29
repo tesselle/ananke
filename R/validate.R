@@ -2,6 +2,32 @@
 #' @include AllClasses.R
 NULL
 
+setValidity(
+  Class = "CalibratedAges",
+  method = function(object) {
+    ## Get data
+    values <- object@values
+    errors <- object@errors
+    curves <- object@curves
+    F14C <- object@F14C
+    status <- object@status
+
+    p <- ncol(object)
+
+    ## Validate
+    cnd <- list(
+      arkhe::validate(arkhe::assert_length(values, p)),
+      arkhe::validate(arkhe::assert_length(errors, p)),
+      arkhe::validate(arkhe::assert_length(curves, p)),
+      arkhe::validate(arkhe::assert_length(F14C, 1)),
+      arkhe::validate(arkhe::assert_length(status, p))
+    )
+
+    ## Return conditions, if any
+    arkhe::check_class(object, cnd)
+  }
+)
+
 # setValidity(
 #   Class = "ProxyRecord",
 #   method = function(object) {

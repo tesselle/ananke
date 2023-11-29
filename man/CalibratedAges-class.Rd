@@ -6,10 +6,11 @@
 \alias{.CalibratedAges}
 \title{Calibrated Radiocarbon Ages}
 \arguments{
-\item{ages}{A \code{\link{numeric}} vector giving the BP ages to be calibrated.}
+\item{values}{A \code{\link{numeric}} vector giving the BP ages or F14C values to be
+calibrated.}
 
-\item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the ages
-to be calibrated.}
+\item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the
+values to be calibrated.}
 
 \item{curves}{A \code{\link{character}} vector specifying the calibration curves
 used.}
@@ -20,7 +21,8 @@ An S4 class to represent calibrated radiocarbon ages.
 \section{Slots}{
 
 \describe{
-\item{\code{F14C}}{A \code{\link{logical}} scalar:}
+\item{\code{F14C}}{A \code{\link{logical}} scalar: is \code{values} F14C instead of radiocarbon
+ages?}
 
 \item{\code{status}}{An \code{\link{integer}} vector specifying the calibration status.
 It must be one of "\code{0}" (OK), "\code{1}" (out of calibration range) or "\code{2}"

@@ -7,10 +7,10 @@
 \alias{c14_calibrate,numeric,numeric-method}
 \title{14C Calibration}
 \usage{
-c14_calibrate(ages, errors, ...)
+c14_calibrate(values, errors, ...)
 
 \S4method{c14_calibrate}{numeric,numeric}(
-  ages,
+  values,
   errors,
   names = NULL,
   curves = "intcal20",
@@ -26,18 +26,19 @@ c14_calibrate(ages, errors, ...)
 )
 }
 \arguments{
-\item{ages}{A \code{\link{numeric}} vector giving the BP ages to be calibrated.}
+\item{values}{A \code{\link{numeric}} vector giving the BP ages or F14C values to be
+calibrated.}
 
-\item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the ages
-to be calibrated.}
+\item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the
+values to be calibrated.}
 
 \item{...}{Currently not used.}
 
-\item{names}{A \code{\link{character}} vector specifying the names of the ages (e.g.
+\item{names}{A \code{\link{character}} vector specifying the names of the samples (e.g.
 laboratory codes).}
 
 \item{curves}{A \code{\link{character}} vector specifying the calibration curve to be
-used. Different curves can be specified per dated sample.}
+used. Different curves can be specified per sample.}
 
 \item{reservoir_offsets}{A \code{\link{numeric}} vector giving the offset values for
 any marine reservoir effect (defaults to 0; i.e. no offset).}
@@ -57,7 +58,7 @@ resolution (in years) of the calibration.}
 \item{normalize}{A \code{\link{logical}} scalar: should the calibration be normalized?}
 
 \item{F14C}{A \code{\link{logical}} scalar: should the calibration be carried out in
-F14C space? If \code{TRUE}, \code{ages} must be expressed as F14C ratios.}
+F14C space? If \code{TRUE}, \code{values} must be expressed as F14C.}
 
 \item{drop}{A \code{\link{logical}} scalar: should years with zero probability be
 discarded? If \code{TRUE} (the default), results in a narrower time range.}
@@ -82,7 +83,7 @@ plot(cal, panel.first = graphics::grid())
 
 ## Calibrate multiple dates
 cal <- c14_calibrate(
-  ages = c(5000, 4500),
+  values = c(5000, 4500),
   errors = c(45, 35),
   names = c("X", "Y")
 )

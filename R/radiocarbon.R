@@ -89,20 +89,20 @@ combine <- function(ages, errors) {
 #' @aliases c14_calibrate,numeric,numeric-method
 setMethod(
   f = "c14_calibrate",
-  signature = signature(ages = "numeric", errors = "numeric"),
-  definition = function(ages, errors, names = NULL, curves = "intcal20",
+  signature = signature(values = "numeric", errors = "numeric"),
+  definition = function(values, errors, names = NULL, curves = "intcal20",
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
                         drop = TRUE, eps = 1e-06) {
     ## Validation
-    n <- length(ages)
+    n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
     if (length(curves) != n) curves <- rep(curves, n)
     if (length(reservoir_offsets) != n) reservoir_offsets <- rep(reservoir_offsets, n)
     if (length(reservoir_errors) != n ) reservoir_errors <- rep(reservoir_errors, n)
 
-    arkhe::assert_missing(ages)
+    arkhe::assert_missing(values)
     arkhe::assert_missing(errors)
     arkhe::assert_unique(names)
     arkhe::assert_length(errors, n)
@@ -112,33 +112,14 @@ setMethod(
     arkhe::assert_length(reservoir_errors, n)
 
     ## Calibration time range
-    calibration_range <- seq(from = from, to = to, by = -resolution)
+    cal_range <- seq(from = from, to = to, by = -resolution)
 
     ## Calibration curve
     curves <- tolower(curves)
-    curve_data <- c14_curve(unique(curves))
-    curve_range <- lapply(
-      X = curve_data,
-      FUN = function(x, xout) {
-        if (F14C) {
-          x_f14 <- BP14C_to_F14C(x[, 2], x[, 3])
-          x[, 2] <- x_f14$ratio
-          x[, 3] <- x_f14$error
-        }
-
-        list(
-          mu = stats::approx(x[, 1], x[, 2], xout = xout)$y,
-          tau = stats::approx(x[, 1], x[, 3], xout = xout)$y,
-          max_cal = max(x[, 1]),
-          max_age = max(x[, 2]),
-          min_age = min(x[, 2])
-        )
-      },
-      xout = calibration_range
-    )
+    curve_range <- approx_curve(unique(curves), out = cal_range, F14C = F14C)
 
     ## Marine reservoir offset
-    ages <- ages - reservoir_offsets
+    values <- values - reservoir_offsets
     errors <- sqrt(errors^2 + reservoir_errors^2)
 
     ## Calibrate
@@ -147,7 +128,7 @@ setMethod(
     status <- integer(n)
     for (i in seq_len(n)) {
       d <- calibrate_fun(
-        x = ages[i],
+        x = values[i],
         error = errors[i],
         mu = curve_range[[curves[i]]]$mu,
         tau = curve_range[[curves[i]]]$tau
@@ -159,9 +140,10 @@ setMethod(
         message("Consider changing the time range to a narrower interval.")
       }
 
-      max_age <- curve_range[[curves[i]]]$max_age
-      min_age <- curve_range[[curves[i]]]$min_age
-      if (ages[i] >= max_age || ages[i] <= min_age) {
+      max_cal <- curve_range[[curves[i]]]$max
+      min_cal <- curve_range[[curves[i]]]$min
+
+      if (values[i] >= max_cal || values[i] <= min_cal) {
         status[i] <- 1L
       } else if (d[1] > eps || d[length(d)] > eps) {
         status[i] <- 2L
@@ -192,18 +174,18 @@ setMethod(
       keep_to <- length(keep_zero) - which.max(rev(keep_zero)) + 1 # Last TRUE
       keep <- seq(from = keep_from, to = keep_to, by = 1)
       dens <- dens[, keep, drop = FALSE]
-      calibration_range <- calibration_range[keep]
+      cal_range <- cal_range[keep]
     }
 
     time_series <- aion::series(
       object = t(dens),
-      time = calibration_range,
+      time = cal_range,
       calendar = BP(),
       names = names
     )
     .CalibratedAges(
       time_series,
-      ages = ages,
+      values = values,
       errors = errors,
       curves = curves,
       F14C = F14C,
@@ -217,15 +199,10 @@ calibrate_BP14C <- function(x, error, mu, tau) {
   dens <- stats::dnorm(x, mean = mu, sd = sqrt(tau))
   dens
 }
-calibrate_F14C <- function(x, error, mu, tau, convert = FALSE) {
-  if (convert) {
-    z <- BP14C_to_F14C(x, error)
-  } else {
-    z <- data.frame(ratio = x, error = error)
-  }
-  p1 <- (z$ratio - mu)^2
-  p2 <- 2 * (z$error^2 + tau^2)
-  p3 <- sqrt(z$error^2 + tau^2)
+calibrate_F14C <- function(x, error, mu, tau) {
+  p1 <- (x - mu)^2
+  p2 <- 2 * (error^2 + tau^2)
+  p3 <- sqrt(error^2 + tau^2)
   dens <- exp(-p1 / p2) / p3
   dens
 }
@@ -260,11 +237,13 @@ setMethod(
     curve_data <- c14_curve(unique(tolower(curves)))
 
     for (i in seq_len(n)) {
-      uncal[i] <- stats::approx(
+      z <- stats::approx(
         x = curve_data[[i]][, 1],
         y = curve_data[[i]][, 2],
         xout = object[i],
-        rule = 1)$y
+        rule = 1
+      )
+      uncal[i] <- z$y
     }
     uncal
   }
@@ -283,7 +262,7 @@ setMethod(
     ## Function to be optimized
     opt_fun <- function(param, curve, samples, ...) {
       cal <- c14_calibrate(
-        ages = round(param[1]),
+        values = round(param[1]),
         errors = round(param[2]),
         curves = curve
       )
@@ -341,47 +320,6 @@ c14_sample <- function(object, n = 10000, calendar = BP()) {
   )
 }
 
-# Calibration curve ============================================================
-#' @export
-#' @rdname c14_curve
-#' @aliases c14_curve,character-method
-setMethod(
-  f = "c14_curve",
-  signature = c(object = "character"),
-  definition = function(object) {
-    curve_ok <- c("intcal20", "intcal13", "intcal09", "intcal04",
-                  "marine20", "marine13", "marine09", "marine04")
-    object <- match.arg(object, choices = curve_ok, several.ok = TRUE)
-
-    curves <- lapply(
-      X = object,
-      FUN = function(x) {
-        curve_dir <- system.file("extdata", package = "ananke")
-        curve_path <- file.path(curve_dir, paste0(x, ".14c"))
-        curve <- utils::read.table(curve_path, header = FALSE, sep = ",",
-                                   dec = ".", strip.white = TRUE,
-                                   comment.char = "#")
-        curve <- curve[, c(1, 2, 3)]
-        colnames(curve) <- c("CALBP", "AGE", "ERROR")
-        curve
-      }
-    )
-    names(curves) <- object
-    curves
-  }
-)
-
-#' @export
-#' @rdname c14_curve
-#' @aliases c14_curve,.CalibratedAges-method
-setMethod(
-  f = "c14_curve",
-  signature = c(object = "CalibratedAges"),
-  definition = function(object) {
-    methods::callGeneric(object@curves)
-  }
-)
-
 # F14C <> BP14C ================================================================
 #' @export
 #' @rdname F14C
@@ -390,9 +328,9 @@ setMethod(
   f = "BP14C_to_F14C",
   signature = c(ages = "numeric", errors = "numeric"),
   definition = function(ages, errors, lambda = 8033) {
-    ratios <- exp(ages / -lambda)
-    sigma <- ratios * errors / lambda
-    data.frame(ratio = ratios, error = sigma)
+    values <- exp(ages / -lambda)
+    sigma <- values * errors / lambda
+    data.frame(value = values, error = sigma)
   }
 )
 
@@ -401,11 +339,32 @@ setMethod(
 #' @aliases F14C_to_BP14C,numeric,numeric-method
 setMethod(
   f = "F14C_to_BP14C",
-  signature = c(ratios = "numeric", errors = "numeric"),
-  definition = function(ratios, errors, lambda = 8033) {
-    ages <- -lambda * log(ratios)
-    sigma <- lambda * errors / ratios
-    data.frame(age = ages, error = sigma)
+  signature = c(values = "numeric", errors = "numeric"),
+  definition = function(values, errors, lambda = 8033, asymmetric = FALSE) {
+    z <- values
+
+    ## van der Plicht and Hogg 2006, p. 239
+    inf_2sigma <- z < 2 * errors
+    values[inf_2sigma] <- values[inf_2sigma] + 2 * errors[inf_2sigma]
+
+    inf_zero <- z < 0
+    values[inf_zero] <- 2 * errors[inf_zero]
+
+    ## van der Plicht and Hogg 2006, eq. 6
+    ## Bronk Ramsey 2008, p. 260
+    ages <- -lambda * log(values)
+    sigma <- lambda * errors / values
+
+    sigma_plus <- sigma_minus <- sigma
+    if (asymmetric) {
+      sigma_plus <- - lambda * log(values - errors) - ages
+      sigma_minus <- ages + lambda * log(values + errors)
+    }
+
+    sigma_plus[inf_zero | inf_2sigma] <- Inf
+    sigma_minus[inf_zero | inf_2sigma] <- Inf
+
+    data.frame(age = ages, plus = sigma_plus, minus = sigma_minus)
   }
 )
 

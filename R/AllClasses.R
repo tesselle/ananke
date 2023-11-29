@@ -5,12 +5,14 @@ NULL
 #' Calibrated Radiocarbon Ages
 #'
 #' An S4 class to represent calibrated radiocarbon ages.
-#' @param ages A [`numeric`] vector giving the BP ages to be calibrated.
-#' @param errors A [`numeric`] vector giving the standard deviation of the ages
-#'  to be calibrated.
+#' @param values A [`numeric`] vector giving the BP ages or F14C values to be
+#'  calibrated.
+#' @param errors A [`numeric`] vector giving the standard deviation of the
+#'  values to be calibrated.
 #' @param curves A [`character`] vector specifying the calibration curves
 #'  used.
-#' @slot F14C A [`logical`] scalar:
+#' @slot F14C A [`logical`] scalar: is `values` F14C instead of radiocarbon
+#'  ages?
 #' @slot status An [`integer`] vector specifying the calibration status.
 #'  It must be one of "`0`" (OK), "`1`" (out of calibration range) or "`2`"
 #'  (may extend out of calibration range).
@@ -24,7 +26,7 @@ NULL
 .CalibratedAges <- setClass(
   Class = "CalibratedAges",
   slots = c(
-    ages = "numeric",
+    values = "numeric",
     errors = "numeric",
     curves = "character",
     F14C = "logical",

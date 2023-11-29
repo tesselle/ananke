@@ -13,7 +13,7 @@ setMethod(
   function(x, i, j, k, drop = FALSE) {
     z <- x@.Data
     time <- x@.Time
-    ages <- x@ages
+    values <- x@values
     errors <- x@errors
     curves <- x@curves
     status <- x@status
@@ -25,14 +25,14 @@ setMethod(
     }
     if (!missing(j)) {
       if (is.character(j)) j <- match(j, dimnames(x)[2L])
-      ages <- ages[j]
+      values <- values[j]
       errors <- errors[j]
       curves <- curves[j]
       status <- status[j]
     }
 
     if (isTRUE(drop)) return(z)
-    methods::initialize(x, z, .Time = time, ages = ages, errors = errors,
+    methods::initialize(x, z, .Time = time, values = values, errors = errors,
                         curves = curves, status = status)
   }
 )
