@@ -22,7 +22,7 @@ Imports:
     methods
 Suggests: 
     knitr,
-    rmarkdown,
+    markdown,
     tinytest
 VignetteBuilder: 
     knitr
