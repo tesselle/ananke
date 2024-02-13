@@ -1,6 +1,11 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
+# Import classes ===============================================================
+#' @importClassesFrom aion TimeSeries
+#' @importClassesFrom aion RataDie
+NULL
+
 # 14C calibration ==============================================================
 #' Calibrated Radiocarbon Ages
 #'

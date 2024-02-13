@@ -1,5 +1,9 @@
 # GENERIC METHODS
-#' @include AllClasses.R reexport.R
+#' @include AllClasses.R
+NULL
+
+# Import S4 generics ===========================================================
+#' @importMethodsFrom arkhe interval_hdr
 NULL
 
 # Tools ========================================================================

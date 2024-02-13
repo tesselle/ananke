@@ -1,9 +1,5 @@
 # REEXPORT
 
-#' @importFrom arkhe interval_hdr
-#' @export
-arkhe::interval_hdr
-
 #' @importFrom aion calendar
 #' @export
 aion::calendar
@@ -43,14 +39,6 @@ aion::start
 #' @importFrom aion time
 #' @export
 aion::time
-
-#' @importFrom aion plot
-#' @export
-aion::plot
-
-#' @importFrom aion image
-#' @export
-aion::image
 
 #' @importFrom aion year_axis
 #' @export

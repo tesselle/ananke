@@ -3,7 +3,6 @@
 \docType{package}
 \name{ananke-package}
 \alias{ananke-package}
-\alias{_PACKAGE}
 \alias{ananke}
 \title{ananke: Quantitative Chronology in Archaeology}
 \description{
