@@ -55,13 +55,17 @@ setMethod(
     ## Columns will refer to the proxy density
     if (verbose) cat("Computing p(x|zi) densities...", sep = "\n")
     d <- 2 * max(proxy_error)
-    x_grid <- seq(from = min(proxy) - d, to = max(proxy) + d, by = step)
+    x_range <- range(c(range(proxy) - d, range(proxy) + d))
+    x_grid <- seq(from = x_range[[1L]], to = x_range[[2L]], by = step)
 
     x_z <- .mapply(
       FUN = function(mean, sd, x) {
         stats::dnorm(x = x, mean = mean, sd = sd)
       },
-      dots = list(mean = proxy, sd = proxy_error),
+      dots = list(
+        mean = proxy,
+        sd = proxy_error
+      ),
       MoreArgs = list(x = x_grid)
     )
     x_z <- do.call(rbind, x_z)
@@ -105,15 +109,7 @@ setMethod(
 
     if (progress) close(pb)
 
-    time_series <- aion::series(
-      object = Y,
-      time = t_grid,
-      calendar = calendar
-    )
-    .ProxyRecord(
-      time_series,
-      density = x_t,
-      proxy = x_grid
-    )
+    ts <- aion::series(object = Y, time = t_grid, calendar = calendar)
+    .ProxyRecord(ts, density = x_t, proxy = x_grid)
   }
 )
