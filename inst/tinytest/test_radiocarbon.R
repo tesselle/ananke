@@ -96,3 +96,6 @@
   # plot_cal_BP <- function() plot(cal, calendar = BP())
 
   # plot_cal_b2k <- function() plot(cal, calendar = b2k())
+
+  # FIXME: check text
+  tinytest::expect_stdout(describe(cal))

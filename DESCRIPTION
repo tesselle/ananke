@@ -19,7 +19,8 @@ Imports:
     arkhe (>= 1.7.0),
     graphics,
     grDevices,
-    methods
+    methods,
+    utils
 Suggests: 
     knitr,
     markdown,
@@ -45,6 +46,7 @@ Collate:
     'c14_validate.R'
     'coerce.R'
     'data.R'
+    'describe.R'
     'interval_hdr.R'
     'mutators.R'
     'pb_age.R'

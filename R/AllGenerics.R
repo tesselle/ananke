@@ -4,6 +4,7 @@ NULL
 
 # Import S4 generics ===========================================================
 #' @importMethodsFrom arkhe interval_hdr
+#' @importMethodsFrom arkhe describe
 NULL
 
 # Tools ========================================================================
@@ -90,10 +91,10 @@ NULL
 #'
 #' \tabular{ll}{
 #'  **Curve**    \tab **Reference** \cr
-#'  `bomb04NH1`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04NH2`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04NH3`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04SH`   \tab Hua and Barbetti 2004 \cr
+#'  `bomb04nh1`  \tab Hua and Barbetti 2004 \cr
+#'  `bomb04nh2`  \tab Hua and Barbetti 2004 \cr
+#'  `bomb04nh3`  \tab Hua and Barbetti 2004 \cr
+#'  `bomb04sh`   \tab Hua and Barbetti 2004 \cr
 #'  `bomb13nh1`  \tab Hua, Berbetti and Rakowski 2013 \cr
 #'  `bomb13nh2`  \tab Hua, Berbetti and Rakowski 2013 \cr
 #'  `bomb13nh3`  \tab Hua, Berbetti and Rakowski 2013 \cr
@@ -105,17 +106,17 @@ NULL
 #'  `bomb21sh12` \tab Hua et al. 2022 \cr
 #'  `bomb21sh3`  \tab Hua et al. 2022 \cr
 #'  `cariaco04`  \tab Hughen et al. 2004 \cr
+#'  `intcal98`   \tab Stuiver et al. 1998 \cr
 #'  `intcal04`   \tab Reimer et al. 2004 \cr
 #'  `intcal09`   \tab Reimer et al. 2009 \cr
 #'  `intcal13`   \tab Reimer et al. 2013 \cr
 #'  `intcal20`   \tab Reimer et al. 2020 \cr
-#'  `intcal98`   \tab Stuiver et al. 1998 \cr
-#'  `Kueppers04` \tab Kueppers et al. 2004 \cr
+#'  `kueppers04` \tab Kueppers et al. 2004 \cr
+#'  `marine98`   \tab Stuiver, Reimer and Braziunas 1998 \cr
 #'  `marine04`   \tab Hughen et al. 2004 \cr
 #'  `marine09`   \tab Reimer et al. 2009 \cr
 #'  `marine13`   \tab Reimer et al. 2013 \cr
 #'  `marine20`   \tab Heaton et al. 2020 \cr
-#'  `marine98`   \tab Stuiver, Reimer and Braziunas 1998 \cr
 #'  `shcal04`    \tab McCormac et al. 2004 \cr
 #'  `shcal13`    \tab Hogg et al. 2013 \cr
 #'  `shcal20`    \tab Hogg et al. 2020 \cr
@@ -706,4 +707,24 @@ NULL
 #' @family statistics
 #' @name median
 #' @rdname median
+NULL
+
+# Summary ======================================================================
+#' Data Description
+#'
+#' @param x A [`CalibratedAges-class`] object.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @return
+#'  `describe()` is called for its side-effects. Invisibly returns `x`.
+#' @references
+#'  Millard, A. R. (2014). Conventions for Reporting Radiocarbon Determinations.
+#'  *Radiocarbon*, 56(2): 555-559. \doi{10.2458/56.17455}.
+#' @example inst/examples/ex-describe.R
+#' @author N. Frerebeau
+#' @family summary
+#' @docType methods
+#' @rdname describe
+#' @name describe
 NULL

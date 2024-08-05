@@ -44,6 +44,42 @@ read_curve <- function(x) {
   curve
 }
 
+cite_curve <- function(x) {
+  curve <- c(
+    bomb04nh1 = "Hua and Barbetti 2004",
+    bomb04nh2 = "Hua and Barbetti 2004",
+    bomb04nh3 = "Hua and Barbetti 2004",
+    bomb04sh = "Hua and Barbetti 2004",
+    bomb13nh1 = "Hua, Berbetti and Rakowski 2013",
+    bomb13nh2 = "Hua, Berbetti and Rakowski 2013",
+    bomb13nh3 = "Hua, Berbetti and Rakowski 2013",
+    bomb13sh12 = "Hua, Berbetti and Rakowski 2013",
+    bomb13sh3 = "Hua, Berbetti and Rakowski 2013",
+    bomb21nh1 = "Hua et al. 2022",
+    bomb21nh2 = "Hua et al. 2022",
+    bomb21nh3 = "Hua et al. 2022",
+    bomb21sh12 = "Hua et al. 2022",
+    bomb21sh3 = "Hua et al. 2022",
+    cariaco04 = "Hughen et al. 2004",
+    intcal98 = "Stuiver et al. 1998",
+    intcal04 = "Reimer et al. 2004",
+    intcal09 = "Reimer et al. 2009",
+    intcal13 = "Reimer et al. 2013",
+    intcal20 = "Reimer et al. 2020",
+    kueppers04 = "Kueppers et al. 2004",
+    marine98 = "Stuiver, Reimer and Braziunas 1998",
+    marine04 = "Hughen et al. 2004",
+    marine09 = "Reimer et al. 2009",
+    marine13 = "Reimer et al. 2013",
+    marine20 = "Heaton et al. 2020",
+    shcal04 = "McCormac et al. 2004",
+    shcal13 = "Hogg et al. 2013",
+    shcal20 = "Hogg et al. 2020"
+  )
+
+  curve[x]
+}
+
 # Approximate curve ============================================================
 #' Interpolate 14C Calibration Curve
 #'

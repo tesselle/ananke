@@ -16,6 +16,7 @@ reference:
 - title: Statistics
   contents:
   - has_concept("statistics")
+  - has_concept("summary")
 - title: Mutators
   contents:
   - has_concept("mutators")
