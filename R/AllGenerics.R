@@ -481,6 +481,10 @@ setGeneric(
 #' @param normalize_spd A [`logical`] scalar: should the total probability mass
 #'  of the SPD be normalised (to sum to unity)?
 #' @param ... Currently not used.
+#' @details
+#'  Summed probability distributions (SPD) are not statistically valid
+#'  estimators of the calendar age of a potential future sample. They should not
+#'  be used in any dates-as-data approach to provide a population proxy.
 #' @example inst/examples/ex-14c-spd.R
 #' @author N. Frerebeau
 #' @docType methods

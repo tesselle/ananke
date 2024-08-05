@@ -26,6 +26,11 @@ of the SPD be normalised (to sum to unity)?}
 \description{
 Computes summed probability distributions (SPD) of radiocarbon dates.
 }
+\details{
+Summed probability distributions (SPD) are not statistically valid
+estimators of the calendar age of a potential future sample. They should not
+be used in any dates-as-data approach to provide a population proxy.
+}
 \examples{
 ## Radiocarbon data from Bosch et al. 2015
 data("ksarakil")
