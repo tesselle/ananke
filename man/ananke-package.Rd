@@ -20,11 +20,11 @@ What the package does (one paragraph).
 
 \code{ananke} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
-\item \code{ananke.calendar}: a \code{\linkS4class{TimeScale}} object (default calendar
-for printing).
+\item \code{ananke.calendar}: an \code{\link[aion:TimeScale-class]{aion::TimeScale}} object (default calendar
+for printing; see \code{\link[aion:calendar]{aion::calendar()}}).
 \item \code{ananke.grid}: a \code{\link{numeric}} value specifying the number of equally
 spaced points at which densities are to be estimated (defaults to
-\eqn{512}). Should be a power of \eqn{2}.
+\eqn{512}). Should be a power of \eqn{2} (see \code{\link[stats:density]{stats::density()}}).
 \item \code{ananke.progress}: a \code{\link{logical}} scalar. Should progress bars be
 displayed?
 \item \code{ananke.verbose}: a \code{\link{logical}} scalar. Should \R report extra information

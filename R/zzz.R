@@ -3,7 +3,7 @@
   op.ananke <- list(
     ananke.calendar = aion::CE(),
     ananke.grid = 512,
-    ananke.verbose = TRUE,
+    ananke.verbose = interactive(),
     ananke.progress = interactive()
   )
   toset <- !(names(op.ananke) %in% names(op))

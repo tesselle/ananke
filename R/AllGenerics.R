@@ -244,6 +244,8 @@ setGeneric(
 #'  discarded? If `TRUE` (the default), results in a narrower time range.
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
 #'  calibration values will be removed.
+#' @param verbose A [`logical`] scalar: should extra information be reported
+#'  (e.g. warning message for dates out of calibration range)?
 #' @param ... Currently not used.
 #' @return
 #'  A [`CalibratedAges-class`] object.

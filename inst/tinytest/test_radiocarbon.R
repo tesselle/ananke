@@ -67,10 +67,13 @@
   expect_equal(r99[[1]][1, ], c(start = 5904, end = 5603, p = 1))
 
 # Out of calibration range =====================================================
+  verb <- getOption("ananke.verbose")
+  options(ananke.verbose = TRUE)
   expect_warning(c14_calibrate(52000, 200, curve = "intcal20"), "is out of calibration range")
   expect_warning(c14_calibrate(50, 200, curve = "intcal20"), "is out of calibration range")
   expect_warning(c14_calibrate(50100, 200, curve = "intcal20"), "may extent out of calibration range")
   expect_warning(c14_calibrate(150, 200, curve = "intcal20"), "may extent out of calibration range")
+  options(ananke.verbose = verb)
 
   out <- suppressWarnings(
     c14_calibrate(c(52000, 50100, 2000), c(200, 200, 200))

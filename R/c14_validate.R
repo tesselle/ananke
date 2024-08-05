@@ -11,16 +11,20 @@ setMethod(
   definition = function(object) {
     status <- object@status
     lab <- labels(object)
-    if (any(status == 1L)) {
-      is_out <- which(status == 1L)
-      warn <- print_out(lab[is_out], maybe = FALSE)
-      for (w in warn) warning(w, call. = FALSE)
+
+    if (isTRUE(getOption("ananke.verbose"))) {
+      if (any(status == 1L)) {
+        is_out <- which(status == 1L)
+        warn <- print_out(lab[is_out], maybe = FALSE)
+        for (w in warn) warning(w, call. = FALSE)
+      }
+      if (any(status == 2L)) {
+        is_out <- which(status == 2L)
+        warn <- print_out(lab[is_out], maybe = TRUE)
+        for (w in warn) warning(w, call. = FALSE)
+      }
     }
-    if (any(status == 2L)) {
-      is_out <- which(status == 2L)
-      warn <- print_out(lab[is_out], maybe = TRUE)
-      for (w in warn) warning(w, call. = FALSE)
-    }
+
     invisible(object)
   }
 )

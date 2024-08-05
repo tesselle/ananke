@@ -12,7 +12,8 @@ setMethod(
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
-                        drop = TRUE, eps = 1e-06) {
+                        drop = TRUE, eps = 1e-06,
+                        verbose = getOption("ananke.verbose")) {
     ## Validation
     n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
@@ -59,7 +60,7 @@ setMethod(
       if (anyNA(d)) {
         d[is.na(d)] <- 0
         msg <- "Consider changing the calibration time range to a narrower interval."
-        message(msg)
+        if (verbose) message(msg)
       }
 
       max_cal <- curve_range[[curves[i]]]$max
@@ -67,11 +68,11 @@ setMethod(
 
       if (values[[i]] >= max_cal || values[[i]] <= min_cal) {
         ## L'age à calibrer est hors de l'étendue de la courbe de calibration
-        warning(print_out(names[[i]], maybe = FALSE), call. = FALSE)
+        if (verbose) warning(print_out(names[[i]], maybe = FALSE), call. = FALSE)
         status[i] <- 1L
       } else if (d[1] > eps || d[length(d)] > eps) {
         ## L'age calibré est en partie hors de l'étendue de la courbe
-        warning(print_out(names[[i]], maybe = TRUE), call. = FALSE)
+        if (verbose) warning(print_out(names[[i]], maybe = TRUE), call. = FALSE)
         status[i] <- 2L
       }
 

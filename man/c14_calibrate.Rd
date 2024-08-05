@@ -22,7 +22,8 @@ c14_calibrate(values, errors, ...)
   normalize = TRUE,
   F14C = FALSE,
   drop = TRUE,
-  eps = 1e-06
+  eps = 1e-06,
+  verbose = getOption("ananke.verbose")
 )
 }
 \arguments{
@@ -65,6 +66,9 @@ discarded? If \code{TRUE} (the default), results in a narrower time range.}
 
 \item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
 calibration values will be removed.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should extra information be reported
+(e.g. warning message for dates out of calibration range)?}
 }
 \value{
 A \code{\linkS4class{CalibratedAges}} object.
