@@ -616,7 +616,7 @@ NULL
 #' @param th232 A [`numeric`] value giving the decay constants of 232Th.
 #' @param u238 A [`numeric`] value giving the decay constants of 238U.
 #' @param u235 A [`numeric`] value giving the decay constants of 235U.
-#' @param u238_235 A [`numeric`] value giving the 238U/235U ratio.
+#' @param u238_235 A [`numeric`] value giving the actual 238U/235U ratio.
 #' @param tolerance A [`numeric`] value specifying the tolerance (stopping
 #'  criteria for the Newton–Raphson method).
 #' @param ... Currently not used.
@@ -638,6 +638,8 @@ NULL
 #'  Albarède, F. & Juteau, M. (1984). Unscrambling the Lead Model Ages.
 #'  *Geochimica et Cosmochimica Acta*, 48(1): 207-12.
 #'  \doi{10.1016/0016-7037(84)90364-8}.
+#'
+#'  Allègre, C. (2005). *Géologie isotopique*. Belin sup. Paris: Belin.
 #' @example inst/examples/ex-lia.R
 #' @author N. Frerebeau, F. Albarede (original Matlab code)
 #' @docType methods

@@ -78,7 +78,7 @@ reference model.}
 
 \item{u235}{A \code{\link{numeric}} value giving the decay constants of 235U.}
 
-\item{u238_235}{A \code{\link{numeric}} value giving the 238U/235U ratio.}
+\item{u238_235}{A \code{\link{numeric}} value giving the actual 238U/235U ratio.}
 
 \item{tolerance}{A \code{\link{numeric}} value specifying the tolerance (stopping
 criteria for the Newton–Raphson method).}
@@ -100,14 +100,24 @@ lead isotopic measurements.
 Reference values from Albarede & Juteau (1984).
 }
 \examples{
-## Reference values from Albarede & Juteau (1984)
+
 Pb <- data.frame(
   x = c(18.23247, 18.22936, 18.23102), # Pb206/Pb204
   y = c(15.65199, 15.65216, 15.65097), # Pb207/Pb204
   z = c(38.5167, 38.51516, 38.51601)   # Pb208/Pb204
 )
 
+## Reference values from Albarede & Juteau (1984)
 pb_age(Pb)
+
+## Reference values from Albarede et al. (2012)
+pb_age(
+  Pb,
+  t0 = 4.43,
+  x_star = 18.75, y_star = 15.63, z_star = 38.83,
+  mu = 9.66, kappa = 3.90, th232 = 0.049475,
+  u238 = 0.155125, u235 = 0.98485, u238_235 = 137.79
+)
 }
 \references{
 Albarède, F., Desaulty, A.-M. & Blichert-Toft, J. (2012). A Geological
@@ -117,6 +127,8 @@ Perspective on the Use of Pb Isotopes in Archaeometry. \emph{Archaeometry}, 54:
 Albarède, F. & Juteau, M. (1984). Unscrambling the Lead Model Ages.
 \emph{Geochimica et Cosmochimica Acta}, 48(1): 207-12.
 \doi{10.1016/0016-7037(84)90364-8}.
+
+Allègre, C. (2005). \emph{Géologie isotopique}. Belin sup. Paris: Belin.
 }
 \author{
 N. Frerebeau, F. Albarede (original Matlab code)
