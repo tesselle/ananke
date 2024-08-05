@@ -16,9 +16,12 @@ setMethod(
     ## Validation
     n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
-    if (length(curves) != n) curves <- rep(curves, n)
-    if (length(reservoir_offsets) != n) reservoir_offsets <- rep(reservoir_offsets, n)
-    if (length(reservoir_errors) != n ) reservoir_errors <- rep(reservoir_errors, n)
+    if (length(curves) == 1)
+      curves <- rep(curves, n)
+    if (length(reservoir_offsets) == 1)
+      reservoir_offsets <- rep(reservoir_offsets, n)
+    if (length(reservoir_errors) == 1)
+      reservoir_errors <- rep(reservoir_errors, n)
 
     arkhe::assert_missing(values)
     arkhe::assert_missing(errors)
@@ -55,15 +58,20 @@ setMethod(
       ## Check
       if (anyNA(d)) {
         d[is.na(d)] <- 0
-        message("Consider changing the time range to a narrower interval.")
+        msg <- "Consider changing the calibration time range to a narrower interval."
+        message(msg)
       }
 
       max_cal <- curve_range[[curves[i]]]$max
       min_cal <- curve_range[[curves[i]]]$min
 
-      if (values[i] >= max_cal || values[i] <= min_cal) {
+      if (values[[i]] >= max_cal || values[[i]] <= min_cal) {
+        ## L'age à calibrer est hors de l'étendue de la courbe de calibration
+        warning(print_out(names[[i]], maybe = FALSE), call. = FALSE)
         status[i] <- 1L
       } else if (d[1] > eps || d[length(d)] > eps) {
+        ## L'age calibré est en partie hors de l'étendue de la courbe
+        warning(print_out(names[[i]], maybe = TRUE), call. = FALSE)
         status[i] <- 2L
       }
 
@@ -73,9 +81,6 @@ setMethod(
 
     ## Build matrix
     dens <- do.call(rbind, dens)
-
-    ## Check
-    calibrate_check(names, status)
 
     ## Normalize
     if (F14C & !normalize) normalize <- TRUE
@@ -123,17 +128,4 @@ calibrate_F14C <- function(x, error, mu, tau) {
   p3 <- sqrt(error^2 + tau^2)
   dens <- exp(-p1 / p2) / p3
   dens
-}
-
-calibrate_check <- function(names, status) {
-  if (any(status == 1L)) {
-    is_out <- which(status == 1L)
-    warn <- sprintf("Date %s is out of range.", dQuote(names[is_out]))
-    for (w in warn) warning(w, call. = FALSE)
-  }
-  if (any(status == 2L)) {
-    is_out <- which(status == 2L)
-    warn <- sprintf("Date %s may extent out of range.", dQuote(names[is_out]))
-    for (w in warn) warning(w, call. = FALSE)
-  }
 }

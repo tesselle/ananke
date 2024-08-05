@@ -13,7 +13,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
                                 panel.first = NULL, panel.last = NULL,
                                 col.density = "grey", col.interval = "#77AADD", ...) {
   ## Check
-  calibrate_check(colnames(x), x@status)
+  c14_validate(x)
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")

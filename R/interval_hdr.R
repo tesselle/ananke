@@ -11,10 +11,14 @@ setMethod(
   signature = c(x = "CalibratedAges", y = "missing"),
   definition = function(x, level = 0.954,
                         calendar = getOption("ananke.calendar"), ...) {
+    ## Check
+    c14_validate(x)
+
     hdr <- apply(
       X = x,
       MARGIN = 2,
       FUN = function(y, x, level, ...) {
+        if (all(is.na(y))) return(NULL)
         arkhe::interval_hdr(x, as.numeric(y), level, ...)
       },
       x = aion::time(x, calendar = NULL),
@@ -26,6 +30,7 @@ setMethod(
     lapply(
       X = hdr,
       FUN = function(x, calendar) {
+        if (is.null(x)) return(NULL)
         x[, 1] <- aion::as_year(x[, 1], calendar = calendar)
         x[, 2] <- aion::as_year(x[, 2], calendar = calendar)
         x

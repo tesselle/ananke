@@ -10,7 +10,7 @@ setMethod(
   signature = "CalibratedAges",
   definition = function(object, normalize_date = FALSE, normalize_spd = FALSE) {
     ## Check
-    calibrate_check(colnames(object), object@status)
+    c14_validate(object)
 
     dens <- t(object[, , 1, drop = TRUE])
     if (normalize_date) dens <- dens / rowSums(dens, na.rm = TRUE)

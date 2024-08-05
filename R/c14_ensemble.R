@@ -11,7 +11,7 @@ setMethod(
   definition = function(object, from = NULL, to = NULL, by = 10, n = 100,
                         calendar = BP(), progress = getOption("ananke.progress")) {
     ## Check
-    calibrate_check(colnames(object), object@status)
+    c14_validate(object)
 
     ## Get data
     rd <- aion::time(object, calendar = NULL)
