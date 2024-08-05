@@ -14,6 +14,12 @@ values to be calibrated.}
 
 \item{curves}{A \code{\link{character}} vector specifying the calibration curves
 used.}
+
+\item{reservoir_offsets}{A \code{\link{numeric}} vector giving the offset values for
+any marine reservoir effect.}
+
+\item{reservoir_errors}{A \code{\link{numeric}} vector giving the offset value errors
+for any marine reservoir effect.}
 }
 \description{
 An S4 class to represent calibrated radiocarbon ages.

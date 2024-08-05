@@ -16,6 +16,10 @@ NULL
 #'  values to be calibrated.
 #' @param curves A [`character`] vector specifying the calibration curves
 #'  used.
+#' @param reservoir_offsets A [`numeric`] vector giving the offset values for
+#'  any marine reservoir effect.
+#' @param reservoir_errors A [`numeric`] vector giving the offset value errors
+#'  for any marine reservoir effect.
 #' @slot F14C A [`logical`] scalar: is `values` F14C instead of radiocarbon
 #'  ages?
 #' @slot status An [`integer`] vector specifying the calibration status.
@@ -34,6 +38,8 @@ NULL
     values = "numeric",
     errors = "numeric",
     curves = "character",
+    reservoir_offsets = "numeric",
+    reservoir_errors = "numeric",
     F14C = "logical",
     status = "integer"
   ),

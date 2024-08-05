@@ -112,6 +112,8 @@ setMethod(
       values = values,
       errors = errors,
       curves = curves,
+      reservoir_offsets = reservoir_offsets,
+      reservoir_errors = reservoir_errors,
       F14C = F14C,
       status = status
     )
