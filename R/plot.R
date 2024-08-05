@@ -15,18 +15,41 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   ## Check
   calibrate_check(colnames(x), x@status)
 
-  ## Compute interval
-  n <- NCOL(x)
-  lab <- labels(x)
-
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
   col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
   font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
-  if (length(col.density) != n) col.density <- rep(col.density, length.out = n)
-  if (length(col.interval) != n) col.interval <- rep(col.interval, length.out = n)
+  if (length(col.density) == 1)
+    col.density <- rep(col.density, length.out = NCOL(x))
+  if (length(col.interval) == 1)
+    col.interval <- rep(col.interval, length.out = NCOL(x))
   fill.density <- grDevices::adjustcolor(col.density, alpha.f = 0.5)
   fill.interval <- grDevices::adjustcolor(col.interval, alpha.f = 0.5)
+
+  ## Clean
+  out <- x@status == 1L # Out of calibration range
+  x <- x[, !out, , drop = FALSE]
+  col.density <- col.density[!out]
+  fill.density <- fill.density[!out]
+  col.interval <- col.interval[!out]
+  fill.interval <- fill.interval[!out]
+
+  ## Reorder
+  n <- NCOL(x)
+  lab <- labels(x)
+  k <- seq_len(n)
+  if (sort) {
+    k <- order(x@values, decreasing = decreasing && x@F14C)
+    x <- x[, k, , drop = FALSE]
+    lab <- lab[k]
+    col.density <- col.density[k]
+    fill.density <- fill.density[k]
+    col.interval <- col.interval[k]
+    fill.interval <- fill.interval[k]
+  }
+
+  ## Compute interval
+  hdr <- interval_hdr(x, level = level, calendar = calendar)
 
   ## Save and restore
   mar <- graphics::par("mar")
@@ -47,20 +70,6 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
 
   ## Evaluate pre-plot expressions
   panel.first
-
-  ## Reorder
-  k <- seq_len(n)
-  if (sort) {
-    k <- order(x@values, decreasing = decreasing && x@F14C)
-    x <- x[, k, , drop = FALSE]
-    col.density <- col.density[k]
-    fill.density <- fill.density[k]
-    col.interval <- col.interval[k]
-    fill.interval <- fill.interval[k]
-  }
-
-  ## Compute interval
-  hdr <- interval_hdr(x, level = level, calendar = calendar)
 
   ## Plot
   years <- aion::time(x, calendar = calendar)
@@ -118,7 +127,7 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   if (axes) {
     aion::year_axis(side = 1, format = TRUE, calendar = calendar,
                     current_calendar = calendar)
-    graphics::axis(side = 2, at = seq_len(n), labels = lab[k], las = 2,
+    graphics::axis(side = 2, at = seq_len(n), labels = lab, las = 2,
                    lty = 0, cex.axis = cex.axis, col.axis = col.axis,
                    font.axis = font.axis)
   }
