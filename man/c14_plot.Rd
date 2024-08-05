@@ -43,8 +43,8 @@
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} or \code{\linkS4class{CalibratedSPD}} object.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{density}{A \code{\link{logical}} scalar: should density be drawn?}
 

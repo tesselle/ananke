@@ -35,8 +35,9 @@ resolution (in years) of the calibration.}
 
 \item{n}{An \code{\link{integer}} specifying the number of item to choose randomly.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{from} and \code{to} (see \code{\link[=calendar]{calendar()}}). Defaults to \code{\link[=CE]{CE()}}.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). Defaults to \code{\link[aion:gregorian]{aion::CE()}}. If \code{NULL},
+\emph{rata die} are returned.}
 
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
 }

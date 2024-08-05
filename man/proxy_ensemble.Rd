@@ -44,8 +44,8 @@ values and calendar ages were measured. It must be in decreasing order
 \item{time_error}{A \code{\link{numeric}} vector giving the calendar age uncertainties
 (in years).}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{time} (see \code{\link[=calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{from}{A length-one \code{\link{numeric}} vector specifying the starting value of
 the temporal sequence at which densities are to be estimated (in years).}

@@ -11,8 +11,8 @@
 \arguments{
 \item{x}{An \code{\linkS4class{RECE}} object.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{...}{Further parameters to be passed to \code{\link[graphics:image]{graphics::image()}}.}
 }
