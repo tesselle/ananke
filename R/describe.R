@@ -8,7 +8,8 @@ NULL
 setMethod(
   f = "describe",
   signature = signature(x = "CalibratedAges"),
-  definition = function(x, calendar = getOption("ananke.calendar"), level = 0.954) {
+  definition = function(x, calendar = getOption("ananke.calendar"),
+                        level = 0.954, ...) {
     ## Get data
     lab <- labels(x)
     val <- x@values
@@ -42,8 +43,11 @@ setMethod(
     )
 
     ## Calibration curve
-    txt_curve <- "%s (%s)."
-    msg_curve <- sprintf(txt_curve, crv, cite_curve(crv))
+    txt_marine <- "marine reservoir offset: %.0f +/- %.0f; "
+    msg_marine <- sprintf(txt_marine, reservoir_off, reservoir_err)
+    msg_marine[reservoir_off == 0] <- ""
+    txt_curve <- "%s (%s%s)."
+    msg_curve <- sprintf(txt_curve, crv, msg_marine, cite_curve(crv))
 
     ## Text
     msg <- paste(msg_uncal, msg_cal, msg_curve, sep = " ")
@@ -56,7 +60,23 @@ setMethod(
                         R.version$year, utils::packageVersion("ananke"),
                         format(date_soft, format = "%Y"))
 
-    cat(unlist(msg), msg_soft, sep = "\n\n")
+    ## Split string
+    fill <- list(...)$fill
+    if (!is.null(fill) && isTRUE(fill)) {
+      msg <- lapply(
+        X = msg,
+        FUN = function(x, width) {
+          split <- lapply(
+            X = seq(from = 1, to = nchar(x), by = width),
+            FUN = function(i) substr(x, i, i + width - 1)
+          )
+          paste0(split, collapse = "\n")
+        },
+        width = getOption("width")
+      )
+    }
+
+    cat(unlist(msg), msg_soft, sep = "\n\n", ...)
 
     invisible(x)
   }

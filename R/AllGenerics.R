@@ -716,6 +716,7 @@ NULL
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
 #'  calendar (see [aion::calendar()]).
+#' @param ... Further parameters to be passed to [cat()].
 #' @return
 #'  `describe()` is called for its side-effects. Invisibly returns `x`.
 #' @references

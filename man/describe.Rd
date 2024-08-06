@@ -6,7 +6,7 @@
 \alias{describe,CalibratedAges-method}
 \title{Data Description}
 \usage{
-\S4method{describe}{CalibratedAges}(x, calendar = getOption("ananke.calendar"), level = 0.954)
+\S4method{describe}{CalibratedAges}(x, calendar = getOption("ananke.calendar"), level = 0.954, ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} object.}
@@ -15,6 +15,8 @@
 calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+
+\item{...}{Further parameters to be passed to \code{\link[=cat]{cat()}}.}
 }
 \value{
 \code{describe()} is called for its side-effects. Invisibly returns \code{x}.
