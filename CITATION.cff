@@ -9,6 +9,14 @@ type: software
 license: GPL-3.0-or-later
 title: 'ananke: Quantitative Chronology in Archaeology'
 version: 0.0.1
+doi: 10.5281/zenodo.13236285
+identifiers:
+- description: The concept DOI.
+  type: doi
+  value: 10.5281/zenodo.13236285
+- description: The versioned DOI for version 0.0.1.
+  type: doi
+  value: 10.5281/zenodo.13236286
 abstract: A toolbox for quantitative chronology in archaeology. This package provides
   functions for simple radiocarbon calibration and chronological analysis.
 authors:
@@ -32,6 +40,7 @@ preferred-citation:
     address: Pessac, France
   notes: R package version 0.0.1
   url: https://packages.tesselle.org/ananke/
+  doi: 10.5281/zenodo.13236285
 repository-code: https://github.com/tesselle/ananke
 url: https://packages.tesselle.org/ananke/
 contact:

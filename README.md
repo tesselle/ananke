@@ -17,6 +17,9 @@ alt="r-universe" /></a>
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+
+[![DOI
+Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.13236285.svg)](https://doi.org/10.5281/zenodo.13236285)
 <!-- badges: end -->
 
 ## Overview
@@ -29,8 +32,9 @@ chronological analysis.
 To cite ananke in publications use:
 
 Frerebeau N (2024). *ananke: Quantitative Chronology in Archaeology*.
-Université Bordeaux Montaigne, Pessac, France. R package version 0.0.1,
-<https://packages.tesselle.org/ananke/>.
+Université Bordeaux Montaigne, Pessac, France.
+<doi:10.5281/zenodo.13236285> <https://doi.org/10.5281/zenodo.13236285>,
+R package version 0.0.1, <https://packages.tesselle.org/ananke/>.
 
 This package is a part of the tesselle project
 <https://www.tesselle.org>.
