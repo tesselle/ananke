@@ -9,7 +9,7 @@
 An S4 class to store proxy records.
 }
 \note{
-This class inherits from \code{\linkS4class{TimeSeries}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
 \seealso{
 Other classes: 

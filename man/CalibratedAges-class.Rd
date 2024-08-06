@@ -36,7 +36,7 @@ It must be one of "\code{0}" (OK), "\code{1}" (out of calibration range) or "\co
 }}
 
 \note{
-This class inherits from \code{\linkS4class{TimeSeries}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
 \seealso{
 Other classes: 

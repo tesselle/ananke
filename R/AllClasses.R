@@ -26,7 +26,7 @@ NULL
 #'  It must be one of "`0`" (OK), "`1`" (out of calibration range) or "`2`"
 #'  (may extend out of calibration range).
 #' @note
-#'  This class inherits from [`TimeSeries-class`].
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -51,7 +51,7 @@ NULL
 #' An S4 class to represent summed probability distributions (SPD) of
 #' radiocarbon dates.
 #' @note
-#'  This class inherits from [`TimeSeries-class`].
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -66,7 +66,7 @@ NULL
 #'
 #' An S4 class to represent a radiocarbon event count ensemble.
 #' @note
-#'  This class inherits from [`TimeSeries-class`].
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -82,7 +82,7 @@ NULL
 #'
 #' An S4 class to store proxy records.
 #' @note
-#'  This class inherits from [`TimeSeries-class`].
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
