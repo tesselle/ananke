@@ -6,13 +6,13 @@
 \alias{ananke}
 \title{ananke: Quantitative Chronology in Archaeology}
 \description{
-What the package does (one paragraph).
+A toolbox for quantitative chronology in archaeology. This package provides functions for simple radiocarbon calibration and chronological analysis.
 }
 \details{
 \tabular{ll}{
 \strong{Package:} \tab ananke \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.0.0 \cr
+\strong{Version:} \tab 0.0.1 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 }

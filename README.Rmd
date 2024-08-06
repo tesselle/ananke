@@ -20,7 +20,6 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 [![R-CMD-check](https://github.com/tesselle/ananke/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/ananke/actions)
 [![codecov](https://codecov.io/gh/tesselle/ananke/branch/main/graph/badge.svg?token=UgoOXsZW86)](https://app.codecov.io/gh/tesselle/ananke)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/ananke/badge/main)](https://www.codefactor.io/repository/github/tesselle/ananke/overview/main)
-[![Dependencies](https://tinyverse.netlify.com/badge/ananke)](https://cran.r-project.org/package=ananke)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/ananke)](https://tesselle.r-universe.dev/ananke){.pkgdown-devel}
 
@@ -29,7 +28,14 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 
 ## Overview
 
-**ananke** provides functions for radiocarbon calibration and chronological analysis.
+**ananke** provides functions for simple radiocarbon calibration and chronological analysis.
+
+---
+
+```{r citation, echo=FALSE, comment='', results='asis'}
+cite <- utils::citation("ananke")
+print(cite, bibtex = FALSE)
+```
 
 ## Installation
 
@@ -70,8 +76,16 @@ cal <- c14_calibrate(
 
 ## Plot
 plot(cal)
-plot(cal, density = FALSE, level = 0.95, lwd = 5)
+
+## Full text description
+describe(cal, fill = TRUE)
 ```
+
+## Related Works
+
+* [**Bchron**](https://github.com/andrewcparnell/Bchron) enables quick calibration of radiocarbon dates, age-depth modelling, relative sea level rate estimation, and non-parametric phase modelling.
+* [**racarbon**](https://github.com/ahb108/rcarbon) includes functions not only for basic calibration, uncalibration, and plotting of one or more dates, but also a statistical framework for building demographic and related longitudinal inferences from aggregate radiocarbon date lists.
+* [**rintcal**](https://github.com/Maarten14C/rintcal) consists of a data compilation of the IntCal radiocarbon calibration curves and provides a number of functions to assist with calibrating dates and plotting calibration curves.
 
 ## Contributing
 

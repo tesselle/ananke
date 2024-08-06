@@ -1,0 +1,161 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "ananke",
+  "description": "A toolbox for quantitative chronology in archaeology. This package provides functions for simple radiocarbon calibration and chronological analysis.",
+  "name": "ananke: Quantitative Chronology in Archaeology",
+  "relatedLink": "https://packages.tesselle.org/ananke/",
+  "codeRepository": "https://github.com/tesselle/ananke",
+  "issueTracker": "https://github.com/tesselle/ananke/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.0.1",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Nicolas",
+      "familyName": "Frerebeau",
+      "email": "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0000-0001-5759-4944"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    },
+    {
+      "@type": "Organization",
+      "name": "CNRS"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Nicolas",
+      "familyName": "Frerebeau",
+      "email": "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0000-0001-5759-4944"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "markdown",
+      "name": "markdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=markdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tinytest",
+      "name": "tinytest",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tinytest"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 4.1"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "aion",
+      "name": "aion",
+      "version": ">= 1.0.4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=aion"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "arkhe",
+      "name": "arkhe",
+      "version": ">= 1.7.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=arkhe"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "graphics",
+      "name": "graphics"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "grDevices",
+      "name": "grDevices"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "3375.487KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2024",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Nicolas",
+          "familyName": "Frerebeau"
+        }
+      ],
+      "name": "{ananke: Quantitative Chronology in Archaeology}",
+      "url": "https://packages.tesselle.org/ananke/",
+      "description": "R package version 0.0.1"
+    }
+  ],
+  "releaseNotes": "https://github.com/tesselle/ananke/blob/master/NEWS.md",
+  "readme": "https://github.com/tesselle/ananke/blob/main/README.md",
+  "contIntegration": ["https://github.com/tesselle/ananke/actions", "https://app.codecov.io/gh/tesselle/ananke"],
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "keywords": ["archaeological-science", "archaeology", "r-package", "chronology", "radiocarbon-dates", "radiocarbon-calibration"]
+}

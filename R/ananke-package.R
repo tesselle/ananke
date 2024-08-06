@@ -2,7 +2,7 @@
 #'  \tabular{ll}{
 #'   **Package:** \tab ananke \cr
 #'   **Type:** \tab Package \cr
-#'   **Version:** \tab 0.0.0 \cr
+#'   **Version:** \tab 0.0.1 \cr
 #'   **License:** \tab GPL-3 \cr
 #'  }
 #'
