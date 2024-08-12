@@ -27,6 +27,10 @@ Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.13236285.svg)](https://doi.o
 **ananke** provides functions for simple radiocarbon calibration and
 chronological analysis.
 
+This package is currently *experimental*. This means that it is
+functional, but interfaces and functionalities may change over time,
+testing and documentation may be lacking.
+
 ------------------------------------------------------------------------
 
 To cite ananke in publications use:
