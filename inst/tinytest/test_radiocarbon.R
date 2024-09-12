@@ -51,20 +51,20 @@
   ## IntCal20
   ## (OxCal v4.4: 5905-5595 calBP)
   intcal20 <- c14_calibrate(5000, 45, curves = "intcal20")
-  r99 <- interval_hdr(intcal20, level = 0.997, calendar = BP())
-  expect_equal(r99[[1]][1, ], c(start = 5903, end = 5597, p = 1))
+  r99 <- as.list(interval_hdr(intcal20, level = 0.997), calendar = BP())
+  expect_equal(r99[[1]][1, ], data.frame(start = 5903, end = 5597, p = 1))
 
   ## IntCal13
   ## (OxCal v4.4: 5905-5603 calBP)
   intcal13 <- c14_calibrate(5000, 45, curves = "intcal13", from = 45000, to = 0)
-  r99 <- interval_hdr(intcal13, level = 0.997, calendar = BP())
-  expect_equal(r99[[1]][1, ], c(start = 5904, end = 5603, p = 1))
+  r99 <- as.list(interval_hdr(intcal13, level = 0.997), calendar = BP())
+  expect_equal(r99[[1]][1, ], data.frame(start = 5904, end = 5603, p = 1))
 
   ## IntCal09
   ## (OxCal v4.4: 5906-5603 calBP)
   intcal09 <- c14_calibrate(5000, 45, curves = "intcal09", from = 45000, to = 0)
-  r99 <- interval_hdr(intcal09, level = 0.997, calendar = BP())
-  expect_equal(r99[[1]][1, ], c(start = 5904, end = 5603, p = 1))
+  r99 <- as.list(interval_hdr(intcal09, level = 0.997), calendar = BP())
+  expect_equal(r99[[1]][1, ], data.frame(start = 5904, end = 5603, p = 1))
 
 # Out of calibration range =====================================================
   verb <- getOption("ananke.verbose")
@@ -98,4 +98,4 @@
   # plot_cal_b2k <- function() plot(cal, calendar = b2k())
 
   # FIXME: check text
-  tinytest::expect_stdout(describe(cal))
+  expect_stdout(describe(cal))

@@ -9,8 +9,7 @@ NULL
 setMethod(
   f = "interval_hdr",
   signature = c(x = "CalibratedAges", y = "missing"),
-  definition = function(x, level = 0.954,
-                        calendar = getOption("ananke.calendar"), ...) {
+  definition = function(x, level = 0.954, ...) {
     ## Check
     c14_validate(x)
 
@@ -25,17 +24,15 @@ setMethod(
       level = level,
       simplify = FALSE
     )
-    names(hdr) <- colnames(x)
-    if (is.null(calendar)) return(hdr)
-    lapply(
-      X = hdr,
-      FUN = function(x, calendar) {
-        if (is.null(x)) return(NULL)
-        x[, 1] <- aion::as_year(x[, 1], calendar = calendar)
-        x[, 2] <- aion::as_year(x[, 2], calendar = calendar)
-        x
-      },
-      calendar = calendar
+    n <- vapply(X = hdr, FUN = nrow, FUN.VALUE = integer(1))
+    lab <- rep(labels(x), n)
+
+    hdr <- do.call(rbind, hdr)
+    .CalibratedHDR(
+      .Id = lab,
+      .Start = aion::as_fixed(hdr[, 1]),
+      .End = aion::as_fixed(hdr[, 2]),
+      p = unname(hdr[, 3])
     )
   }
 )

@@ -38,7 +38,7 @@ To cite ananke in publications use:
 Frerebeau N (2024). *ananke: Quantitative Chronology in Archaeology*.
 Université Bordeaux Montaigne, Pessac, France.
 <doi:10.5281/zenodo.13236285> <https://doi.org/10.5281/zenodo.13236285>,
-R package version 0.0.1, <https://packages.tesselle.org/ananke/>.
+R package version 0.0.1.9000, <https://packages.tesselle.org/ananke/>.
 
 This package is a part of the tesselle project
 <https://www.tesselle.org>.
@@ -66,11 +66,15 @@ remotes::install_github("tesselle/ananke")
 library(ananke)
 ```
 
+**ananke** uses [**aion**](https://packages.tesselle.org/aion/) for
+internal date representation. Look at
+`vignette("aion", package = "aion")` before you start.
+
 ``` r
 ## Data from Bosch et al. 2015
 data("ksarakil")
 
-## Calibrate multiple dates
+## Calibrate multiple ages
 cal <- c14_calibrate(
   values = ksarakil$date,
   errors = ksarakil$error,

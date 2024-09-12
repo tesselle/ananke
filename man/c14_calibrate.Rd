@@ -28,9 +28,9 @@ c14_calibrate(values, errors, ...)
 }
 \arguments{
 \item{values}{A \code{\link{numeric}} vector giving the BP ages or F14C values to be
-calibrated.}
+calibrated (conventional ages).}
 
-\item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the
+\item{errors}{A \code{\link{numeric}} vector giving the errors associated to the
 values to be calibrated.}
 
 \item{...}{Currently not used.}
@@ -74,7 +74,7 @@ calibration values will be removed.}
 A \code{\linkS4class{CalibratedAges}} object.
 }
 \description{
-Calibrates radiocarbon dates.
+Calibrates radiocarbon ages.
 }
 \note{
 Adapted from \code{\link[Bchron:BchronCalibrate]{Bchron::BchronCalibrate()}} by Andrew Parnell and

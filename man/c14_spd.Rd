@@ -23,6 +23,9 @@ of analysis)?}
 \item{normalize_spd}{A \code{\link{logical}} scalar: should the total probability mass
 of the SPD be normalised (to sum to unity)?}
 }
+\value{
+A \code{\linkS4class{CalibratedSPD}} object.
+}
 \description{
 Computes summed probability distributions (SPD) of radiocarbon dates.
 }

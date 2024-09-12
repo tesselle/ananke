@@ -28,13 +28,13 @@ setMethod(
     msg_uncal <- sprintf(txt_uncal, lab, val, err)
 
     ## Calibration results
-    hdr <- interval_hdr(x, level = level, calendar = calendar)
+    hdr <- as.list(interval_hdr(x, level = level), calendar = calendar)
     msg_cal <- lapply(
       X = hdr,
       FUN = function(x, calendar, level) {
         if (is.null(x)) return("but is out of the calibration range of")
-        p <- if (NROW(x) > 1) sprintf(" (%.1f%%)", x[, 3] * 100) else ""
-        msg_hdr <- sprintf("[%.0f,%.0f]%s", x[, 1], x[, 2], p)
+        p <- if (NROW(x) > 1) sprintf(" (%.1f%%)", x$p * 100) else ""
+        msg_hdr <- sprintf("[%.0f,%.0f]%s", x$start, x$end, p)
         txt_cal <- "calibrated to %s %s (%.1f%% HPD interval) with"
         sprintf(txt_cal, paste0(msg_hdr, collapse = " or "), calendar, level)
       },

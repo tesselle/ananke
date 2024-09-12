@@ -6,20 +6,17 @@
 \alias{interval_hdr,CalibratedAges,missing-method}
 \title{Highest Density Regions}
 \usage{
-\S4method{interval_hdr}{CalibratedAges,missing}(x, level = 0.954, calendar = getOption("ananke.calendar"), ...)
+\S4method{interval_hdr}{CalibratedAges,missing}(x, level = 0.954, ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} object.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 
-\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
-
 \item{...}{Currently not used.}
 }
 \value{
-Returns a \code{\link{list}} of \code{numeric} \code{\link{matrix}}.
+A \code{\linkS4class{CalibratedHDR}} object.
 }
 \description{
 Highest Density Regions
@@ -33,9 +30,16 @@ cal <- c14_calibrate(
 )
 
 ## HDR
-interval_hdr(cal, level = 0.683)
-interval_hdr(cal, level = 0.954)
-interval_hdr(cal, level = 0.997)
+hdr68 <- interval_hdr(cal, level = 0.683)
+hdr95 <- interval_hdr(cal, level = 0.954)
+hdr99 <- interval_hdr(cal, level = 0.997)
+
+## Coerce to list
+as.list(hdr95)
+
+## Plot
+plot(hdr95)
+plot(cal)
 }
 \references{
 Hyndman, R. J. (1996). Computing and graphing highest density regions.

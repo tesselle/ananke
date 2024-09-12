@@ -18,7 +18,7 @@ c14_validate(object, ...)
 }
 \value{
 \code{c14_validate()} is called it for its side-effects: it prints
-\link[=warnings]{warning messages} if calibrated agea are (partially) out of
+\link[=warnings]{warning messages} if calibrated ages are (partially) out of
 calibration range. Invisibly returns \code{x}.
 }
 \description{

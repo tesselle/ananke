@@ -49,7 +49,8 @@ plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
   }
 
   ## Compute interval
-  hdr <- interval_hdr(x, level = level, calendar = calendar)
+  hdr <- interval_hdr(x, level = level)
+  hdr <- as.list(hdr, calendar = calendar)
 
   ## Save and restore
   mar <- graphics::par("mar")

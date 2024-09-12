@@ -7,7 +7,7 @@
 \title{Calibrated SPD}
 \description{
 An S4 class to represent summed probability distributions (SPD) of
-radiocarbon dates.
+calibrated radiocarbon ages.
 }
 \note{
 This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
@@ -15,6 +15,7 @@ This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 \seealso{
 Other classes: 
 \code{\link{CalibratedAges-class}},
+\code{\link{CalibratedHDR-class}},
 \code{\link{ProxyRecord-class}},
 \code{\link{RECE-class}}
 }

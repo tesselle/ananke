@@ -49,7 +49,7 @@ NULL
 #' Calibrated SPD
 #'
 #' An S4 class to represent summed probability distributions (SPD) of
-#' radiocarbon dates.
+#' calibrated radiocarbon ages.
 #' @note
 #'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
@@ -60,6 +60,25 @@ NULL
 .CalibratedSPD <- setClass(
   Class = "CalibratedSPD",
   contains = "TimeSeries"
+)
+
+#' Calibrated Intervals
+#'
+#' An S4 class to represent HDR intervals of calibrated radiocarbon ages.
+#' @slot p A [`numeric`] vector giving the probabilities.
+#' @note
+#'  This class inherits from [`aion::TimeIntervals-class`].
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases CalibratedHDR-class
+#' @keywords internal
+.CalibratedHDR <- setClass(
+  Class = "CalibratedHDR",
+  slots = c(
+    p = "numeric"
+  ),
+  contains = "TimeIntervals"
 )
 
 #' Radiocarbon Event Count Ensemble

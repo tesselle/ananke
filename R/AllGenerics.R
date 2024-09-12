@@ -66,18 +66,31 @@ NULL
 ## Coerce ----------------------------------------------------------------------
 #' Coerce to a Data Frame
 #'
-#' @param x An object.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
-#' @param ... Further parameters to be passed to [data.frame()].
+#' @inheritParams as.list
 #' @return
 #'  A [`data.frame`] with an extra `time` column.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name data.frame
-#' @rdname data.frame
+#' @name as.data.frame
+#' @rdname as.data.frame
+NULL
+
+#' Coerce to a list
+#'
+#' @param x An object.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
+#' @param ... Currently not used.
+#' @return
+#'  A [`list`].
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name as.list
+#' @rdname as.list
 NULL
 
 # Radiocarbon ==================================================================
@@ -219,10 +232,10 @@ setGeneric(
 ## Calibration -----------------------------------------------------------------
 #' 14C Calibration
 #'
-#' Calibrates radiocarbon dates.
+#' Calibrates radiocarbon ages.
 #' @param values A [`numeric`] vector giving the BP ages or F14C values to be
-#'  calibrated.
-#' @param errors A [`numeric`] vector giving the standard deviation of the
+#'  calibrated (conventional ages).
+#' @param errors A [`numeric`] vector giving the errors associated to the
 #'  values to be calibrated.
 #' @param names A [`character`] vector specifying the names of the samples (e.g.
 #'  laboratory codes).
@@ -273,7 +286,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  `c14_validate()` is called it for its side-effects: it prints
-#'  [warning messages][warnings()] if calibrated agea are (partially) out of
+#'  [warning messages][warnings()] if calibrated ages are (partially) out of
 #'  calibration range. Invisibly returns `x`.
 #' @example inst/examples/ex-14c-calibrate.R
 #' @author N. Frerebeau
@@ -488,6 +501,8 @@ setGeneric(
 #'  Summed probability distributions (SPD) are not statistically valid
 #'  estimators of the calendar age of a potential future sample. They should not
 #'  be used in any dates-as-data approach to provide a population proxy.
+#' @return
+#'  A [`CalibratedSPD-class`] object.
 #' @example inst/examples/ex-14c-spd.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -505,11 +520,9 @@ setGeneric(
 #'
 #' @param x A [`CalibratedAges-class`] object.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param ... Currently not used.
 #' @return
-#'  Returns a [`list`] of `numeric` [`matrix`].
+#'  A [`CalibratedHDR-class`] object.
 #' @references
 #'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
 #'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.

@@ -22,7 +22,8 @@ for example.
 }
 \seealso{
 Other mutators: 
-\code{\link{data.frame}},
+\code{\link{as.data.frame}()},
+\code{\link{as.list}()},
 \code{\link{mutators}},
 \code{\link{subset}()}
 }

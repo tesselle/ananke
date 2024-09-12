@@ -40,6 +40,14 @@ aion::start
 #' @export
 aion::time
 
+#' @importFrom aion span
+#' @export
+aion::span
+
+#' @importFrom aion overlap
+#' @export
+aion::overlap
+
 #' @importFrom aion year_axis
 #' @export
 aion::year_axis
