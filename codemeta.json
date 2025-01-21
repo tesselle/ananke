@@ -5,8 +5,8 @@
   "description": "A toolbox for quantitative chronology in archaeology. This package provides functions for simple radiocarbon calibration and chronological analysis.",
   "name": "ananke: Quantitative Chronology in Archaeology",
   "relatedLink": "https://packages.tesselle.org/ananke/",
-  "codeRepository": "https://github.com/tesselle/ananke",
-  "issueTracker": "https://github.com/tesselle/ananke/issues",
+  "codeRepository": "https://codeberg.org/tesselle/ananke",
+  "issueTracker": "https://codeberg.org/tesselle/ananke/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.0.1",
   "programmingLanguage": {
@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -136,7 +136,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "3375.719KB",
+  "fileSize": "3380.28KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -156,9 +156,5 @@
       "sameAs": "https://doi.org/10.5281/zenodo.13236285"
     }
   ],
-  "releaseNotes": "https://github.com/tesselle/ananke/blob/master/NEWS.md",
-  "readme": "https://github.com/tesselle/ananke/blob/main/README.md",
-  "contIntegration": ["https://github.com/tesselle/ananke/actions", "https://app.codecov.io/gh/tesselle/ananke"],
-  "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": ["archaeological-science", "archaeology", "r-package", "chronology", "radiocarbon-dates", "radiocarbon-calibration"]
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }

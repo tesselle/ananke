@@ -11,9 +11,9 @@ Description: A toolbox for quantitative chronology in archaeology. This
     package provides functions for simple radiocarbon calibration and
     chronological analysis.
 License: GPL (>= 3)
-URL: https://packages.tesselle.org/ananke/,
-    https://github.com/tesselle/ananke
-BugReports: https://github.com/tesselle/ananke/issues
+URL: https://codeberg.org/tesselle/ananke,
+    https://packages.tesselle.org/ananke/
+BugReports: https://codeberg.org/tesselle/ananke/issues
 Depends: 
     R (>= 4.1)
 Imports: 

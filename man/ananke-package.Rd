@@ -35,9 +35,9 @@ on progress? Defaults to \code{TRUE}.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://codeberg.org/tesselle/ananke}
   \item \url{https://packages.tesselle.org/ananke/}
-  \item \url{https://github.com/tesselle/ananke}
-  \item Report bugs at \url{https://github.com/tesselle/ananke/issues}
+  \item Report bugs at \url{https://codeberg.org/tesselle/ananke/issues}
 }
 
 }

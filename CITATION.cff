@@ -41,7 +41,7 @@ preferred-citation:
   notes: R package version 0.0.1
   url: https://packages.tesselle.org/ananke/
   doi: 10.5281/zenodo.13236285
-repository-code: https://github.com/tesselle/ananke
+repository-code: https://codeberg.org/tesselle/ananke
 url: https://packages.tesselle.org/ananke/
 contact:
 - family-names: Frerebeau
@@ -67,28 +67,26 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
   version: '>= 4.1'
 - type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
   notes: Imports
   url: https://packages.tesselle.org/aion/
-  repository: https://tesselle.r-universe.dev
+  repository: https://CRAN.R-project.org/package=aion
   authors:
   - family-names: Frerebeau
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   - family-names: Roe
     given-names: Joe
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
-    affiliation: Universität Bern
-  year: '2024'
   doi: 10.32614/CRAN.package.aion
   version: '>= 1.0.4'
+  year: '2025'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -100,8 +98,7 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.arkhe
   version: '>= 1.7.0'
 - type: software
@@ -113,8 +110,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
-  doi: 10.32614/CRAN.package.graphics
+  year: '2025'
 - type: software
   title: grDevices
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -124,8 +120,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
-  doi: 10.32614/CRAN.package.grDevices
+  year: '2025'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -135,8 +130,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
-  doi: 10.32614/CRAN.package.methods
+  year: '2025'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -146,8 +140,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
-  doi: 10.32614/CRAN.package.utils
+  year: '2025'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -159,7 +152,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: markdown
@@ -176,7 +169,7 @@ references:
     given-names: JJ
   - family-names: Horner
     given-names: Jeffrey
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.markdown
 - type: software
   title: tinytest
@@ -190,6 +183,6 @@ references:
     name-particle: van der
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tinytest
 

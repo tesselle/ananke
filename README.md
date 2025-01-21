@@ -5,10 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/ananke/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/ananke/actions)
-[![codecov](https://codecov.io/gh/tesselle/ananke/branch/main/graph/badge.svg?token=UgoOXsZW86)](https://app.codecov.io/gh/tesselle/ananke)
-[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/ananke/badge/main)](https://www.codefactor.io/repository/github/tesselle/ananke/overview/main)
-
 <a href="https://tesselle.r-universe.dev/ananke"
 class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/ananke"
@@ -52,11 +48,11 @@ You can install the released version of **ananke** from
 install.packages("ananke")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from [Codeberg](https://codeberg.org/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/ananke")
+remotes::install_git("https://codeberg.org/tesselle/ananke")
 ```
 
 ## Usage
