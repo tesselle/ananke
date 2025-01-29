@@ -3,9 +3,11 @@ Title: Quantitative Chronology in Archaeology
 Version: 0.0.1.9000
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5759-4944", affiliation = "Université Bordeaux Montaigne")),
-    person("Université Bordeaux Montaigne", role = "fnd"),
-    person("CNRS", role = "fnd")
+           comment = c(ORCID = "0000-0001-5759-4944")),
+    person("Université Bordeaux Montaigne", role = "fnd",
+           comment = c(ROR = "03pbgwk21")),
+    person("CNRS", role = "fnd",
+           comment = c(ROR = "02feahw73"))
   )
 Description: A toolbox for quantitative chronology in archaeology. This
     package provides functions for simple radiocarbon calibration and
