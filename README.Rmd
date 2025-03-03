@@ -17,6 +17,7 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 # ananke
 
 <!-- badges: start -->
+[![Code coverage](https://packages.tesselle.org/ananke/coverage/badge.svg)](https://packages.tesselle.org/ananke/coverage/)
 [![r-universe](https://tesselle.r-universe.dev/badges/ananke)](https://tesselle.r-universe.dev/ananke){.pkgdown-devel}
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -92,3 +93,22 @@ describe(cal, fill = TRUE)
 ## Contributing
 
 Please note that the **ananke** project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project, you agree to abide by its terms.
+
+```{r metadata, include=FALSE}
+## Update codemeta.json
+codemetar::write_codemeta(verbose = FALSE)
+
+## Update CITATION.cff
+cff_keys <- list(
+  identifiers = list(
+    list(description = "The concept DOI.",
+         type = "doi",
+         value = "10.5281/zenodo.13236285"),
+    list(description = "The versioned DOI for version 0.0.1.",
+         type = "doi",
+         value = "10.5281/zenodo.13236286")
+  )
+)
+cff <- cffr::cff_create("DESCRIPTION", keys = cff_keys)
+if (cffr::cff_validate(cff)) cffr::cff_write(cff, outfile = "CITATION.cff")
+```

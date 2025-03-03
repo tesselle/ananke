@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Code
+coverage](https://packages.tesselle.org/ananke/coverage/badge.svg)](https://packages.tesselle.org/ananke/coverage/)
 <a href="https://tesselle.r-universe.dev/ananke"
 class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/ananke"
