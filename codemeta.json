@@ -136,7 +136,10 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "3380.28KB",
+  "applicationCategory": "ArchaeologicalScience",
+  "isPartOf": "https://www.tesselle.org",
+  "keywords": ["time-series", "archaeology", "archaeological-science", "chronology", "radiocarbon-dates", "radiocarbon-calibration", "r-package"],
+  "fileSize": "3380.285KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
