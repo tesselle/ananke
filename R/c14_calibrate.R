@@ -13,7 +13,7 @@ setMethod(
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
-                        drop = TRUE, eps = 1e-06,
+                        drop = TRUE, eps = 1e-06, dfs = 100,
                         verbose = getOption("ananke.verbose")) {
     ## Validation
     n <- length(values)
@@ -24,6 +24,8 @@ setMethod(
       reservoir_offsets <- rep(reservoir_offsets, n)
     if (length(reservoir_errors) == 1)
       reservoir_errors <- rep(reservoir_errors, n)
+    if (length(dfs) == 1)
+      dfs <- rep(dfs, n)
 
     arkhe::assert_missing(values)
     arkhe::assert_missing(errors)
@@ -33,6 +35,7 @@ setMethod(
     arkhe::assert_length(curves, n)
     arkhe::assert_length(reservoir_offsets, n)
     arkhe::assert_length(reservoir_errors, n)
+    arkhe::assert_length(dfs, n)
 
     ## Calibration time range
     cal_range <- seq(from = from, to = to, by = -resolution)
@@ -54,7 +57,8 @@ setMethod(
         x = values[i],
         error = errors[i],
         mu = curve_range[[curves[i]]]$mu,
-        tau = curve_range[[curves[i]]]$tau
+        tau = curve_range[[curves[i]]]$tau,
+        df = dfs[i]
       )
 
       ## Check
@@ -129,12 +133,13 @@ setMethod(
   }
 )
 
-calibrate_BP14C <- function(x, error, mu, tau) {
+calibrate_BP14C <- function(x, error, mu, tau, df) {
   tau <- error^2 + tau^2
-  dens <- stats::dnorm(x, mean = mu, sd = sqrt(tau))
+  dens <- stats::dt(x = (x - mu) / sqrt(tau), df = df)
+  # dens <- stats::dnorm(x, mean = mu, sd = sqrt(tau))
   dens
 }
-calibrate_F14C <- function(x, error, mu, tau) {
+calibrate_F14C <- function(x, error, mu, tau, ...) {
   p1 <- (x - mu)^2
   p2 <- 2 * (error^2 + tau^2)
   p3 <- sqrt(error^2 + tau^2)

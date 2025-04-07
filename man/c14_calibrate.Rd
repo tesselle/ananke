@@ -24,6 +24,7 @@ c14_calibrate(values, errors, ...)
   F14C = FALSE,
   drop = TRUE,
   eps = 1e-06,
+  dfs = 100,
   verbose = getOption("ananke.verbose")
 )
 }
@@ -70,6 +71,10 @@ discarded? If \code{TRUE} (the default), results in a narrower time range.}
 
 \item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
 calibration values will be removed.}
+
+\item{dfs}{A \code{\link{character}} vector giving the degrees-of-freedom values for
+the t-distribution associated with the calibration calculation. A large
+value indicates Gaussian distributions assumed for the 14C ages.}
 
 \item{verbose}{A \code{\link{logical}} scalar: should extra information be reported
 (e.g. warning message for dates out of calibration range)?}
