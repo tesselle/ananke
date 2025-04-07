@@ -17,10 +17,10 @@ URL: https://codeberg.org/tesselle/ananke,
     https://packages.tesselle.org/ananke/
 BugReports: https://codeberg.org/tesselle/ananke/issues
 Depends: 
-    R (>= 4.1)
+    R (>= 4.1),
+    aion (>= 1.4.0),
 Imports: 
-    aion (>= 1.0.4),
-    arkhe (>= 1.7.0),
+    arkhe (>= 1.10.0),
     graphics,
     grDevices,
     methods,
@@ -60,7 +60,6 @@ Collate:
     'pb_age.R'
     'plot.R'
     'proxy.R'
-    'reexport.R'
     'statistics.R'
     'subset.R'
     'validate.R'

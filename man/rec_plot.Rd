@@ -6,7 +6,7 @@
 \alias{plot,RECE,missing-method}
 \title{Plot a Radiocarbon Event Count Ensemble}
 \usage{
-\S4method{plot}{RECE,missing}(x, calendar = getOption("ananke.calendar"), ...)
+\S4method{plot}{RECE,missing}(x, calendar = get_calendar(), ...)
 }
 \arguments{
 \item{x}{An \code{\linkS4class{RECE}} object.}

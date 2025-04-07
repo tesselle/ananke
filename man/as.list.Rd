@@ -6,7 +6,7 @@
 \alias{as.list,CalibratedHDR-method}
 \title{Coerce to a list}
 \usage{
-\S4method{as.list}{CalibratedHDR}(x, ..., calendar = getOption("ananke.calendar"))
+\S4method{as.list}{CalibratedHDR}(x, ..., calendar = get_calendar())
 }
 \arguments{
 \item{x}{An object.}

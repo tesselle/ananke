@@ -9,7 +9,7 @@
 \usage{
 \S4method{plot}{CalibratedAges,missing}(
   x,
-  calendar = getOption("ananke.calendar"),
+  calendar = get_calendar(),
   density = TRUE,
   interval = TRUE,
   level = 0.954,
@@ -29,7 +29,7 @@
 
 \S4method{plot}{CalibratedSPD,missing}(
   x,
-  calendar = getOption("ananke.calendar"),
+  calendar = get_calendar(),
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),

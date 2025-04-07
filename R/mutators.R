@@ -6,9 +6,7 @@ NULL
 #' @export
 #' @method labels CalibratedAges
 labels.CalibratedAges <- function(object, ...) {
-  n <- NCOL(object)
-  lab <- colnames(object) %||% paste0("X", seq_len(object))
-  lab
+  colnames(object) %||% paste0("X", NCOL(object))
 }
 
 #' @export

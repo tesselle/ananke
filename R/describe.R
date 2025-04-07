@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "describe",
   signature = signature(x = "CalibratedAges"),
-  definition = function(x, calendar = getOption("ananke.calendar"),
+  definition = function(x, calendar = get_calendar(),
                         level = 0.954, ...) {
     ## Get data
     lab <- labels(x)

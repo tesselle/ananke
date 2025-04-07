@@ -4,7 +4,7 @@ NULL
 
 #' @export
 #' @method plot CalibratedAges
-plot.CalibratedAges <- function(x, calendar = getOption("ananke.calendar"),
+plot.CalibratedAges <- function(x, calendar = get_calendar(),
                                 density = TRUE, interval = TRUE, level = 0.954,
                                 sort = TRUE, decreasing = TRUE,
                                 main = NULL, sub = NULL,
@@ -155,7 +155,7 @@ setMethod("plot", c(x = "CalibratedAges", y = "missing"), plot.CalibratedAges)
 ## SPD =========================================================================
 #' @export
 #' @method plot CalibratedSPD
-plot.CalibratedSPD <- function(x, calendar = getOption("ananke.calendar"),
+plot.CalibratedSPD <- function(x, calendar = get_calendar(),
                                main = NULL, sub = NULL,
                                ann = graphics::par("ann"),
                                axes = TRUE, frame.plot = FALSE,
@@ -196,7 +196,7 @@ setMethod("plot", c(x = "CalibratedSPD", y = "missing"), plot.CalibratedSPD)
 
 #' @export
 #' @method plot RECE
-plot.RECE <- function(x, calendar = getOption("ananke.calendar"), ...) {
+plot.RECE <- function(x, calendar = get_calendar(), ...) {
   ## Binary array
   bin <- array(FALSE, dim = c(nrow(x), max(x), ncol(x)))
   for (j in seq_len(ncol(x))) {
@@ -238,7 +238,7 @@ setMethod("plot", c(x = "RECE", y = "missing"), plot.RECE)
 
 #' @export
 #' @method plot ProxyRecord
-plot.ProxyRecord <- function(x, calendar = getOption("ananke.calendar"),
+plot.ProxyRecord <- function(x, calendar = get_calendar(),
                              iqr = TRUE,
                              xlab = NULL, ylab = NULL,
                              col = grDevices::hcl.colors(12, "YlOrRd", rev = TRUE),

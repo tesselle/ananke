@@ -60,7 +60,7 @@ quantile_density <- function(x, y, probs = seq(0, 1, 0.25), na.rm = FALSE, ...) 
 #' @export
 #' @method quantile CalibratedAges
 quantile.CalibratedAges <- function(x, probs = seq(0, 1, 0.25), na.rm = FALSE,
-                                    ..., calendar = getOption("ananke.calendar")) {
+                                    ..., calendar = get_calendar()) {
   quantile_density(x = aion::time(x, calendar = calendar), y = x,
                    probs = probs, na.rm = na.rm, ...)
 }
@@ -86,7 +86,7 @@ setMethod("quantile", c(x = "ProxyRecord"), quantile.ProxyRecord)
 #' @export
 #' @method median CalibratedAges
 median.CalibratedAges <- function(x, na.rm = FALSE, ...,
-                                  calendar = getOption("ananke.calendar")) {
+                                  calendar = get_calendar()) {
   quantile(x, probs = 0.5, na.rm = na.rm, ..., calendar = calendar)
 }
 
@@ -128,7 +128,7 @@ mean_density <- function(x, y, na.rm = FALSE, ...) {
 #' @export
 #' @method mean CalibratedAges
 mean.CalibratedAges <- function(x, na.rm = FALSE, ...,
-                                calendar = getOption("ananke.calendar")) {
+                                calendar = get_calendar()) {
   mean_density(x = aion::time(x, calendar = calendar), y = x,
                calendar = calendar)
 }

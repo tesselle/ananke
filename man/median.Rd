@@ -7,7 +7,7 @@
 \alias{median,CalibratedAges,missing-method}
 \title{Median}
 \usage{
-\S4method{median}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = getOption("ananke.calendar"))
+\S4method{median}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = get_calendar())
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CalibratedAges}} object.}

@@ -7,16 +7,14 @@
 #'  }
 #'
 #' @section Package options:
-#'  `ananke` uses the following [options()] to configure behavior:
-#'  * `ananke.calendar`: an [`aion::TimeScale-class`] object (default calendar
-#'    for printing; see [aion::calendar()]).
+#'  \pkg{ananke} uses the following [options()] to configure behavior:
 #'  * `ananke.grid`: a [`numeric`] value specifying the number of equally
 #'    spaced points at which densities are to be estimated (defaults to
 #'    \eqn{512}). Should be a power of \eqn{2} (see [stats::density()]).
 #'  * `ananke.progress`: a [`logical`] scalar. Should progress bars be
-#'    displayed?
+#'    displayed? Defaults to [interactive()].
 #'  * `ananke.verbose`: a [`logical`] scalar. Should \R report extra information
-#'    on progress? Defaults to `TRUE`.
+#'    on progress? Defaults to [interactive()].
 #'
 #' @author
 #'  **Full list of authors and contributors** (alphabetic order):

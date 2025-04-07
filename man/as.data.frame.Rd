@@ -9,13 +9,13 @@
 \alias{as.data.frame,ProxyRecord-method}
 \title{Coerce to a Data Frame}
 \usage{
-\S4method{as.data.frame}{CalibratedAges}(x, ..., calendar = getOption("ananke.calendar"))
+\S4method{as.data.frame}{CalibratedAges}(x, ..., calendar = get_calendar())
 
-\S4method{as.data.frame}{CalibratedHDR}(x, ..., calendar = getOption("ananke.calendar"))
+\S4method{as.data.frame}{CalibratedHDR}(x, ..., calendar = get_calendar())
 
-\S4method{as.data.frame}{RECE}(x, ..., calendar = getOption("ananke.calendar"))
+\S4method{as.data.frame}{RECE}(x, ..., calendar = get_calendar())
 
-\S4method{as.data.frame}{ProxyRecord}(x, ..., calendar = getOption("ananke.calendar"))
+\S4method{as.data.frame}{ProxyRecord}(x, ..., calendar = get_calendar())
 }
 \arguments{
 \item{x}{An object.}

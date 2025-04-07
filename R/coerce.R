@@ -5,7 +5,7 @@ NULL
 # To list ======================================================================
 #' @export
 #' @method as.list CalibratedHDR
-as.list.CalibratedHDR <- function(x, ..., calendar = getOption("ananke.calendar")) {
+as.list.CalibratedHDR <- function(x, ..., calendar = get_calendar()) {
   z <- as.data.frame(x, calendar = calendar)
   f <- factor(z$label, levels = unique(z$label))
   z$label <- NULL
@@ -21,7 +21,7 @@ setMethod("as.list", "CalibratedHDR", as.list.CalibratedHDR)
 #' @export
 #' @method as.data.frame CalibratedAges
 as.data.frame.CalibratedAges <- function(x, ...,
-                                         calendar = getOption("ananke.calendar")) {
+                                         calendar = get_calendar()) {
   dens <- x[, , 1, drop = TRUE]
   z <- data.frame(aion::time(x, calendar = calendar), dens)
   colnames(z) <- c("time", colnames(x) %||% paste0("X", seq_len(NCOL(x))))
@@ -36,7 +36,7 @@ setMethod("as.data.frame", "CalibratedAges", as.data.frame.CalibratedAges)
 #' @export
 #' @method as.data.frame CalibratedHDR
 as.data.frame.CalibratedHDR <- function(x, ...,
-                                        calendar = getOption("ananke.calendar")) {
+                                        calendar = get_calendar()) {
   ## Build a data frame
   data.frame(
     label = labels(x),
@@ -53,7 +53,7 @@ setMethod("as.data.frame", "CalibratedHDR", as.data.frame.CalibratedHDR)
 
 #' @export
 #' @method as.data.frame RECE
-as.data.frame.RECE <- function(x, ..., calendar = getOption("ananke.calendar")) {
+as.data.frame.RECE <- function(x, ..., calendar = get_calendar()) {
   dens <- x[, , 1, drop = TRUE]
   z <- data.frame(aion::time(x, calendar = calendar), dens)
   colnames(z) <- c("time", colnames(x) %||% paste0("X", seq_len(NCOL(x))))
@@ -68,7 +68,7 @@ setMethod("as.data.frame", "RECE", as.data.frame.RECE)
 #' @export
 #' @method as.data.frame ProxyRecord
 as.data.frame.ProxyRecord <- function(x, ...,
-                                         calendar = getOption("ananke.calendar")) {
+                                         calendar = get_calendar()) {
   dens <- x[, , 1, drop = TRUE]
   z <- data.frame(aion::time(x, calendar = calendar), dens)
   colnames(z) <- c("time", colnames(x) %||% paste0("X", seq_len(NCOL(x))))

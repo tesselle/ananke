@@ -9,7 +9,7 @@
 \alias{mean,ProxyRecord,missing-method}
 \title{Mean}
 \usage{
-\S4method{mean}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = getOption("ananke.calendar"))
+\S4method{mean}{CalibratedAges}(x, na.rm = FALSE, ..., calendar = get_calendar())
 
 \S4method{mean}{ProxyRecord}(x, na.rm = FALSE, ...)
 }

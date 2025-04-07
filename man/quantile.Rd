@@ -14,7 +14,7 @@
   probs = seq(0, 1, 0.25),
   na.rm = FALSE,
   ...,
-  calendar = getOption("ananke.calendar")
+  calendar = get_calendar()
 )
 
 \S4method{quantile}{ProxyRecord}(x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)

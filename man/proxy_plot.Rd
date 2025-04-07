@@ -8,7 +8,7 @@
 \usage{
 \S4method{plot}{ProxyRecord,missing}(
   x,
-  calendar = getOption("ananke.calendar"),
+  calendar = get_calendar(),
   iqr = TRUE,
   xlab = NULL,
   ylab = NULL,
