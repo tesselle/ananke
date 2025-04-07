@@ -18,6 +18,7 @@ setMethod(
     ## Validation
     n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
+    if (is.null(positions)) positions <- rep(NA_real_, n)
     if (length(curves) == 1)
       curves <- rep(curves, n)
     if (length(reservoir_offsets) == 1)
@@ -106,15 +107,8 @@ setMethod(
       cal_range <- cal_range[keep]
     }
 
-    dens <- t(dens)
-    ## Position
-    if (is.null(positions)) {
-      positions <- quantile_density(x = cal_range, y = dens, probs = 0.5, na.rm = TRUE)
-      positions <- order(positions, decreasing = TRUE) # Reverse BP scale
-    }
-
     time_series <- aion::series(
-      object = dens,
+      object = t(dens),
       time = cal_range,
       calendar = BP(),
       names = names

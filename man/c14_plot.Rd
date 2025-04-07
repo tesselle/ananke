@@ -13,6 +13,7 @@
   density = TRUE,
   interval = c("hdr", "credible"),
   level = 0.954,
+  sort = TRUE,
   decreasing = TRUE,
   col.density = "grey",
   col.interval = "#77AADD",
@@ -53,6 +54,9 @@ substring can be given. If \code{NULL}, no intervals are drawn.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Only used if \code{interval} is \code{TRUE}.}
+
+\item{sort}{A \code{\link{logical}} scalar: should the data be sorted in chronological
+order?}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?}
 

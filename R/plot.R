@@ -6,7 +6,7 @@ NULL
 #' @method plot CalibratedAges
 plot.CalibratedAges <- function(x, calendar = get_calendar(),
                                 density = TRUE, interval = c("hdr", "credible"),
-                                level = 0.954, decreasing = TRUE,
+                                level = 0.954, sort = TRUE, decreasing = TRUE,
                                 col.density = "grey", col.interval = "#77AADD",
                                 main = NULL, sub = NULL,
                                 axes = TRUE, frame.plot = FALSE,
@@ -35,13 +35,14 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   fill.interval <- fill.interval[!out]
 
   ## Reorder
-  k <- order(x@positions, decreasing = decreasing)
-  x <- x[, k, , drop = FALSE]
-  lab <- labels(x)
-  col.density <- col.density[k]
-  fill.density <- fill.density[k]
-  col.interval <- col.interval[k]
-  fill.interval <- fill.interval[k]
+  if (sort) {
+    k <- order(median(x, calendar = NULL), decreasing = decreasing)
+    x <- x[, k, , drop = FALSE]
+    col.density <- col.density[k]
+    fill.density <- fill.density[k]
+    col.interval <- col.interval[k]
+    fill.interval <- fill.interval[k]
+  }
 
   ## Compute interval
   if (!is.null(interval) && !isFALSE(interval)) {
@@ -56,6 +57,7 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   }
 
   ## Save and restore
+  lab <- labels(x)
   mar <- graphics::par("mar")
   mar[2] <- inch2line(lab, cex = cex.axis) + 0.5
   old_par <- graphics::par(mar = mar)

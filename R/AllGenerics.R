@@ -414,6 +414,8 @@ setGeneric(
 #'  substring can be given. If `NULL`, no intervals are drawn.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Only used if `interval` is `TRUE`.
+#' @param sort A [`logical`] scalar: should the data be sorted in chronological
+#'  order?
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
