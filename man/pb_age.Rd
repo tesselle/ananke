@@ -23,7 +23,8 @@ pb_age(x, y, z, ...)
   u238 = 0.155125,
   u235 = 0.98485,
   u238_235 = 137.79,
-  tolerance = sqrt(.Machine$double.eps)
+  tolerance = sqrt(.Machine$double.eps),
+  stop = 100
 )
 
 \S4method{pb_age}{list,missing,missing}(
@@ -38,7 +39,8 @@ pb_age(x, y, z, ...)
   u238 = 0.155125,
   u235 = 0.98485,
   u238_235 = 137.79,
-  tolerance = sqrt(.Machine$double.eps)
+  tolerance = sqrt(.Machine$double.eps),
+  stop = 100
 )
 }
 \arguments{
@@ -82,14 +84,17 @@ reference model.}
 
 \item{tolerance}{A \code{\link{numeric}} value specifying the tolerance (stopping
 criteria for the Newton–Raphson method).}
+
+\item{stop}{An \code{\link{integer}} giving the stopping rule (i.e. maximum number of
+iterations) to avoid infinite loop.}
 }
 \value{
 A four columns \code{\link{data.frame}}:
-\tabular{ll}{
-\code{age}   \tab Geological model age (in Ma) \cr
-\code{mu}    \tab 238U/204Pb ratio             \cr
-\code{kappa} \tab 232Th/238U ratio             \cr
-\code{f}     \tab                              \cr
+\describe{
+\item{\code{age}}{Geological model age (in Ma).}
+\item{\code{mu}}{238U/204Pb ratio.}
+\item{\code{kappa}}{232Th/238U ratio.}
+\item{\code{residual}}{Newton loop residual.}
 }
 }
 \description{
@@ -100,15 +105,20 @@ lead isotopic measurements.
 Reference values from Albarede & Juteau (1984).
 }
 \examples{
-
 Pb <- data.frame(
   x = c(18.23247, 18.22936, 18.23102), # Pb206/Pb204
   y = c(15.65199, 15.65216, 15.65097), # Pb207/Pb204
   z = c(38.5167, 38.51516, 38.51601)   # Pb208/Pb204
 )
 
-## Reference values from Albarede & Juteau (1984)
-pb_age(Pb)
+## Default reference values from Albarede & Juteau (1984)
+pb_age(
+  Pb,
+  t0 = 3.8,
+  x_star = 18.75, y_star = 15.63, z_star = 38.86,
+  mu = 9.66, kappa = 3.90, th232 = 0.049475,
+  u238 = 0.155125, u235 = 0.98485, u238_235 = 137.79
+)
 
 ## Reference values from Albarede et al. (2012)
 pb_age(

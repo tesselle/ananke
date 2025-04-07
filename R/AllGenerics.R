@@ -681,16 +681,18 @@ NULL
 #' @param u238_235 A [`numeric`] value giving the actual 238U/235U ratio.
 #' @param tolerance A [`numeric`] value specifying the tolerance (stopping
 #'  criteria for the Newton–Raphson method).
+#' @param stop An [`integer`] giving the stopping rule (i.e. maximum number of
+#'  iterations) to avoid infinite loop.
 #' @param ... Currently not used.
 #' @note
 #'  Reference values from Albarede & Juteau (1984).
 #' @return
 #'  A four columns [`data.frame`]:
-#'  \tabular{ll}{
-#'  `age`   \tab Geological model age (in Ma) \cr
-#'  `mu`    \tab 238U/204Pb ratio             \cr
-#'  `kappa` \tab 232Th/238U ratio             \cr
-#'  `f`     \tab                              \cr
+#'  \describe{
+#'   \item{`age`}{Geological model age (in Ma).}
+#'   \item{`mu`}{238U/204Pb ratio.}
+#'   \item{`kappa`}{232Th/238U ratio.}
+#'   \item{`residual`}{Newton loop residual.}
 #'  }
 #' @references
 #'  Albarède, F., Desaulty, A.-M. & Blichert-Toft, J. (2012). A Geological
