@@ -323,6 +323,7 @@ setGeneric(
   def = function(object, ...) standardGeneric("c14_uncalibrate")
 )
 
+## F14C ------------------------------------------------------------------------
 #' F14C
 #'
 #' Converts F14C values to 14C ages.
@@ -332,13 +333,20 @@ setGeneric(
 #' @param lambda A length-one [`numeric`] vector specifying the mean-life of
 #'  radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).
 #' @param asymmetric A [`logical`] scalar: should asymmetric 14C errors be
-#'  returned?
+#'  returned (van der Plicht & Hogg, 2006)?
+#' @param rounding A [`character`] string specifying the rounding convention.
+#'  It can be "`stuiver`" (Stuiver & Polach, 1977).
+#'  Any unambiguous substring can be given.
+#'  If `NULL` (the default), no rounding is applied.
 #' @param ... Currently not used.
 #' @return
 #'  A [`data.frame`].
 #' @references
 #'  Bronk Ramsey, C. (2008). Radiocarbon Dating: Revolutions in Understanding.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
+#'
+#'  Stuiver, M., Polach, H. A. (1977). Discussion Reporting of 14C Data.
+#'  *Radiocarbon*, 19(3): 355-363. \doi{10.1017/S0033822200003672}.
 #'
 #'  van der Plicht, J., Hogg, A. (2006). A Note on Reporting Radiocarbon.
 #'  *Quaternary Geochronology*, 1(4): 237-240.

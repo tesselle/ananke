@@ -17,7 +17,13 @@ F14C_to_BP14C(values, errors, ...)
 
 \S4method{BP14C_to_F14C}{numeric,numeric}(values, errors, lambda = 8033)
 
-\S4method{F14C_to_BP14C}{numeric,numeric}(values, errors, lambda = 8033, asymmetric = FALSE)
+\S4method{F14C_to_BP14C}{numeric,numeric}(
+  values,
+  errors,
+  lambda = 8033,
+  asymmetric = FALSE,
+  rounding = NULL
+)
 }
 \arguments{
 \item{values}{A \code{\link{numeric}} vector giving the radiocarbon ages or the F14C
@@ -31,7 +37,12 @@ values.}
 radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).}
 
 \item{asymmetric}{A \code{\link{logical}} scalar: should asymmetric 14C errors be
-returned?}
+returned (van der Plicht & Hogg, 2006)?}
+
+\item{rounding}{A \code{\link{character}} string specifying the rounding convention.
+It can be "\code{stuiver}" (Stuiver & Polach, 1977).
+Any unambiguous substring can be given.
+If \code{NULL} (the default), no rounding is applied.}
 }
 \value{
 A \code{\link{data.frame}}.
@@ -49,6 +60,9 @@ F14C_to_BP14C(0.0052, 0.0006, asym = FALSE)
 \references{
 Bronk Ramsey, C. (2008). Radiocarbon Dating: Revolutions in Understanding.
 \emph{Archaeometry}, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
+
+Stuiver, M., Polach, H. A. (1977). Discussion Reporting of 14C Data.
+\emph{Radiocarbon}, 19(3): 355-363. \doi{10.1017/S0033822200003672}.
 
 van der Plicht, J., Hogg, A. (2006). A Note on Reporting Radiocarbon.
 \emph{Quaternary Geochronology}, 1(4): 237-240.
