@@ -7,15 +7,15 @@ NULL
 #' @aliases c14_combine,numeric,numeric-method
 setMethod(
   f = "c14_combine",
-  signature = c(ages = "numeric", errors = "numeric"),
-  definition = function(ages, errors, groups = NULL) {
+  signature = c(values = "numeric", errors = "numeric"),
+  definition = function(values, errors, groups = NULL) {
     ## Validation
-    n <- length(ages)
+    n <- length(values)
     if (is.null(groups)) groups <- "X"
     if (length(groups) == 1) groups <- rep(groups, n)
     groups <- factor(x = groups, levels = unique(groups))
 
-    arkhe::assert_missing(ages)
+    arkhe::assert_missing(values)
     arkhe::assert_missing(errors)
     arkhe::assert_length(errors, n)
     arkhe::assert_length(groups, n)
@@ -34,7 +34,7 @@ setMethod(
     if (any(k)) {
       solo <- data.frame(
         groups = as.character(groups[k]),
-        ages = ages[k],
+        values = values[k],
         errors = errors[k],
         chi2 = NA_real_,
         p = NA_real_
@@ -47,16 +47,16 @@ setMethod(
       groups <- droplevels(groups)
 
       ## split() removes NA group
-      ages <- split(ages, f = groups)
+      values <- split(values, f = groups)
       errors <- split(errors, f = groups)
       cmbn <- mapply(
         FUN = combine,
-        ages = ages,
+        values = values,
         errors = errors,
         SIMPLIFY = FALSE
       )
       combined <- data.frame(names(cmbn), do.call(rbind, cmbn))
-      colnames(combined) <- c("groups", "ages", "errors", "chi2", "p")
+      colnames(combined) <- c("groups", "values", "errors", "chi2", "p")
     }
 
     final <- rbind(solo, combined, make.row.names = FALSE)
@@ -64,19 +64,19 @@ setMethod(
   }
 )
 
-combine <- function(ages, errors) {
+combine <- function(values, errors) {
   ## On calcule la moyenne pondérée
   w <- 1 / errors^2 # Facteur de pondération
-  moy <- stats::weighted.mean(x = ages, w = w)
+  moy <- stats::weighted.mean(x = values, w = w)
 
   ## On calcule l'incertitude associée à la moyenne pondérée
   err <- sum(1 / errors^2)^(-1 / 2)
 
   ## On calcule la statistique du test
-  chi2 <- sum(((ages - moy) / errors)^2)
+  chi2 <- sum(((values - moy) / errors)^2)
 
   ## On calcule la valeur-p
-  p <- 1 - stats::pchisq(chi2, df = length(ages))
+  p <- 1 - stats::pchisq(chi2, df = length(values))
 
   ## On stocke les résultats
   c(moy, err, chi2, p)

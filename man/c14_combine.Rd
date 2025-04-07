@@ -7,12 +7,12 @@
 \alias{c14_combine,numeric,numeric-method}
 \title{Combine 14C}
 \usage{
-c14_combine(ages, errors, ...)
+c14_combine(values, errors, ...)
 
-\S4method{c14_combine}{numeric,numeric}(ages, errors, groups = NULL)
+\S4method{c14_combine}{numeric,numeric}(values, errors, groups = NULL)
 }
 \arguments{
-\item{ages}{A \code{\link{numeric}} vector giving the BP ages to be calibrated.}
+\item{values}{A \code{\link{numeric}} vector giving the BP ages to be calibrated.}
 
 \item{errors}{A \code{\link{numeric}} vector giving the standard deviation of the ages
 to be calibrated.}
@@ -46,7 +46,7 @@ polach1972 <- data.frame(
 )
 
 c14_combine(
-  ages = polach1972$ages,
+  values = polach1972$ages,
   errors = polach1972$errors,
   groups = polach1972$samples
 )

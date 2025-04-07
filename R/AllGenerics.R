@@ -319,8 +319,8 @@ setGeneric(
 #' F14C
 #'
 #' Converts F14C values to 14C ages.
-#' @param ages A [`numeric`] vector giving the radiocarbon ages.
-#' @param values A [`numeric`] vector giving the F14C values.
+#' @param values A [`numeric`] vector giving the radiocarbon ages or the F14C
+#'  values.
 #' @param errors A [`numeric`] vector giving the standard deviations.
 #' @param lambda A length-one [`numeric`] vector specifying the mean-life of
 #'  radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).
@@ -348,7 +348,7 @@ NULL
 #' @aliases BP14C_to_F14C-method
 setGeneric(
   name = "BP14C_to_F14C",
-  def = function(ages, errors, ...) standardGeneric("BP14C_to_F14C"),
+  def = function(values, errors, ...) standardGeneric("BP14C_to_F14C"),
   valueClass = "data.frame"
 )
 
@@ -364,7 +364,7 @@ setGeneric(
 #' Combine 14C
 #'
 #' Combines radiocarbon dates.
-#' @param ages A [`numeric`] vector giving the BP ages to be calibrated.
+#' @param values A [`numeric`] vector giving the BP ages to be calibrated.
 #' @param errors A [`numeric`] vector giving the standard deviation of the ages
 #'  to be calibrated.
 #' @param groups A [`factor`] in the sense that `as.factor(groups)` defines the
@@ -391,7 +391,7 @@ setGeneric(
 #' @aliases c14_combine-method
 setGeneric(
   name = "c14_combine",
-  def = function(ages, errors, ...) standardGeneric("c14_combine"),
+  def = function(values, errors, ...) standardGeneric("c14_combine"),
   valueClass = "data.frame"
 )
 

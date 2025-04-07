@@ -11,22 +11,21 @@
 \alias{F14C_to_BP14C,numeric,numeric-method}
 \title{F14C}
 \usage{
-BP14C_to_F14C(ages, errors, ...)
+BP14C_to_F14C(values, errors, ...)
 
 F14C_to_BP14C(values, errors, ...)
 
-\S4method{BP14C_to_F14C}{numeric,numeric}(ages, errors, lambda = 8033)
+\S4method{BP14C_to_F14C}{numeric,numeric}(values, errors, lambda = 8033)
 
 \S4method{F14C_to_BP14C}{numeric,numeric}(values, errors, lambda = 8033, asymmetric = FALSE)
 }
 \arguments{
-\item{ages}{A \code{\link{numeric}} vector giving the radiocarbon ages.}
+\item{values}{A \code{\link{numeric}} vector giving the radiocarbon ages or the F14C
+values.}
 
 \item{errors}{A \code{\link{numeric}} vector giving the standard deviations.}
 
 \item{...}{Currently not used.}
-
-\item{values}{A \code{\link{numeric}} vector giving the F14C values.}
 
 \item{lambda}{A length-one \code{\link{numeric}} vector specifying the mean-life of
 radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).}

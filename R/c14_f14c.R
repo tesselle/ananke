@@ -7,9 +7,9 @@ NULL
 #' @aliases BP14C_to_F14C,numeric,numeric-method
 setMethod(
   f = "BP14C_to_F14C",
-  signature = c(ages = "numeric", errors = "numeric"),
-  definition = function(ages, errors, lambda = 8033) {
-    values <- exp(ages / -lambda)
+  signature = c(values = "numeric", errors = "numeric"),
+  definition = function(values, errors, lambda = 8033) {
+    values <- exp(values / -lambda)
     sigma <- values * errors / lambda
     data.frame(value = values, error = sigma)
   }

@@ -7,7 +7,7 @@ polach1972 <- data.frame(
 )
 
 c14_combine(
-  ages = polach1972$ages,
+  values = polach1972$ages,
   errors = polach1972$errors,
   groups = polach1972$samples
 )
