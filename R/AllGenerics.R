@@ -522,7 +522,7 @@ setGeneric(
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param ... Currently not used.
 #' @return
-#'  A [`CalibratedHDR-class`] object.
+#'  A [`CalibratedIntervals-class`] object.
 #' @references
 #'  Hyndman, R. J. (1996). Computing and graphing highest density regions.
 #'  *American Statistician*, 50: 120-126. \doi{10.2307/2684423}.

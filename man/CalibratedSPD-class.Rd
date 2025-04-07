@@ -15,7 +15,7 @@ This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 \seealso{
 Other classes: 
 \code{\link{CalibratedAges-class}},
-\code{\link{CalibratedHDR-class}},
+\code{\link{CalibratedIntervals-class}},
 \code{\link{ProxyRecord-class}},
 \code{\link{RECE-class}}
 }

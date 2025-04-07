@@ -3,10 +3,10 @@
 \docType{methods}
 \name{as.list}
 \alias{as.list}
-\alias{as.list,CalibratedHDR-method}
+\alias{as.list,CalibratedIntervals-method}
 \title{Coerce to a list}
 \usage{
-\S4method{as.list}{CalibratedHDR}(x, ..., calendar = get_calendar())
+\S4method{as.list}{CalibratedIntervals}(x, ..., calendar = get_calendar())
 }
 \arguments{
 \item{x}{An object.}

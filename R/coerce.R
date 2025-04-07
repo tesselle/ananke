@@ -4,8 +4,8 @@ NULL
 
 # To list ======================================================================
 #' @export
-#' @method as.list CalibratedHDR
-as.list.CalibratedHDR <- function(x, ..., calendar = get_calendar()) {
+#' @method as.list CalibratedIntervals
+as.list.CalibratedIntervals <- function(x, ..., calendar = get_calendar()) {
   z <- as.data.frame(x, calendar = calendar)
   f <- factor(z$label, levels = unique(z$label))
   z$label <- NULL
@@ -14,8 +14,8 @@ as.list.CalibratedHDR <- function(x, ..., calendar = get_calendar()) {
 
 #' @export
 #' @rdname as.list
-#' @aliases as.list,CalibratedHDR-method
-setMethod("as.list", "CalibratedHDR", as.list.CalibratedHDR)
+#' @aliases as.list,CalibratedIntervals-method
+setMethod("as.list", "CalibratedIntervals", as.list.CalibratedIntervals)
 
 # To data.frame ================================================================
 #' @export
@@ -34,8 +34,8 @@ as.data.frame.CalibratedAges <- function(x, ...,
 setMethod("as.data.frame", "CalibratedAges", as.data.frame.CalibratedAges)
 
 #' @export
-#' @method as.data.frame CalibratedHDR
-as.data.frame.CalibratedHDR <- function(x, ...,
+#' @method as.data.frame CalibratedIntervals
+as.data.frame.CalibratedIntervals <- function(x, ...,
                                         calendar = get_calendar()) {
   ## Build a data frame
   data.frame(
@@ -48,8 +48,8 @@ as.data.frame.CalibratedHDR <- function(x, ...,
 
 #' @export
 #' @rdname as.data.frame
-#' @aliases as.data.frame,CalibratedHDR-method
-setMethod("as.data.frame", "CalibratedHDR", as.data.frame.CalibratedHDR)
+#' @aliases as.data.frame,CalibratedIntervals-method
+setMethod("as.data.frame", "CalibratedIntervals", as.data.frame.CalibratedIntervals)
 
 #' @export
 #' @method as.data.frame RECE

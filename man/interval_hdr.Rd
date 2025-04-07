@@ -16,7 +16,7 @@
 \item{...}{Currently not used.}
 }
 \value{
-A \code{\linkS4class{CalibratedHDR}} object.
+A \code{\linkS4class{CalibratedIntervals}} object.
 }
 \description{
 Highest Density Regions

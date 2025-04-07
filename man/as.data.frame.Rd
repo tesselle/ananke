@@ -4,14 +4,14 @@
 \name{as.data.frame}
 \alias{as.data.frame}
 \alias{as.data.frame,CalibratedAges-method}
-\alias{as.data.frame,CalibratedHDR-method}
+\alias{as.data.frame,CalibratedIntervals-method}
 \alias{as.data.frame,RECE-method}
 \alias{as.data.frame,ProxyRecord-method}
 \title{Coerce to a Data Frame}
 \usage{
 \S4method{as.data.frame}{CalibratedAges}(x, ..., calendar = get_calendar())
 
-\S4method{as.data.frame}{CalibratedHDR}(x, ..., calendar = get_calendar())
+\S4method{as.data.frame}{CalibratedIntervals}(x, ..., calendar = get_calendar())
 
 \S4method{as.data.frame}{RECE}(x, ..., calendar = get_calendar())
 

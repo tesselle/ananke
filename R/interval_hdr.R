@@ -28,7 +28,7 @@ setMethod(
     lab <- rep(labels(x), n)
 
     hdr <- do.call(rbind, hdr)
-    .CalibratedHDR(
+    .CalibratedIntervals(
       .Id = lab,
       .Start = aion::as_fixed(hdr[, 1]),
       .End = aion::as_fixed(hdr[, 2]),
