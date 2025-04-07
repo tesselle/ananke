@@ -9,7 +9,10 @@ setValidity(
     values <- object@values
     errors <- object@errors
     curves <- object@curves
+    reservoir_offsets <- object@reservoir_offsets
+    reservoir_errors <- object@reservoir_errors
     F14C <- object@F14C
+    positions <- object@positions
     status <- object@status
 
     p <- ncol(object)
@@ -19,7 +22,10 @@ setValidity(
       arkhe::validate(arkhe::assert_length(values, p)),
       arkhe::validate(arkhe::assert_length(errors, p)),
       arkhe::validate(arkhe::assert_length(curves, p)),
+      arkhe::validate(arkhe::assert_length(reservoir_offsets, p)),
+      arkhe::validate(arkhe::assert_length(reservoir_errors, p)),
       arkhe::validate(arkhe::assert_length(F14C, 1)),
+      arkhe::validate(arkhe::assert_length(positions, p)),
       arkhe::validate(arkhe::assert_length(status, p))
     )
 

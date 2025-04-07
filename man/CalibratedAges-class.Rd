@@ -30,6 +30,9 @@ An S4 class to represent calibrated radiocarbon ages.
 \item{\code{F14C}}{A \code{\link{logical}} scalar: is \code{values} F14C instead of radiocarbon
 ages?}
 
+\item{\code{positions}}{A \code{\link{numeric}} vector giving the position values (e.g. depths)
+for each age.}
+
 \item{\code{status}}{An \code{\link{integer}} vector specifying the calibration status.
 It must be one of "\code{0}" (OK), "\code{1}" (out of calibration range) or "\code{2}"
 (may extend out of calibration range).}

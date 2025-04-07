@@ -237,10 +237,12 @@ setGeneric(
 #'  calibrated (conventional ages).
 #' @param errors A [`numeric`] vector giving the errors associated to the
 #'  values to be calibrated.
-#' @param names A [`character`] vector specifying the names of the samples (e.g.
-#'  laboratory codes).
 #' @param curves A [`character`] vector specifying the calibration curve to be
 #'  used. Different curves can be specified per sample.
+#' @param names A [`character`] vector specifying the names of the samples (e.g.
+#'  laboratory codes).
+#' @param positions A [`numeric`] vector giving the position values (e.g.
+#'  depths) for each age.
 #' @param reservoir_offsets A [`numeric`] vector giving the offset values for
 #'  any marine reservoir effect (defaults to 0; i.e. no offset).
 #' @param reservoir_errors A [`numeric`] vector giving the offset value errors
@@ -405,9 +407,7 @@ setGeneric(
 #' @param interval A [`logical`] scalar: should highest density region be drawn?
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Only used if `interval` is `TRUE`.
-#' @param sort A [`logical`] scalar: should the data be sorted?
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
-#'  Only used if `sort` is `TRUE`.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x

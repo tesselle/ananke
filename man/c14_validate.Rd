@@ -35,7 +35,7 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = BP(), panel.first = graphics::grid())
+plot(cal, calendar = CE(), panel.first = graphics::grid())
 plot(cal, interval = FALSE)
 plot(cal[, 1, ], col.interval = "red")
 

@@ -22,6 +22,8 @@ NULL
 #'  for any marine reservoir effect.
 #' @slot F14C A [`logical`] scalar: is `values` F14C instead of radiocarbon
 #'  ages?
+#' @slot positions A [`numeric`] vector giving the position values (e.g. depths)
+#'  for each age.
 #' @slot status An [`integer`] vector specifying the calibration status.
 #'  It must be one of "`0`" (OK), "`1`" (out of calibration range) or "`2`"
 #'  (may extend out of calibration range).
@@ -41,6 +43,7 @@ NULL
     reservoir_offsets = "numeric",
     reservoir_errors = "numeric",
     F14C = "logical",
+    positions = "numeric",
     status = "integer"
   ),
   contains = "TimeSeries"

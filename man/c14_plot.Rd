@@ -13,8 +13,9 @@
   density = TRUE,
   interval = TRUE,
   level = 0.954,
-  sort = TRUE,
   decreasing = TRUE,
+  col.density = "grey",
+  col.interval = "#77AADD",
   main = NULL,
   sub = NULL,
   axes = TRUE,
@@ -22,8 +23,6 @@
   ann = graphics::par("ann"),
   panel.first = NULL,
   panel.last = NULL,
-  col.density = "grey",
-  col.interval = "#77AADD",
   ...
 )
 
@@ -53,10 +52,9 @@ calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \e
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Only used if \code{interval} is \code{TRUE}.}
 
-\item{sort}{A \code{\link{logical}} scalar: should the data be sorted?}
+\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?}
 
-\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?
-Only used if \code{sort} is \code{TRUE}.}
+\item{col.density, col.interval}{A specification for the plotting colors.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
 
@@ -76,8 +74,6 @@ background grids.}
 
 \item{panel.last}{An \code{expression} to be evaluated after plotting has taken
 place but before the axes, title and box are added.}
-
-\item{col.density, col.interval}{A specification for the plotting colors.}
 
 \item{...}{Other \link[graphics:par]{graphical parameters} may also be passed as
 arguments to this function.}
@@ -100,7 +96,7 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = BP(), panel.first = graphics::grid())
+plot(cal, calendar = CE(), panel.first = graphics::grid())
 plot(cal, interval = FALSE)
 plot(cal[, 1, ], col.interval = "red")
 

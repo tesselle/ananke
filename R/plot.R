@@ -6,12 +6,12 @@ NULL
 #' @method plot CalibratedAges
 plot.CalibratedAges <- function(x, calendar = get_calendar(),
                                 density = TRUE, interval = TRUE, level = 0.954,
-                                sort = TRUE, decreasing = TRUE,
+                                decreasing = TRUE,
+                                col.density = "grey", col.interval = "#77AADD",
                                 main = NULL, sub = NULL,
                                 axes = TRUE, frame.plot = FALSE,
                                 ann = graphics::par("ann"),
-                                panel.first = NULL, panel.last = NULL,
-                                col.density = "grey", col.interval = "#77AADD", ...) {
+                                panel.first = NULL, panel.last = NULL, ...) {
   ## Check
   c14_validate(x)
 
@@ -35,18 +35,13 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   fill.interval <- fill.interval[!out]
 
   ## Reorder
-  n <- NCOL(x)
+  k <- order(x@positions, decreasing = decreasing)
+  x <- x[, k, , drop = FALSE]
   lab <- labels(x)
-  k <- seq_len(n)
-  if (sort) {
-    k <- order(x@values, decreasing = decreasing && x@F14C)
-    x <- x[, k, , drop = FALSE]
-    lab <- lab[k]
-    col.density <- col.density[k]
-    fill.density <- fill.density[k]
-    col.interval <- col.interval[k]
-    fill.interval <- fill.interval[k]
-  }
+  col.density <- col.density[k]
+  fill.density <- fill.density[k]
+  col.interval <- col.interval[k]
+  fill.interval <- fill.interval[k]
 
   ## Compute interval
   hdr <- interval_hdr(x, level = level)
@@ -64,6 +59,7 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   graphics::plot.new()
 
   ## Set plotting coordinates
+  n <- NCOL(x)
   xlim <- range(aion::time(x, calendar = NULL))
   ylim <- c(1, n + 1)
   if (!is.null(calendar)) xlim <- aion::as_year(xlim, calendar = calendar)

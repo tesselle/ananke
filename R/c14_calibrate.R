@@ -8,7 +8,8 @@ NULL
 setMethod(
   f = "c14_calibrate",
   signature = signature(values = "numeric", errors = "numeric"),
-  definition = function(values, errors, names = NULL, curves = "intcal20",
+  definition = function(values, errors, curves = "intcal20",
+                        names = NULL, positions = NULL,
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
@@ -101,8 +102,15 @@ setMethod(
       cal_range <- cal_range[keep]
     }
 
+    dens <- t(dens)
+    ## Position
+    if (is.null(positions)) {
+      positions <- quantile_density(x = cal_range, y = dens, probs = 0.5, na.rm = TRUE)
+      positions <- order(positions, decreasing = TRUE) # Reverse BP scale
+    }
+
     time_series <- aion::series(
-      object = t(dens),
+      object = dens,
       time = cal_range,
       calendar = BP(),
       names = names
@@ -115,6 +123,7 @@ setMethod(
       reservoir_offsets = reservoir_offsets,
       reservoir_errors = reservoir_errors,
       F14C = F14C,
+      positions = positions,
       status = status
     )
   }

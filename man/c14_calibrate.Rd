@@ -12,8 +12,9 @@ c14_calibrate(values, errors, ...)
 \S4method{c14_calibrate}{numeric,numeric}(
   values,
   errors,
-  names = NULL,
   curves = "intcal20",
+  names = NULL,
+  positions = NULL,
   reservoir_offsets = 0,
   reservoir_errors = 0,
   from = 55000,
@@ -35,11 +36,14 @@ values to be calibrated.}
 
 \item{...}{Currently not used.}
 
+\item{curves}{A \code{\link{character}} vector specifying the calibration curve to be
+used. Different curves can be specified per sample.}
+
 \item{names}{A \code{\link{character}} vector specifying the names of the samples (e.g.
 laboratory codes).}
 
-\item{curves}{A \code{\link{character}} vector specifying the calibration curve to be
-used. Different curves can be specified per sample.}
+\item{positions}{A \code{\link{numeric}} vector giving the position values (e.g.
+depths) for each age.}
 
 \item{reservoir_offsets}{A \code{\link{numeric}} vector giving the offset values for
 any marine reservoir effect (defaults to 0; i.e. no offset).}
@@ -91,7 +95,7 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = BP(), panel.first = graphics::grid())
+plot(cal, calendar = CE(), panel.first = graphics::grid())
 plot(cal, interval = FALSE)
 plot(cal[, 1, ], col.interval = "red")
 

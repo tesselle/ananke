@@ -16,6 +16,9 @@ setMethod(
     values <- x@values
     errors <- x@errors
     curves <- x@curves
+    reservoir_offsets <- x@reservoir_offsets
+    reservoir_errors <- x@reservoir_errors
+    positions <- x@positions
     status <- x@status
 
     z <- z[i, j, k, drop = drop]
@@ -28,11 +31,16 @@ setMethod(
       values <- values[j]
       errors <- errors[j]
       curves <- curves[j]
+      reservoir_offsets <- reservoir_offsets[j]
+      reservoir_errors <- reservoir_errors[j]
+      positions <- positions[j]
       status <- status[j]
     }
 
     if (isTRUE(drop)) return(z)
     methods::initialize(x, z, .Time = time, values = values, errors = errors,
-                        curves = curves, status = status)
+                        curves = curves, reservoir_offsets = reservoir_offsets,
+                        reservoir_errors = reservoir_errors,
+                        positions = positions, status = status)
   }
 )
