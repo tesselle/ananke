@@ -37,7 +37,7 @@ setMethod(
 setMethod(
   f = "c14_uncalibrate",
   signature = c(object = "CalibratedAges"),
-  definition = function(object, ...) {
+  definition = function(object, n = 10000, ...) {
 
     method <- list(...)$method %||% c("L-BFGS-B")
 
@@ -49,7 +49,7 @@ setMethod(
         curves = curve
       )
       s1 <- samples
-      s2 <- c14_sample(cal)
+      s2 <- c14_sample(cal, n = n, calendar = BP())
 
       dens1 <- stats::density(s1, from = min(c(s1, s2)), to = max(c(s1, s2)))$y
       dens2 <- stats::density(s2, from = min(c(s1, s2)), to = max(c(s1, s2)))$y
@@ -62,7 +62,7 @@ setMethod(
     }
 
     n <- NCOL(object)
-    spl <- c14_sample(object)
+    spl <- c14_sample(object, n = n, calendar = BP())
     curves <- object@curves
     opt_mean <- opt_sd <- numeric(n)
     for (i in seq_len(n)) {
@@ -89,15 +89,3 @@ setMethod(
     data.frame(mean = opt_mean, sd = opt_sd)
   }
 )
-
-c14_sample <- function(object, n = 10000, calendar = BP()) {
-  apply(
-    X = object,
-    MARGIN = 2,
-    FUN = function(prob, size, x) {
-      sample(x, size = size, replace = TRUE, prob = prob)
-    },
-    x = aion::time(object, calendar = calendar),
-    size = n
-  )
-}

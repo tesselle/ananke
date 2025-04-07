@@ -5,8 +5,8 @@ NULL
 #' @export
 #' @method plot CalibratedAges
 plot.CalibratedAges <- function(x, calendar = get_calendar(),
-                                density = TRUE, interval = TRUE, level = 0.954,
-                                decreasing = TRUE,
+                                density = TRUE, interval = c("hdr", "credible"),
+                                level = 0.954, decreasing = TRUE,
                                 col.density = "grey", col.interval = "#77AADD",
                                 main = NULL, sub = NULL,
                                 axes = TRUE, frame.plot = FALSE,
@@ -44,8 +44,16 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   fill.interval <- fill.interval[k]
 
   ## Compute interval
-  hdr <- interval_hdr(x, level = level)
-  hdr <- as.list(hdr, calendar = calendar)
+  if (!is.null(interval) && !isFALSE(interval)) {
+    interval <- match.arg(interval, several.ok = FALSE)
+    calc_interval <- switch(
+      interval,
+      hdr = interval_hdr,
+      credible = interval_credible
+    )
+    int <- calc_interval(x, level = level)
+    int <- as.list(int, calendar = calendar)
+  }
 
   ## Save and restore
   mar <- graphics::par("mar")
@@ -87,8 +95,8 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
       graphics::lines(xi, yi, lty = "solid")
     }
 
-    if (isTRUE(interval)) {
-      h <- hdr[[i]]
+    if (!is.null(interval) && !isFALSE(interval)) {
+      h <- int[[i]]
 
       if (isTRUE(density)) {
         for (j in seq_len(nrow(h))) {

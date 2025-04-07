@@ -10,9 +10,8 @@ hdr68 <- interval_hdr(cal, level = 0.683)
 hdr95 <- interval_hdr(cal, level = 0.954)
 hdr99 <- interval_hdr(cal, level = 0.997)
 
-## Coerce to list
-as.list(hdr95)
+## Coerce to data.frame
+as.data.frame(hdr95, calendar = BC())
 
 ## Plot
-plot(hdr95)
-plot(cal)
+plot(cal, interval = "hdr")

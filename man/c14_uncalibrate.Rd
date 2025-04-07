@@ -12,7 +12,7 @@ c14_uncalibrate(object, ...)
 
 \S4method{c14_uncalibrate}{numeric}(object, curves = "intcal20")
 
-\S4method{c14_uncalibrate}{CalibratedAges}(object, ...)
+\S4method{c14_uncalibrate}{CalibratedAges}(object, n = 10000, ...)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CalibratedAges}} object or a \code{\link{numeric}} vector of
@@ -22,6 +22,8 @@ calibrated ages (BP).}
 
 \item{curves}{A \code{\link{character}} vector specifying the calibration curve to be
 used. Different curves can be specified.}
+
+\item{n}{An \code{\link{integer}} specifying the number of random samples.}
 }
 \description{
 Uncalibrate a Radiocarbon Date
@@ -47,6 +49,7 @@ Other radiocarbon tools:
 \code{\link{c14_curve}()},
 \code{\link{c14_ensemble}()},
 \code{\link{c14_plot}},
+\code{\link{c14_sample}()},
 \code{\link{c14_spd}()},
 \code{\link{c14_validate}()},
 \code{\link{rec_plot}}

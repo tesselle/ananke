@@ -11,7 +11,7 @@
   x,
   calendar = get_calendar(),
   density = TRUE,
-  interval = TRUE,
+  interval = c("hdr", "credible"),
   level = 0.954,
   decreasing = TRUE,
   col.density = "grey",
@@ -47,7 +47,9 @@ calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \e
 
 \item{density}{A \code{\link{logical}} scalar: should density be drawn?}
 
-\item{interval}{A \code{\link{logical}} scalar: should highest density region be drawn?}
+\item{interval}{A \code{\link{character}} string specifying the intervals to be drawn.
+It must be one of "\code{hrd}" (the default) or "\code{credible}". Any unambiguous
+substring can be given. If \code{NULL}, no intervals are drawn.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Only used if \code{interval} is \code{TRUE}.}
@@ -86,28 +88,31 @@ being displayed. Invisibly returns \code{x}.
 Plot Calibrated Radiocarbon Ages
 }
 \examples{
-## Calibrate a single date
-cal <- c14_calibrate(300, 20)
-plot(cal, panel.first = graphics::grid())
-
 ## Calibrate multiple dates
 cal <- c14_calibrate(
   values = c(5000, 4500),
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = CE(), panel.first = graphics::grid())
-plot(cal, interval = FALSE)
-plot(cal[, 1, ], col.interval = "red")
 
+## Specify calendar
+plot(cal, calendar = BP())
+
+## HDR intervals (default)
+plot(cal, interval = "hdr", level = 0.95)
+
+## Credible intervals
+plot(cal, interval = "credible", level = 0.95)
+
+## No intervals
+plot(cal, interval = NULL)
+
+## Intervals only
 plot(cal, density = FALSE, level = 0.68, lwd = 5)
 plot(cal, density = FALSE, level = 0.95, lwd = 5)
 
-\donttest{
-## Out of 14C range?
-out <- c14_calibrate(130, 20)
-plot(out)
-}
+## Change colors
+plot(cal[, 1, ], col.interval = "red")
 }
 \seealso{
 Other radiocarbon tools: 
@@ -116,6 +121,7 @@ Other radiocarbon tools:
 \code{\link{c14_combine}()},
 \code{\link{c14_curve}()},
 \code{\link{c14_ensemble}()},
+\code{\link{c14_sample}()},
 \code{\link{c14_spd}()},
 \code{\link{c14_uncalibrate}()},
 \code{\link{c14_validate}()},

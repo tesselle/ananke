@@ -61,7 +61,8 @@ abline(v = mean(cal, calendar = CE()), lty = 2, col = "red")
 }
 \seealso{
 Other statistics: 
-\code{\link{hdr}},
+\code{\link{interval_credible}()},
+\code{\link{interval_hdr}()},
 \code{\link{mean}()},
 \code{\link{median}()}
 }

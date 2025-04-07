@@ -36,3 +36,33 @@ setMethod(
     )
   }
 )
+
+# Credible =====================================================================
+#' @export
+#' @rdname interval_credible
+#' @aliases interval_credible,CalibratedAges,missing-method
+setMethod(
+  f = "interval_credible",
+  signature = c(x = "CalibratedAges"),
+  definition = function(x, level = 0.954, n = 100, ...) {
+    ## Check
+    c14_validate(x)
+
+    spl <- c14_sample(x, n = n, calendar = NULL)
+    crd <- apply(
+      X = spl,
+      MARGIN = 2,
+      FUN = interval_credible,
+      level = level,
+      simplify = FALSE
+    )
+
+    crd <- do.call(rbind, crd)
+    .CalibratedIntervals(
+      .Id = labels(x),
+      .Start = aion::as_fixed(crd[, 1]),
+      .End = aion::as_fixed(crd[, 2]),
+      p = unname(crd[, 3])
+    )
+  }
+)

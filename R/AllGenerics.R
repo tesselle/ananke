@@ -3,8 +3,9 @@
 NULL
 
 # Import S4 generics ===========================================================
-#' @importMethodsFrom arkhe interval_hdr
 #' @importMethodsFrom arkhe describe
+#' @importMethodsFrom arkhe interval_credible
+#' @importMethodsFrom arkhe interval_hdr
 NULL
 
 # Tools ========================================================================
@@ -308,6 +309,7 @@ setGeneric(
 #'
 #' @param object A [`CalibratedAges-class`] object or a [`numeric`] vector of
 #'  calibrated ages (BP).
+#' @param n An [`integer`] specifying the number of random samples.
 #' @param curves A [`character`] vector specifying the calibration curve to be
 #'  used. Different curves can be specified.
 #' @param ... Currently not used.
@@ -407,7 +409,9 @@ setGeneric(
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
 #'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param density A [`logical`] scalar: should density be drawn?
-#' @param interval A [`logical`] scalar: should highest density region be drawn?
+#' @param interval A [`character`] string specifying the intervals to be drawn.
+#'  It must be one of "`hrd`" (the default) or "`credible`". Any unambiguous
+#'  substring can be given. If `NULL`, no intervals are drawn.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Only used if `interval` is `TRUE`.
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
@@ -429,7 +433,7 @@ setGeneric(
 #' @return
 #'  `plot()` is called it for its side-effects: it results in a graphic
 #'  being displayed. Invisibly returns `x`.
-#' @example inst/examples/ex-14c-calibrate.R
+#' @example inst/examples/ex-14c-plot.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family radiocarbon tools
@@ -456,6 +460,26 @@ NULL
 #' @name rec_plot
 #' @rdname rec_plot
 NULL
+
+## Sample ----------------------------------------------------------------------
+#' Sample Calibrated Ages
+#'
+#' @param object A [`CalibratedAges-class`] object.
+#' @param n An [`integer`] specifying the number of random samples.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]). Defaults to [aion::CE()]. If `NULL`,
+#'  *rata die* are returned.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-14c-sample.R
+#' @return An `numeric` matrix.
+#' @author N. Frerebeau
+#' @family radiocarbon tools
+#' @docType methods
+#' @aliases c14_sample-method
+setGeneric(
+  name = "c14_sample",
+  def = function(object, ...) standardGeneric("c14_sample")
+)
 
 ## RECE ------------------------------------------------------------------------
 #' Radiocarbon Event Count
@@ -535,7 +559,25 @@ setGeneric(
 #' @family statistics
 #' @docType methods
 #' @rdname interval_hdr
-#' @name hdr
+#' @name interval_hdr
+NULL
+
+## Credible --------------------------------------------------------------------
+#' Bayesian Credible Interval
+#'
+#' @param x A [`CalibratedAges-class`] object.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param n An [`integer`] specifying the number of random samples.
+#' @param ... Currently not used.
+#' @return
+#'  A [`CalibratedIntervals-class`] object.
+#' @example inst/examples/ex-14c-credible.R
+#' @seealso [arkhe::interval_credible()]
+#' @author N. Frerebeau
+#' @family statistics
+#' @docType methods
+#' @rdname interval_credible
+#' @name interval_credible
 NULL
 
 # Proxy Records ================================================================

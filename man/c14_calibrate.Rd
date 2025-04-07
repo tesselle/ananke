@@ -100,12 +100,7 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-plot(cal, calendar = CE(), panel.first = graphics::grid())
-plot(cal, interval = FALSE)
-plot(cal[, 1, ], col.interval = "red")
-
-plot(cal, density = FALSE, level = 0.68, lwd = 5)
-plot(cal, density = FALSE, level = 0.95, lwd = 5)
+plot(cal, panel.first = graphics::grid())
 
 \donttest{
 ## Out of 14C range?
@@ -124,6 +119,7 @@ Other radiocarbon tools:
 \code{\link{c14_curve}()},
 \code{\link{c14_ensemble}()},
 \code{\link{c14_plot}},
+\code{\link{c14_sample}()},
 \code{\link{c14_spd}()},
 \code{\link{c14_uncalibrate}()},
 \code{\link{c14_validate}()},
