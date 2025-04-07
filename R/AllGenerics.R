@@ -585,18 +585,19 @@ NULL
 #'
 #' Represents layer-counted proxy records as sequences of probability
 #' distributions on absolute, error-free time axes.
-#' @param depth A positive [`numeric`] vector giving the depth at which proxy
-#'  values and calendar ages were measured. It must be in decreasing order
-#'  (i.e. in chronological order).
-#' @param proxy A [`numeric`] vector giving the proxy values.
-#' @param proxy_error A [`numeric`] vector giving the proxy uncertainties.
+#' @param positions A positive [`numeric`] vector giving the positions (e.g.
+#'  depths) at which proxy values and calendar ages were measured. In the case
+#'  of layers of non-zero thickness, this should be the middle value of the
+#'  slice. It must be in decreasing order (i.e. in chronological order).
+#' @param proxy_values A [`numeric`] vector giving the proxy values.
+#' @param proxy_errors A [`numeric`] vector giving the proxy uncertainties.
+#' @param time_values A [`numeric`] vector giving the calendar ages (in years).
+#' @param time_errors A [`numeric`] vector giving the calendar age uncertainties
+#'  (in years).
+#' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
+#'  of `time` (see [aion::calendar()]).
 #' @param step A length-one [`numeric`] vector specifying the step size
 #'  (in units of `proxy`) at which proxy records densities are to be estimated.
-#' @param time A [`numeric`] vector giving the calendar ages (in years).
-#' @param time_error A [`numeric`] vector giving the calendar age uncertainties
-#'  (in years).
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param from A length-one [`numeric`] vector specifying the starting value of
 #'  the temporal sequence at which densities are to be estimated (in years).
 #' @param to A length-one [`numeric`] vector specifying the end value of the
@@ -620,7 +621,7 @@ NULL
 #' @aliases proxy_ensemble-method
 setGeneric(
   name = "proxy_ensemble",
-  def = function(depth, ...) standardGeneric("proxy_ensemble"),
+  def = function(positions, ...) standardGeneric("proxy_ensemble"),
   valueClass = "ProxyRecord"
 )
 

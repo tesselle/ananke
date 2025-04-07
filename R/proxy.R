@@ -8,23 +8,24 @@ NULL
 setMethod(
   f = "proxy_ensemble",
   signature = c("numeric"),
-  definition = function(depth, proxy, proxy_error, step,
-                        time, time_error, calendar,
+  definition = function(positions, proxy_values, proxy_errors, step,
+                        time_values, time_errors, calendar,
                         from = NULL, to = NULL, by = NULL, n = 30,
                         progress = getOption("ananke.progress"),
                         verbose = getOption("ananke.verbose")) {
     ## Validation
-    k <- length(depth)
-    arkhe::assert_positive(depth)
-    arkhe::assert_decreasing(depth)
-    arkhe::assert_length(proxy, k)
-    arkhe::assert_length(time, k)
-    arkhe::assert_length(time_error, k)
-    if (length(proxy_error) != k) proxy_error <- rep(proxy_error, k)
+    k <- length(positions)
+    if (length(proxy_errors) == 1) proxy_errors <- rep(proxy_errors, k)
+    arkhe::assert_positive(positions)
+    arkhe::assert_decreasing(positions)
+    arkhe::assert_length(proxy_values, k)
+    arkhe::assert_length(proxy_errors, k)
+    arkhe::assert_length(time_values, k)
+    arkhe::assert_length(time_errors, k)
 
     ## Missing values
-    if (is.null(from)) from <- time[[1L]]
-    if (is.null(to))   to <- time[[k]]
+    if (is.null(from)) from <- time_values[[1L]]
+    if (is.null(to))   to <- time_values[[k]]
     if (is.null(by)) {
       grid <- getOption("ananke.grid")
       by <- ((to - from) / (grid - 1))
@@ -42,8 +43,8 @@ setMethod(
         stats::dunif(x = x, min = min, max = max)
       },
       dots = list(
-        min = time - 1 * time_error,
-        max = time + 1 * time_error
+        min = time_values - 1 * time_errors,
+        max = time_values + 1 * time_errors
       ),
       MoreArgs = list(x = t_grid)
     )
@@ -54,8 +55,8 @@ setMethod(
     ## Rows will refer to depth
     ## Columns will refer to the proxy density
     if (verbose) cat("Computing p(x|zi) densities...", sep = "\n")
-    d <- 2 * max(proxy_error)
-    x_range <- range(c(range(proxy) - d, range(proxy) + d))
+    d <- 2 * max(proxy_errors)
+    x_range <- range(c(range(proxy_values) - d, range(proxy_values) + d))
     x_grid <- seq(from = x_range[[1L]], to = x_range[[2L]], by = step)
 
     x_z <- .mapply(
@@ -63,8 +64,8 @@ setMethod(
         stats::dnorm(x = x, mean = mean, sd = sd)
       },
       dots = list(
-        mean = proxy,
-        sd = proxy_error
+        mean = proxy_values,
+        sd = proxy_errors
       ),
       MoreArgs = list(x = x_grid)
     )
@@ -76,14 +77,14 @@ setMethod(
     ## Eq. 4 of Boers et al. 2017
     if (verbose) cat("Computing p(x|t) densities...", sep = "\n")
 
-    z <- length(depth)
+    z <- length(positions)
     ri <- vapply(
       X = 2:(z - 1),
       FUN = function(x, y) (y[x + 1] - y[x - 1]) / 2,
       FUN.VALUE = numeric(1),
-      y = depth
+      y = positions
     )
-    r <- abs(c(depth[2] - depth[1], ri, depth[z] - depth[z - 1]))
+    r <- abs(c(positions[2] - positions[1], ri, positions[z] - positions[z - 1]))
     r_t <- matrix(data = r, nrow = nrow(t_z), ncol = ncol(t_z), byrow = TRUE)
     r_x <- matrix(data = r, nrow = nrow(x_z), ncol = ncol(x_z), byrow = TRUE)
 

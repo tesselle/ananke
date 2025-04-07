@@ -7,15 +7,15 @@
 \alias{proxy_ensemble,numeric-method}
 \title{Layer-Counted Proxy Records Uncertainties}
 \usage{
-proxy_ensemble(depth, ...)
+proxy_ensemble(positions, ...)
 
 \S4method{proxy_ensemble}{numeric}(
-  depth,
-  proxy,
-  proxy_error,
+  positions,
+  proxy_values,
+  proxy_errors,
   step,
-  time,
-  time_error,
+  time_values,
+  time_errors,
   calendar,
   from = NULL,
   to = NULL,
@@ -26,26 +26,27 @@ proxy_ensemble(depth, ...)
 )
 }
 \arguments{
-\item{depth}{A positive \code{\link{numeric}} vector giving the depth at which proxy
-values and calendar ages were measured. It must be in decreasing order
-(i.e. in chronological order).}
+\item{positions}{A positive \code{\link{numeric}} vector giving the positions (e.g.
+depths) at which proxy values and calendar ages were measured. In the case
+of layers of non-zero thickness, this should be the middle value of the
+slice. It must be in decreasing order (i.e. in chronological order).}
 
 \item{...}{Currently not used.}
 
-\item{proxy}{A \code{\link{numeric}} vector giving the proxy values.}
+\item{proxy_values}{A \code{\link{numeric}} vector giving the proxy values.}
 
-\item{proxy_error}{A \code{\link{numeric}} vector giving the proxy uncertainties.}
+\item{proxy_errors}{A \code{\link{numeric}} vector giving the proxy uncertainties.}
 
 \item{step}{A length-one \code{\link{numeric}} vector specifying the step size
 (in units of \code{proxy}) at which proxy records densities are to be estimated.}
 
-\item{time}{A \code{\link{numeric}} vector giving the calendar ages (in years).}
+\item{time_values}{A \code{\link{numeric}} vector giving the calendar ages (in years).}
 
-\item{time_error}{A \code{\link{numeric}} vector giving the calendar age uncertainties
+\item{time_errors}{A \code{\link{numeric}} vector giving the calendar age uncertainties
 (in years).}
 
-\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
+of \code{time} (see \code{\link[aion:calendar]{aion::calendar()}}).}
 
 \item{from}{A length-one \code{\link{numeric}} vector specifying the starting value of
 the temporal sequence at which densities are to be estimated (in years).}
@@ -79,12 +80,12 @@ ngrip2010 <- ngrip2010[nrow(ngrip2010):1, ] # Sort in chronological order
 ## Replicate fig. 3d from Boers et al. (2017)
 ## /!\ This may take a while... /!\
 ngrip_record <- proxy_ensemble(
-  depth = ngrip2010$depth,
-  proxy = ngrip2010$delta,
-  proxy_error = 0.01,
+  positions = ngrip2010$depth,
+  proxy_values = ngrip2010$delta,
+  proxy_errors = 0.01,
   step = 0.001,
-  time = ngrip2010$age,
-  time_error = ngrip2010$MCE,
+  time_values = ngrip2010$age,
+  time_errors = ngrip2010$MCE,
   calendar = b2k(), # /!\
   by = 20,
   n = 30
