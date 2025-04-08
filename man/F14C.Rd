@@ -22,7 +22,7 @@ F14C_to_BP14C(values, errors, ...)
   errors,
   lambda = 8033,
   asymmetric = FALSE,
-  rounding = NULL
+  rounding = getOption("ananke.round")
 )
 }
 \arguments{
@@ -40,9 +40,8 @@ radiocarbon (defaults to 14C half-life value as introduced by Libby 1952).}
 returned (van der Plicht & Hogg, 2006)?}
 
 \item{rounding}{A \code{\link{character}} string specifying the rounding convention.
-It can be "\code{stuiver}" (Stuiver & Polach, 1977).
-Any unambiguous substring can be given.
-If \code{NULL} (the default), no rounding is applied.}
+It can be one of "\code{none}" (the default, no rounding) or "\code{stuiver}"
+(Stuiver & Polach, 1977). Any unambiguous substring can be given.}
 }
 \value{
 A \code{\link{data.frame}}.

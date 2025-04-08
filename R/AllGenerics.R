@@ -335,9 +335,8 @@ setGeneric(
 #' @param asymmetric A [`logical`] scalar: should asymmetric 14C errors be
 #'  returned (van der Plicht & Hogg, 2006)?
 #' @param rounding A [`character`] string specifying the rounding convention.
-#'  It can be "`stuiver`" (Stuiver & Polach, 1977).
-#'  Any unambiguous substring can be given.
-#'  If `NULL` (the default), no rounding is applied.
+#'  It can be one of "`none`" (the default, no rounding) or "`stuiver`"
+#'  (Stuiver & Polach, 1977). Any unambiguous substring can be given.
 #' @param ... Currently not used.
 #' @return
 #'  A [`data.frame`].

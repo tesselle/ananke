@@ -11,6 +11,9 @@
 #'  * `ananke.grid`: a [`numeric`] value specifying the number of equally
 #'    spaced points at which densities are to be estimated (defaults to
 #'    \eqn{512}). Should be a power of \eqn{2} (see [stats::density()]).
+#'  * `ananke.round`: a [`character`] string specifying the rounding convention.
+#'    It can be one of "`none`" (the default, no rounding) or "`stuiver`"
+#'    (Stuiver & Polach, 1977).
 #'  * `ananke.progress`: a [`logical`] scalar. Should progress bars be
 #'    displayed? Defaults to [interactive()].
 #'  * `ananke.verbose`: a [`logical`] scalar. Should \R report extra information

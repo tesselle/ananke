@@ -23,6 +23,9 @@ A toolbox for quantitative chronology in archaeology. This package provides func
 \item \code{ananke.grid}: a \code{\link{numeric}} value specifying the number of equally
 spaced points at which densities are to be estimated (defaults to
 \eqn{512}). Should be a power of \eqn{2} (see \code{\link[stats:density]{stats::density()}}).
+\item \code{ananke.round}: a \code{\link{character}} string specifying the rounding convention.
+It can be one of "\code{none}" (the default, no rounding) or "\code{stuiver}"
+(Stuiver & Polach, 1977).
 \item \code{ananke.progress}: a \code{\link{logical}} scalar. Should progress bars be
 displayed? Defaults to \code{\link[=interactive]{interactive()}}.
 \item \code{ananke.verbose}: a \code{\link{logical}} scalar. Should \R report extra information

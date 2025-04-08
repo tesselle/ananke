@@ -2,8 +2,9 @@
   op <- options()
   op.ananke <- list(
     ananke.grid = 512,
-    ananke.verbose = interactive(),
-    ananke.progress = interactive()
+    ananke.progress = interactive(),
+    ananke.round = "none",
+    ananke.verbose = interactive()
   )
   toset <- !(names(op.ananke) %in% names(op))
   if(any(toset)) options(op.ananke[toset])

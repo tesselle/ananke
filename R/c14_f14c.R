@@ -21,13 +21,11 @@ setMethod(
 setMethod(
   f = "F14C_to_BP14C",
   signature = c(values = "numeric", errors = "numeric"),
-  definition = function(values, errors, lambda = 8033,
-                        asymmetric = FALSE, rounding = NULL) {
+  definition = function(values, errors, lambda = 8033, asymmetric = FALSE,
+                        rounding = getOption("ananke.round")) {
     ## Validation
-    if (!is.null(rounding)) {
-      choices <- c("stuiver")
-      rounding <- match.arg(rounding, choices = choices, several.ok = FALSE)
-    }
+    choices <- c("none", "stuiver")
+    rounding <- match.arg(rounding, choices = choices, several.ok = FALSE)
 
     z <- values
 
@@ -58,7 +56,7 @@ setMethod(
     # ages[ages > limit] <- limit[ages > limit]
 
     ## Rounding
-    if (!is.null(rounding) && rounding == "stuiver") {
+    if (identical(rounding, "stuiver")) {
       ages <- round_values_stuiver(ages)
       sigma_plus <- round_errors_stuiver(sigma_plus)
       sigma_minus <- round_errors_stuiver(sigma_minus)
