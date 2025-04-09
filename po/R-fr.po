@@ -2,43 +2,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ananke 0.0.1.9000\n"
 "POT-Creation-Date: 2025-04-09 13:17+0200\n"
-"PO-Revision-Date: 2025-04-09 13:17+0200\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-04-09 11:24+0000\n"
+"Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
+"Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
+"ananke/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #: c14_calibrate.R:71
 msgid "Consider changing the calibration time range to a narrower interval."
-msgstr ""
+msgstr "Envisager de réduire la plage de calibration."
 
 #: c14_validate.R:38
 msgid "Date %s may extent out of calibration range."
-msgstr ""
+msgstr "La date %s peut se situer hors de la plage de calibration."
 
 #: c14_validate.R:40
 msgid "Date %s is out of calibration range."
-msgstr ""
+msgstr "La date %s est hors de la plage de calibration."
 
 #: pb_age.R:48
 msgid "Convergence not reached (possible infinite loop)."
-msgstr ""
+msgstr "La convergence n'est pas atteinte (éventuelle boucle infinie)."
 
 #: proxy.R:38
 msgid "Computing p(t|zi) densities..."
-msgstr ""
+msgstr "Calcul des densités p(t|zi)..."
 
 #: proxy.R:57
 msgid "Computing p(x|zi) densities..."
-msgstr ""
+msgstr "Calcul des densités p(x|zi)..."
 
 #: proxy.R:78
 msgid "Computing p(x|t) densities..."
-msgstr ""
+msgstr "Calcul des densités p(x|t)..."
 
 #: proxy.R:94
 msgid "Sampling proxy records..."
-msgstr ""
+msgstr "Échantillonnage..."
