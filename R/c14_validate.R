@@ -34,6 +34,10 @@ c14_validate <- function(object, verbose = getOption("ananke.verbose")) {
 }
 
 print_out <- function(label, maybe = FALSE) {
-  status <- ifelse(maybe, "may extent out", "is out")
-  sprintf("Date %s %s of calibration range.", dQuote(label), status)
+  if (maybe) {
+    status <- tr_("Date %s may extent out of calibration range.")
+  } else {
+    status <- tr_("Date %s is out of calibration range.")
+  }
+  sprintf(status, dQuote(label))
 }

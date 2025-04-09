@@ -35,7 +35,7 @@ setMethod(
     ## Build a matrix to contain the p(t|zi) densities
     ## Rows will refer to depth
     ## Columns will refer to the time density
-    if (verbose) cat("Computing p(t|zi) densities...", sep = "\n")
+    if (verbose) cat(tr_("Computing p(t|zi) densities..."), sep = "\n")
     t_grid <- seq(from = from, to = to, by = by)
 
     t_z <- .mapply(
@@ -54,7 +54,7 @@ setMethod(
     ## Build a matrix to contain the p(x|zi) densities
     ## Rows will refer to depth
     ## Columns will refer to the proxy density
-    if (verbose) cat("Computing p(x|zi) densities...", sep = "\n")
+    if (verbose) cat(tr_("Computing p(x|zi) densities..."), sep = "\n")
     d <- 2 * max(proxy_errors)
     x_range <- range(c(range(proxy_values) - d, range(proxy_values) + d))
     x_grid <- seq(from = x_range[[1L]], to = x_range[[2L]], by = step)
@@ -75,7 +75,7 @@ setMethod(
     ## Estimate the weighted average density function
     ## (for a given proxy measurement at a given time)
     ## Eq. 4 of Boers et al. 2017
-    if (verbose) cat("Computing p(x|t) densities...", sep = "\n")
+    if (verbose) cat(tr_("Computing p(x|t) densities..."), sep = "\n")
 
     z <- length(positions)
     ri <- vapply(
@@ -91,7 +91,7 @@ setMethod(
     x_t <- t(tcrossprod(r_x * x_z, t_z)) / rowSums(r_t * t_z)
 
     ## Create an ensemble of potential proxy records
-    if (verbose) cat("Sampling proxy records...", sep = "\n")
+    if (verbose) cat(tr_("Sampling proxy records..."), sep = "\n")
     Y <- matrix(data = 0, nrow = length(t_grid), ncol = n)
 
     if (progress) pb <- utils::txtProgressBar(min = 0, max = n, style = 3)

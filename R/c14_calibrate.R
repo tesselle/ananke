@@ -68,7 +68,7 @@ setMethod(
       ## Check
       if (anyNA(d)) {
         d[is.na(d)] <- 0
-        msg <- "Consider changing the calibration time range to a narrower interval."
+        msg <- tr_("Consider changing the calibration time range to a narrower interval.")
         if (verbose) message(msg)
       }
 

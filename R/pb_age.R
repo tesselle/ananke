@@ -45,7 +45,7 @@ setMethod(
         # Loop counter
         iter <- iter + 1
         if (iter >= stop) {
-          msg <- "Convergence not reached (possible infinite loop)."
+          msg <- tr_("Convergence not reached (possible infinite loop).")
           warning(msg, call. = FALSE)
           break
         }
