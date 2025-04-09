@@ -105,28 +105,28 @@ NULL
 #'
 #' \tabular{ll}{
 #'  **Curve**    \tab **Reference** \cr
-#'  `bomb04nh1`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04nh2`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04nh3`  \tab Hua and Barbetti 2004 \cr
-#'  `bomb04sh`   \tab Hua and Barbetti 2004 \cr
-#'  `bomb13nh1`  \tab Hua, Berbetti and Rakowski 2013 \cr
-#'  `bomb13nh2`  \tab Hua, Berbetti and Rakowski 2013 \cr
-#'  `bomb13nh3`  \tab Hua, Berbetti and Rakowski 2013 \cr
-#'  `bomb13sh12` \tab Hua, Berbetti and Rakowski 2013 \cr
-#'  `bomb13sh3`  \tab Hua, Berbetti and Rakowski 2013 \cr
-#'  `bomb21nh1`  \tab Hua et al. 2022 \cr
-#'  `bomb21nh2`  \tab Hua et al. 2022 \cr
-#'  `bomb21nh3`  \tab Hua et al. 2022 \cr
-#'  `bomb21sh12` \tab Hua et al. 2022 \cr
-#'  `bomb21sh3`  \tab Hua et al. 2022 \cr
-#'  `cariaco04`  \tab Hughen et al. 2004 \cr
-#'  `intcal98`   \tab Stuiver et al. 1998 \cr
+#  `bomb04nh1`  \tab Hua and Barbetti 2004 \cr
+#  `bomb04nh2`  \tab Hua and Barbetti 2004 \cr
+#  `bomb04nh3`  \tab Hua and Barbetti 2004 \cr
+#  `bomb04sh`   \tab Hua and Barbetti 2004 \cr
+#  `bomb13nh1`  \tab Hua, Berbetti and Rakowski 2013 \cr
+#  `bomb13nh2`  \tab Hua, Berbetti and Rakowski 2013 \cr
+#  `bomb13nh3`  \tab Hua, Berbetti and Rakowski 2013 \cr
+#  `bomb13sh12` \tab Hua, Berbetti and Rakowski 2013 \cr
+#  `bomb13sh3`  \tab Hua, Berbetti and Rakowski 2013 \cr
+#  `bomb21nh1`  \tab Hua et al. 2022 \cr
+#  `bomb21nh2`  \tab Hua et al. 2022 \cr
+#  `bomb21nh3`  \tab Hua et al. 2022 \cr
+#  `bomb21sh12` \tab Hua et al. 2022 \cr
+#  `bomb21sh3`  \tab Hua et al. 2022 \cr
+#  `cariaco04`  \tab Hughen et al. 2004 \cr
+#  `intcal98`   \tab Stuiver et al. 1998 \cr
 #'  `intcal04`   \tab Reimer et al. 2004 \cr
 #'  `intcal09`   \tab Reimer et al. 2009 \cr
 #'  `intcal13`   \tab Reimer et al. 2013 \cr
 #'  `intcal20`   \tab Reimer et al. 2020 \cr
-#'  `kueppers04` \tab Kueppers et al. 2004 \cr
-#'  `marine98`   \tab Stuiver, Reimer and Braziunas 1998 \cr
+#  `kueppers04` \tab Kueppers et al. 2004 \cr
+#d  `marine98`   \tab Stuiver, Reimer and Braziunas 1998 \cr
 #'  `marine04`   \tab Hughen et al. 2004 \cr
 #'  `marine09`   \tab Reimer et al. 2009 \cr
 #'  `marine13`   \tab Reimer et al. 2013 \cr

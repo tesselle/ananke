@@ -35,28 +35,10 @@ The following calibration curves are available:
 
 \tabular{ll}{
 \strong{Curve}    \tab \strong{Reference} \cr
-\code{bomb04nh1}  \tab Hua and Barbetti 2004 \cr
-\code{bomb04nh2}  \tab Hua and Barbetti 2004 \cr
-\code{bomb04nh3}  \tab Hua and Barbetti 2004 \cr
-\code{bomb04sh}   \tab Hua and Barbetti 2004 \cr
-\code{bomb13nh1}  \tab Hua, Berbetti and Rakowski 2013 \cr
-\code{bomb13nh2}  \tab Hua, Berbetti and Rakowski 2013 \cr
-\code{bomb13nh3}  \tab Hua, Berbetti and Rakowski 2013 \cr
-\code{bomb13sh12} \tab Hua, Berbetti and Rakowski 2013 \cr
-\code{bomb13sh3}  \tab Hua, Berbetti and Rakowski 2013 \cr
-\code{bomb21nh1}  \tab Hua et al. 2022 \cr
-\code{bomb21nh2}  \tab Hua et al. 2022 \cr
-\code{bomb21nh3}  \tab Hua et al. 2022 \cr
-\code{bomb21sh12} \tab Hua et al. 2022 \cr
-\code{bomb21sh3}  \tab Hua et al. 2022 \cr
-\code{cariaco04}  \tab Hughen et al. 2004 \cr
-\code{intcal98}   \tab Stuiver et al. 1998 \cr
 \code{intcal04}   \tab Reimer et al. 2004 \cr
 \code{intcal09}   \tab Reimer et al. 2009 \cr
 \code{intcal13}   \tab Reimer et al. 2013 \cr
 \code{intcal20}   \tab Reimer et al. 2020 \cr
-\code{kueppers04} \tab Kueppers et al. 2004 \cr
-\code{marine98}   \tab Stuiver, Reimer and Braziunas 1998 \cr
 \code{marine04}   \tab Hughen et al. 2004 \cr
 \code{marine09}   \tab Reimer et al. 2009 \cr
 \code{marine13}   \tab Reimer et al. 2013 \cr

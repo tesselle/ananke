@@ -11,7 +11,8 @@ setMethod(
   signature = c(name = "character"),
   definition = function(name) {
     curve_ok <- c("intcal20", "intcal13", "intcal09", "intcal04",
-                  "marine20", "marine13", "marine09", "marine04")
+                  "marine20", "marine13", "marine09", "marine04",
+                  "shcal20",  "shcal13",  "shcal04")
     name <- match.arg(name, choices = curve_ok, several.ok = TRUE)
 
     curves <- lapply(X = name, FUN = read_curve)
