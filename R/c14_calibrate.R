@@ -13,9 +13,11 @@ setMethod(
                         reservoir_offsets = 0, reservoir_errors = 0,
                         from = 55000, to = 0, resolution = 1,
                         normalize = TRUE, F14C = FALSE,
-                        drop = TRUE, eps = 1e-06, dfs = 100,
+                        method = c("student", "normal"),
+                        dfs = 100, drop = TRUE, eps = 1e-06,
                         verbose = getOption("ananke.verbose")) {
     ## Validation
+    method <- match.arg(method)
     n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
     if (is.null(positions)) positions <- values
@@ -59,7 +61,8 @@ setMethod(
         error = errors[i],
         mu = curve_range[[curves[i]]]$mu,
         tau = curve_range[[curves[i]]]$tau,
-        df = dfs[i]
+        df = dfs[i],
+        method = method
       )
 
       ## Check
@@ -127,10 +130,13 @@ setMethod(
   }
 )
 
-calibrate_BP14C <- function(x, error, mu, tau, df) {
+calibrate_BP14C <- function(x, error, mu, tau, df = 100, method = "student") {
   tau <- error^2 + tau^2
-  dens <- stats::dt(x = (x - mu) / sqrt(tau), df = df)
-  # dens <- stats::dnorm(x, mean = mu, sd = sqrt(tau))
+  dens <- switch(
+    method,
+    student = stats::dt(x = (x - mu) / sqrt(tau), df = df),
+    normal = stats::dnorm(x, mean = mu, sd = sqrt(tau))
+  )
   dens
 }
 calibrate_F14C <- function(x, error, mu, tau, ...) {

@@ -22,9 +22,10 @@ c14_calibrate(values, errors, ...)
   resolution = 1,
   normalize = TRUE,
   F14C = FALSE,
+  method = c("student", "normal"),
+  dfs = 100,
   drop = TRUE,
   eps = 1e-06,
-  dfs = 100,
   verbose = getOption("ananke.verbose")
 )
 }
@@ -66,15 +67,19 @@ resolution (in years) of the calibration.}
 \item{F14C}{A \code{\link{logical}} scalar: should the calibration be carried out in
 F14C space? If \code{TRUE}, \code{values} must be expressed as F14C.}
 
+\item{method}{A \code{\link{character}} string specifying the distribution assumed for
+the 14C ages. It must be one of "\code{student}" (the default) or "\code{normal}.
+Only used if \code{F14C} is \code{FALSE}.}
+
+\item{dfs}{A \code{\link{character}} vector giving the degrees-of-freedom values for
+the student t-distribution associated with the calibration calculation.
+Only used if \code{method} is "\code{student}".}
+
 \item{drop}{A \code{\link{logical}} scalar: should years with zero probability be
 discarded? If \code{TRUE} (the default), results in a narrower time range.}
 
 \item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
 calibration values will be removed.}
-
-\item{dfs}{A \code{\link{character}} vector giving the degrees-of-freedom values for
-the t-distribution associated with the calibration calculation. A large
-value indicates Gaussian distributions assumed for the 14C ages.}
 
 \item{verbose}{A \code{\link{logical}} scalar: should extra information be reported
 (e.g. warning message for dates out of calibration range)?}

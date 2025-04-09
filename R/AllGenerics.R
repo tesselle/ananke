@@ -257,13 +257,16 @@ setGeneric(
 #' @param normalize A [`logical`] scalar: should the calibration be normalized?
 #' @param F14C A [`logical`] scalar: should the calibration be carried out in
 #'  F14C space? If `TRUE`, `values` must be expressed as F14C.
+#' @param method A [`character`] string specifying the distribution assumed for
+#'  the 14C ages. It must be one of "`student`" (the default) or "`normal`.
+#'  Only used if `F14C` is `FALSE`.
+#' @param dfs A [`character`] vector giving the degrees-of-freedom values for
+#'  the student t-distribution associated with the calibration calculation.
+#'  Only used if `method` is "`student`".
 #' @param drop A [`logical`] scalar: should years with zero probability be
 #'  discarded? If `TRUE` (the default), results in a narrower time range.
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
 #'  calibration values will be removed.
-#' @param dfs A [`character`] vector giving the degrees-of-freedom values for
-#'  the t-distribution associated with the calibration calculation. A large
-#'  value indicates Gaussian distributions assumed for the 14C ages.
 #' @param verbose A [`logical`] scalar: should extra information be reported
 #'  (e.g. warning message for dates out of calibration range)?
 #' @param ... Currently not used.
