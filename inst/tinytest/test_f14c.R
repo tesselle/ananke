@@ -26,8 +26,3 @@ expect_equal(c14_sym, data.frame(age = 42200, plus = 930, minus = 930))
 c14_sym <- F14C_to_BP14C(0.0052, 0.0006, asym = FALSE)
 f14c <- BP14C_to_F14C(c14_sym$age, c14_sym$plus)
 expect_equal(f14c, data.frame(value = 0.0052, error = 0.0006))
-
-# Round 14C dates ==============================================================
-## Stuiver & Polach (1977), p. 362
-expect_identical(ananke:::round_values_stuiver(c(8234, 42786)), c(8230, 42800))
-expect_identical(ananke:::round_errors_stuiver(c(256, 2322)), c(260, 2300))

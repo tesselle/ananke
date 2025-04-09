@@ -62,7 +62,6 @@ Other radiocarbon tools:
 \code{\link{c14_sample}()},
 \code{\link{c14_spd}()},
 \code{\link{c14_uncalibrate}()},
-\code{\link{c14_validate}()},
 \code{\link{rec_plot}}
 }
 \author{

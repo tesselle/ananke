@@ -289,25 +289,6 @@ setGeneric(
   valueClass = "CalibratedAges"
 )
 
-#' Check Calibrated Radiocarbon Dates
-#'
-#' @param object A [`CalibratedAges-class`] object.
-#' @param ... Currently not used.
-#' @return
-#'  `c14_validate()` is called it for its side-effects: it prints
-#'  [warning messages][warnings()] if calibrated ages are (partially) out of
-#'  calibration range. Invisibly returns `x`.
-#' @example inst/examples/ex-14c-calibrate.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family radiocarbon tools
-#' @aliases c14_validate-method
-setGeneric(
-  name = "c14_validate",
-  def = function(object, ...) standardGeneric("c14_validate"),
-  valueClass = "CalibratedAges"
-)
-
 #' Uncalibrate a Radiocarbon Date
 #'
 #' @param object A [`CalibratedAges-class`] object or a [`numeric`] vector of

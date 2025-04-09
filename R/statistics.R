@@ -87,7 +87,8 @@ setMethod("quantile", c(x = "ProxyRecord"), quantile.ProxyRecord)
 #' @method median CalibratedAges
 median.CalibratedAges <- function(x, na.rm = FALSE, ...,
                                   calendar = get_calendar()) {
-  quantile(x, probs = 0.5, na.rm = na.rm, ..., calendar = calendar)
+  quantile_density(x = aion::time(x, calendar = calendar), y = x,
+                   probs = 0.5, na.rm = na.rm, ...)
 }
 
 #' @export
