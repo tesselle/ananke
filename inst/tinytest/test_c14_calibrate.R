@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Combine mutliple 14C dates ===================================================
 ## Replicate Ward and Wilson (1978), p. 28
 polach1972 <- data.frame(
@@ -88,14 +90,11 @@ cal <- c14_calibrate(
   errors = c(45, 35),
   names = c("X", "Y")
 )
-
 expect_equal_to_reference(cal, file = "_snaps/c14_calibrate.rds")
 
-# plot_cal_CE <- function() plot(cal, panel.first = graphics::grid())
-
-# plot_cal_BP <- function() plot(cal, calendar = BP())
-
-# plot_cal_b2k <- function() plot(cal, calendar = b2k())
+## SPD
+spd <- c14_spd(cal)
+expect_equal_to_reference(spd, file = "_snaps/c14_spd.rds")
 
 # FIXME: check text
 expect_stdout(describe(cal))

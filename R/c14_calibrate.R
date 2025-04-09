@@ -18,7 +18,7 @@ setMethod(
     ## Validation
     n <- length(values)
     if (is.null(names)) names <- paste0("X", seq_len(n))
-    if (is.null(positions)) positions <- rep(NA_real_, n)
+    if (is.null(positions)) positions <- values
     if (length(curves) == 1)
       curves <- rep(curves, n)
     if (length(reservoir_offsets) == 1)

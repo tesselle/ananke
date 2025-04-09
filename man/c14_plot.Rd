@@ -11,9 +11,9 @@
   x,
   calendar = get_calendar(),
   density = TRUE,
-  interval = c("hdr", "credible"),
+  interval = c("hdr", "credible", "none"),
   level = 0.954,
-  sort = TRUE,
+  fixed = TRUE,
   decreasing = TRUE,
   col.density = "grey",
   col.interval = "#77AADD",
@@ -49,14 +49,15 @@ calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \e
 \item{density}{A \code{\link{logical}} scalar: should density be drawn?}
 
 \item{interval}{A \code{\link{character}} string specifying the intervals to be drawn.
-It must be one of "\code{hrd}" (the default) or "\code{credible}". Any unambiguous
-substring can be given. If \code{NULL}, no intervals are drawn.}
+It must be one of "\code{hrd}" (the default), "\code{credible}" or "\code{none}".
+Any unambiguous substring can be given.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Only used if \code{interval} is \code{TRUE}.}
 
-\item{sort}{A \code{\link{logical}} scalar: should the data be sorted in chronological
-order?}
+\item{fixed}{A \code{\link{logical}} scalar: should a fixed y scale be used?
+If \code{TRUE} (the default), ages are equally spaced along the y axis.
+If \code{FALSE}, age \code{positions} are used (see \code{\link[=c14_calibrate]{c14_calibrate()}}).}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be decreasing?}
 

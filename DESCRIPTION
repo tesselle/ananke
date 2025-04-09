@@ -28,6 +28,9 @@ Imports:
 Suggests: 
     knitr,
     markdown,
+    rsvg,
+    svglite,
+    tinysnapshot,
     tinytest
 VignetteBuilder: 
     knitr

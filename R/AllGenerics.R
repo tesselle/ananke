@@ -417,12 +417,13 @@ setGeneric(
 #'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param density A [`logical`] scalar: should density be drawn?
 #' @param interval A [`character`] string specifying the intervals to be drawn.
-#'  It must be one of "`hrd`" (the default) or "`credible`". Any unambiguous
-#'  substring can be given. If `NULL`, no intervals are drawn.
+#'  It must be one of "`hrd`" (the default), "`credible`" or "`none`".
+#'  Any unambiguous substring can be given.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #'  Only used if `interval` is `TRUE`.
-#' @param sort A [`logical`] scalar: should the data be sorted in chronological
-#'  order?
+#' @param fixed A [`logical`] scalar: should a fixed y scale be used?
+#'  If `TRUE` (the default), ages are equally spaced along the y axis.
+#'  If `FALSE`, age `positions` are used (see [c14_calibrate()]).
 #' @param decreasing A [`logical`] scalar: should the sort order be decreasing?
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.

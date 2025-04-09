@@ -2,11 +2,12 @@
 #' @include AllGenerics.R
 NULL
 
+## 14C =========================================================================
 #' @export
 #' @method plot CalibratedAges
-plot.CalibratedAges <- function(x, calendar = get_calendar(),
-                                density = TRUE, interval = c("hdr", "credible"),
-                                level = 0.954, sort = TRUE, decreasing = TRUE,
+plot.CalibratedAges <- function(x, calendar = get_calendar(), density = TRUE,
+                                interval = c("hdr", "credible", "none"),
+                                level = 0.954, fixed = TRUE, decreasing = TRUE,
                                 col.density = "grey", col.interval = "#77AADD",
                                 main = NULL, sub = NULL,
                                 axes = TRUE, frame.plot = FALSE,
@@ -14,6 +15,7 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
                                 panel.first = NULL, panel.last = NULL, ...) {
   ## Check
   c14_validate(x)
+  interval <- match.arg(interval, several.ok = FALSE)
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
@@ -34,19 +36,8 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   col.interval <- col.interval[!out]
   fill.interval <- fill.interval[!out]
 
-  ## Reorder
-  if (sort) {
-    k <- order(median(x, calendar = NULL), decreasing = decreasing)
-    x <- x[, k, , drop = FALSE]
-    col.density <- col.density[k]
-    fill.density <- fill.density[k]
-    col.interval <- col.interval[k]
-    fill.interval <- fill.interval[k]
-  }
-
   ## Compute interval
-  if (!is.null(interval) && !isFALSE(interval)) {
-    interval <- match.arg(interval, several.ok = FALSE)
+  if (!identical(interval, "none")) {
     calc_interval <- switch(
       interval,
       hdr = interval_hdr,
@@ -55,6 +46,12 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
     int <- calc_interval(x, level = level)
     int <- as.list(int, calendar = calendar)
   }
+
+  ## Fixed vs reordered y scale
+  n <- NCOL(x)
+  pos <- x@positions
+  if (isTRUE(fixed)) pos <- order(order(pos))
+  delta <- if (!isTRUE(fixed)) diff(range(x@positions)) / n else 0.9
 
   ## Save and restore
   lab <- labels(x)
@@ -69,9 +66,13 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   graphics::plot.new()
 
   ## Set plotting coordinates
-  n <- NCOL(x)
   xlim <- range(aion::time(x, calendar = NULL))
-  ylim <- c(1, n + 1)
+  ylim <- if (!isTRUE(fixed)) range(x@values) else c(1, n)
+  if (!isTRUE(decreasing)) {
+    ylim <- rev(ylim) - c(0, delta)
+  } else {
+    ylim <- ylim + c(0, delta)
+  }
   if (!is.null(calendar)) xlim <- aion::as_year(xlim, calendar = calendar)
   graphics::plot.window(xlim = xlim, ylim = ylim)
 
@@ -82,22 +83,26 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   years <- aion::time(x, calendar = calendar)
   tick_height <- graphics::par("tcl") * graphics::strheight("M") * -1
   if (isFALSE(density)) tick_height <- 0
-
   for (i in seq_len(n)) {
     y <- x[, i, k = 1, drop = TRUE]
-    y <- (y - min(y)) / max(y - min(y)) * 0.9
+    y <- (y - min(y)) / max(y - min(y)) * delta
+
     if (isTRUE(density)) {
       d0 <- which(y > 0) # Keep only density > 0
       lb <- if (min(d0) > 1) min(d0) - 1 else min(d0)
       ub <- if (max(d0) < length(years)) max(d0) + 1 else max(d0)
       xi <- c(years[lb], years[d0], years[ub])
-      yi <- c(i, y[d0] + i, i)
+      if (!isTRUE(decreasing)) {
+        yi <- c(pos[i], pos[i] - y[d0], pos[i])
+      } else {
+        yi <- c(pos[i], y[d0] + pos[i], pos[i])
+      }
 
       graphics::polygon(xi, yi, border = NA, col = fill.density[i])
       graphics::lines(xi, yi, lty = "solid")
     }
 
-    if (!is.null(interval) && !isFALSE(interval)) {
+    if (!identical(interval, "none")) {
       h <- int[[i]]
 
       if (isTRUE(density)) {
@@ -108,22 +113,26 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
           else is_in_h <- xi <= debut & xi >= fin
           xh <- xi[is_in_h]
           yh <- yi[is_in_h]
-          graphics::polygon(x = c(xh[1], xh, xh[length(xh)]),
-                            y = c(i, yh, i),
-                            border = NA, col = fill.interval[i])
+          graphics::polygon(
+            x = c(xh[1], xh, xh[length(xh)]),
+            y = c(pos[i], yh, pos[i]),
+            border = NA, col = fill.interval[i]
+          )
         }
       }
 
       params <- list(x0 = h[, "start"], x1 = h[, "end"],
-                     y0 = i, y1 = i, lend = 1)
+                     y0 = pos[i], y1 = pos[i], lend = 1)
       dots <- list(...)
       dots <- utils::modifyList(dots, params)
       if (isFALSE(density)) dots$col <- col.interval[i]
       do.call(graphics::segments, dots)
-      graphics::segments(x0 = c(h[, "start"], h[, "end"]),
-                         x1 = c(h[, "start"], h[, "end"]),
-                         y0 = i, y1 = i + tick_height, lend = 1,
-                         ...)
+      graphics::segments(
+        x0 = c(h[, "start"], h[, "end"]),
+        x1 = c(h[, "start"], h[, "end"]),
+        y0 = pos[i], y1 = pos[i] + tick_height,
+        lend = 1, ...
+      )
     }
   }
 
@@ -134,7 +143,7 @@ plot.CalibratedAges <- function(x, calendar = get_calendar(),
   if (axes) {
     aion::year_axis(side = 1, format = TRUE, calendar = calendar,
                     current_calendar = calendar)
-    graphics::axis(side = 2, at = seq_len(n), labels = lab, las = 2,
+    graphics::axis(side = 2, at = pos, labels = lab, las = 2,
                    lty = 0, cex.axis = cex.axis, col.axis = col.axis,
                    font.axis = font.axis)
   }
@@ -200,6 +209,7 @@ plot.CalibratedSPD <- function(x, calendar = get_calendar(),
 #' @aliases plot,CalibratedSPD,missing-method
 setMethod("plot", c(x = "CalibratedSPD", y = "missing"), plot.CalibratedSPD)
 
+## RECE ========================================================================
 #' @export
 #' @method plot RECE
 plot.RECE <- function(x, calendar = get_calendar(), ...) {
@@ -242,6 +252,8 @@ plot.RECE <- function(x, calendar = get_calendar(), ...) {
 #' @aliases plot,RECE,missing-method
 setMethod("plot", c(x = "RECE", y = "missing"), plot.RECE)
 
+
+## Proxy =======================================================================
 #' @export
 #' @method plot ProxyRecord
 plot.ProxyRecord <- function(x, calendar = get_calendar(),

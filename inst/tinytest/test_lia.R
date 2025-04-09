@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Geological model age =========================================================
 Pb <- data.frame(
   x = c(18.23247, 18.22936, 18.23102), # Pb206/Pb204

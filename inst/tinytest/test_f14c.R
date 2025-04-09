@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # F14C to BP14C ================================================================
 ## Asymmetric 14C errors (van der Plicht and Hogg 2006)
 ## F14C < 0
