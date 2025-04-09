@@ -70,6 +70,9 @@ A \code{\linkS4class{ProxyRecord}} object.
 Represents layer-counted proxy records as sequences of probability
 distributions on absolute, error-free time axes.
 }
+\note{
+This function is currently \emph{experimental}.
+}
 \examples{
 \dontrun{
 ## Get NGRIP records

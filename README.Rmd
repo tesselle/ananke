@@ -1,5 +1,7 @@
 ---
 output: github_document
+bibliography: inst/bibliography.bib
+nocite: '@*'
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -81,6 +83,16 @@ cal <- c14_calibrate(
 plot(cal)
 ```
 
+## Translation
+
+This package provides translations of user-facing communications, like messages, warnings and errors, and graphical elements (axis labels). The preferred language is by default taken from the locale. This can be overridden by setting of the environment variable `LANGUAGE` (you only need to do this once per session):
+
+``` r
+Sys.setenv(LANGUAGE = "<language code>")
+```
+
+Languages currently available are English (`en`) and French (`fr`).
+
 ## Related Works
 
 * [**Bchron**](https://github.com/andrewcparnell/Bchron) enables quick calibration of radiocarbon dates, age-depth modelling, relative sea level rate estimation, and non-parametric phase modelling.
@@ -90,6 +102,8 @@ plot(cal)
 ## Contributing
 
 Please note that the **ananke** project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project, you agree to abide by its terms.
+
+## References
 
 ```{r metadata, include=FALSE}
 ## Update codemeta.json

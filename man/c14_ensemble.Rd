@@ -47,6 +47,9 @@ An \code{\linkS4class{RECE}} object.
 \description{
 Radiocarbon Event Count
 }
+\note{
+This function is currently \emph{experimental}.
+}
 \references{
 Carleton, W. C. (2021). Evaluating Bayesian Radiocarbon‐dated Event Count
 (REC) Models for the Study of Long‐term Human and Environmental Processes.

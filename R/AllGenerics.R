@@ -496,6 +496,8 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  An [`RECE-class`] object.
+#' @note
+#'  This function is currently *experimental*.
 #' @references
 #'  Carleton, W. C. (2021). Evaluating Bayesian Radiocarbon‐dated Event Count
 #'  (REC) Models for the Study of Long‐term Human and Environmental Processes.
@@ -607,6 +609,8 @@ NULL
 #' @param ... Currently not used.
 #' @return
 #'  A [`ProxyRecord-class`] object.
+#' @note
+#'  This function is currently *experimental*.
 #' @references
 #'  Boers, N., Goswami, B. & Ghil, M. (2017). A Complete Representation of
 #'  Uncertainties in Layer-Counted Paleoclimatic Archives. *Climate of the
