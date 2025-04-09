@@ -311,10 +311,13 @@ setGeneric(
 #' Uncalibrate a Radiocarbon Date
 #'
 #' @param object A [`CalibratedAges-class`] object or a [`numeric`] vector of
-#'  calibrated ages (BP).
+#'  calibrated ages (in years BP).
 #' @param n An [`integer`] specifying the number of random samples.
 #' @param curves A [`character`] vector specifying the calibration curve to be
 #'  used. Different curves can be specified.
+#' @param rounding A [`character`] string specifying the rounding convention.
+#'  It can be one of "`none`" (the default, no rounding) or "`stuiver`".
+#'  Any unambiguous substring can be given.
 #' @param ... Currently not used.
 #' @example inst/examples/ex-14c-uncalibrate.R
 #' @author N. Frerebeau
@@ -338,8 +341,8 @@ setGeneric(
 #' @param asymmetric A [`logical`] scalar: should asymmetric 14C errors be
 #'  returned (van der Plicht & Hogg, 2006)?
 #' @param rounding A [`character`] string specifying the rounding convention.
-#'  It can be one of "`none`" (the default, no rounding) or "`stuiver`"
-#'  (Stuiver & Polach, 1977). Any unambiguous substring can be given.
+#'  It can be one of "`none`" (the default, no rounding) or "`stuiver`".
+#'  Any unambiguous substring can be given.
 #' @param ... Currently not used.
 #' @return
 #'  A [`data.frame`].

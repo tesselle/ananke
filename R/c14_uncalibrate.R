@@ -16,7 +16,7 @@ setMethod(
     uncal <- rep(NA_real_, n)
 
     ## Calibration curve
-    curve_data <- c14_curve(unique(tolower(curves)))
+    curve_data <- c14_curve(tolower(curves))
 
     for (i in seq_len(n)) {
       z <- stats::approx(
@@ -37,7 +37,8 @@ setMethod(
 setMethod(
   f = "c14_uncalibrate",
   signature = c(object = "CalibratedAges"),
-  definition = function(object, n = 10000, ...) {
+  definition = function(object, n = 10000, rounding = getOption("ananke.round"),
+                        ...) {
 
     method <- list(...)$method %||% c("L-BFGS-B")
 
@@ -62,19 +63,20 @@ setMethod(
     }
 
     n <- NCOL(object)
-    spl <- c14_sample(object, n = n, calendar = BP())
     curves <- object@curves
-    opt_mean <- opt_sd <- numeric(n)
+
+    ## Initial values for the parameters to be optimized over
+    spl <- c14_sample(object, n = n, calendar = BP())
+    med <- apply(X = spl, MARGIN = 2, FUN = stats::median)
+    init_mean <- c14_uncalibrate(med, curves = curves)
+    init_sd <- apply(X = spl, MARGIN = 2, FUN = stats::sd)
+
+    opt_mean <- opt_sd <- rep(NA_real_, n)
     for (i in seq_len(n)) {
       cal_spl <- spl[, i]
-      init_mean <- methods::callGeneric(
-        object = stats::median(cal_spl),
-        curves = curves[[i]]
-      )
-      init_sd <- stats::sd(cal_spl)
 
       opt_run <- stats::optim(
-        par = c(init_mean, init_sd),
+        par = c(init_mean[[i]], init_sd[[i]]),
         fn = opt_fun,
         method = method,
         curve = curves[[i]],
@@ -82,8 +84,14 @@ setMethod(
         lower = c(-Inf, 1),
         ...
       )
-      opt_mean[[i]] <- round(opt_run$par[1])
-      opt_sd[[i]] <- round(opt_run$par[2])
+      opt_mean[[i]] <- opt_run$par[1]
+      opt_sd[[i]] <- opt_run$par[2]
+    }
+
+    ## Rounding
+    if (identical(rounding, "stuiver")) {
+      opt_mean <- round_values_stuiver(opt_mean)
+      opt_sd <- round_errors_stuiver(opt_sd)
     }
 
     data.frame(mean = opt_mean, sd = opt_sd)

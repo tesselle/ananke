@@ -7,5 +7,5 @@ cal <- c14_calibrate(
 )
 
 ## Uncalibrate
-c14_uncalibrate(cal)
+c14_uncalibrate(cal, rounding = "stuiver")
 }

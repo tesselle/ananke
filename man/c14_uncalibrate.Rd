@@ -12,11 +12,11 @@ c14_uncalibrate(object, ...)
 
 \S4method{c14_uncalibrate}{numeric}(object, curves = "intcal20")
 
-\S4method{c14_uncalibrate}{CalibratedAges}(object, n = 10000, ...)
+\S4method{c14_uncalibrate}{CalibratedAges}(object, n = 10000, rounding = getOption("ananke.round"), ...)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CalibratedAges}} object or a \code{\link{numeric}} vector of
-calibrated ages (BP).}
+calibrated ages (in years BP).}
 
 \item{...}{Currently not used.}
 
@@ -24,6 +24,10 @@ calibrated ages (BP).}
 used. Different curves can be specified.}
 
 \item{n}{An \code{\link{integer}} specifying the number of random samples.}
+
+\item{rounding}{A \code{\link{character}} string specifying the rounding convention.
+It can be one of "\code{none}" (the default, no rounding) or "\code{stuiver}".
+Any unambiguous substring can be given.}
 }
 \description{
 Uncalibrate a Radiocarbon Date
@@ -38,7 +42,7 @@ cal <- c14_calibrate(
 )
 
 ## Uncalibrate
-c14_uncalibrate(cal)
+c14_uncalibrate(cal, rounding = "stuiver")
 }
 }
 \seealso{
