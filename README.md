@@ -33,10 +33,10 @@ testing and documentation may be lacking.
 
 To cite ananke in publications use:
 
-Frerebeau N (2024). *ananke: Quantitative Chronology in Archaeology*.
+Frerebeau N (2025). *ananke: Quantitative Chronology in Archaeology*.
 Université Bordeaux Montaigne, Pessac, France.
 <doi:10.5281/zenodo.13236285> <https://doi.org/10.5281/zenodo.13236285>,
-R package version 0.0.1.9000, <https://packages.tesselle.org/ananke/>.
+R package version 0.1.0, <https://packages.tesselle.org/ananke/>.
 
 This package is a part of the tesselle project
 <https://www.tesselle.org>.

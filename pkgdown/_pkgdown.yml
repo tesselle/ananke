@@ -4,10 +4,10 @@ template:
   package: tekton
 
 reference:
-- title: Radiocarbon tools
+- title: Radiocarbon Tools
   contents:
   - has_concept("radiocarbon tools")
-- title: Proxy tools
+- title: Proxy Tools
   contents:
   - has_concept("proxy tools")
 - title: Isotope Analysis

@@ -12,7 +12,7 @@ A toolbox for quantitative chronology in archaeology. This package provides func
 \tabular{ll}{
 \strong{Package:} \tab ananke \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.0.1 \cr
+\strong{Version:} \tab 0.1.0 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 }

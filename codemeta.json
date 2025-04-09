@@ -8,13 +8,13 @@
   "codeRepository": "https://codeberg.org/tesselle/ananke",
   "issueTracker": "https://codeberg.org/tesselle/ananke/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
   "author": [
     {
       "@type": "Person",
@@ -70,6 +70,42 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "rsvg",
+      "name": "rsvg",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rsvg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "svglite",
+      "name": "svglite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=svglite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tinysnapshot",
+      "name": "tinysnapshot",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tinysnapshot"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "tinytest",
       "name": "tinytest",
       "provider": {
@@ -92,7 +128,7 @@
       "@type": "SoftwareApplication",
       "identifier": "aion",
       "name": "aion",
-      "version": ">= 1.0.4",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -105,7 +141,7 @@
       "@type": "SoftwareApplication",
       "identifier": "arkhe",
       "name": "arkhe",
-      "version": ">= 1.7.0",
+      "version": ">= 1.10.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -139,11 +175,11 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["time-series", "archaeology", "archaeological-science", "chronology", "radiocarbon-dates", "radiocarbon-calibration", "r-package"],
-  "fileSize": "3380.285KB",
+  "fileSize": "3619.797KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2024",
+      "datePublished": "2025",
       "author": [
         {
           "@type": "Person",
@@ -154,7 +190,7 @@
       "name": "{ananke: Quantitative Chronology in Archaeology}",
       "identifier": "10.5281/zenodo.13236285",
       "url": "https://packages.tesselle.org/ananke/",
-      "description": "R package version 0.0.1",
+      "description": "R package version 0.1.0",
       "@id": "https://doi.org/10.5281/zenodo.13236285",
       "sameAs": "https://doi.org/10.5281/zenodo.13236285"
     }
