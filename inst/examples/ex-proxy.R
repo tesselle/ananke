@@ -1,4 +1,4 @@
-\dontrun{
+\donttest{
 ## Get NGRIP records
 data("ngrip2010", package = "folio")
 ngrip2010 <- subset(ngrip2010, !is.na(MCE))

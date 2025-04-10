@@ -74,7 +74,7 @@ distributions on absolute, error-free time axes.
 This function is currently \emph{experimental}.
 }
 \examples{
-\dontrun{
+\donttest{
 ## Get NGRIP records
 data("ngrip2010", package = "folio")
 ngrip2010 <- subset(ngrip2010, !is.na(MCE))

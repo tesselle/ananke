@@ -53,7 +53,7 @@ being displayed. Invisibly returns \code{x}.
 Plot Layer-Counted Proxy Records Uncertainties
 }
 \examples{
-\dontrun{
+\donttest{
 ## Get NGRIP records
 data("ngrip2010", package = "folio")
 ngrip2010 <- subset(ngrip2010, !is.na(MCE))

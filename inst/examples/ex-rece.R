@@ -1,4 +1,4 @@
-\dontrun{
+\donttest{
 ## Radiocarbon data from Bosch et al. 2015
 data("ksarakil")
 

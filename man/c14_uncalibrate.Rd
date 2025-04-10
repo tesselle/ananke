@@ -33,7 +33,7 @@ Any unambiguous substring can be given.}
 Uncalibrate a Radiocarbon Date
 }
 \examples{
-\dontrun{
+\donttest{
 ## Calibrate multiple dates
 cal <- c14_calibrate(
   values = c(5000, 4500),

@@ -1,4 +1,4 @@
-\dontrun{
+\donttest{
 ## Calibrate multiple dates
 cal <- c14_calibrate(
   values = c(5000, 4500),
