@@ -91,8 +91,8 @@ A \code{\linkS4class{CalibratedAges}} object.
 Calibrates radiocarbon ages.
 }
 \note{
-Adapted from \code{\link[Bchron:BchronCalibrate]{Bchron::BchronCalibrate()}} by Andrew Parnell and
-\code{\link[rcarbon:calibrate]{rcarbon::calibrate()}} by Andrew Bevan and Enrico Crema.
+Adapted from \pkg{Bchron} \code{BchronCalibrate()} by Andrew Parnell and
+\pkg{rcarbon} \code{calibrate()} by Andrew Bevan and Enrico Crema.
 }
 \examples{
 ## Calibrate a single date

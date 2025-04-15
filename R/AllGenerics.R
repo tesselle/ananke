@@ -276,8 +276,8 @@ setGeneric(
 #'  Bronk Ramsey, C. (2008). Radiocarbon Dating: Revolutions in Understanding.
 #'  *Archaeometry*, 50:249-275. \doi{10.1111/j.1475-4754.2008.00394.x}.
 #' @note
-#'  Adapted from [Bchron::BchronCalibrate()] by Andrew Parnell and
-#'  [rcarbon::calibrate()] by Andrew Bevan and Enrico Crema.
+#'  Adapted from \pkg{Bchron} `BchronCalibrate()` by Andrew Parnell and
+#'  \pkg{rcarbon} `calibrate()` by Andrew Bevan and Enrico Crema.
 #' @example inst/examples/ex-14c-calibrate.R
 #' @author N. Frerebeau
 #' @docType methods
