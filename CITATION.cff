@@ -17,8 +17,11 @@ identifiers:
 - description: The versioned DOI for version 0.0.1.
   type: doi
   value: 10.5281/zenodo.13236286
-abstract: A toolbox for quantitative chronology in archaeology. This package provides
-  functions for simple radiocarbon calibration and chronological analysis.
+abstract: Simple radiocarbon calibration and chronological analysis. This package
+  allows the calibration of radiocarbon ages and modern carbon fraction values using
+  multiple calibration curves. It allows the calculation of highest density region
+  intervals and credible intervals. The package also provides tools for visualising
+  results and estimating statistical summaries.
 authors:
 - family-names: Frerebeau
   given-names: Nicolas
@@ -56,17 +59,6 @@ keywords:
 - r-package
 references:
 - type: software
-  title: 'R: A Language and Environment for Statistical Computing'
-  notes: Depends
-  url: https://www.R-project.org/
-  authors:
-  - name: R Core Team
-  institution:
-    name: R Foundation for Statistical Computing
-    address: Vienna, Austria
-  year: '2025'
-  version: '>= 4.1'
-- type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
   notes: Depends
@@ -84,6 +76,17 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.aion
   version: '>= 1.4.0'
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 4.1'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'

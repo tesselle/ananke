@@ -29,7 +29,7 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 
 ## Overview
 
-**ananke** provides functions for simple radiocarbon calibration and chronological analysis.
+Simple radiocarbon calibration and chronological analysis. This package allows the calibration of radiocarbon ages and modern carbon fraction (F^14^C) values using multiple calibration curves. It allows the calculation of highest density region intervals and credible intervals. The package also provides tools for visualising results and estimating statistical summaries.
 
 This package is currently *experimental*. This means that it is functional, but interfaces and functionalities may change over time, testing and documentation may be lacking.
 

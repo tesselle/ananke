@@ -22,8 +22,12 @@ Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.13236285.svg)](https://doi.o
 
 ## Overview
 
-**ananke** provides functions for simple radiocarbon calibration and
-chronological analysis.
+Simple radiocarbon calibration and chronological analysis. This package
+allows the calibration of radiocarbon ages and modern carbon fraction
+(F<sup>14</sup>C) values using multiple calibration curves. It allows
+the calculation of highest density region intervals and credible
+intervals. The package also provides tools for visualising results and
+estimating statistical summaries.
 
 This package is currently *experimental*. This means that it is
 functional, but interfaces and functionalities may change over time,

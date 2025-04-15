@@ -10,16 +10,19 @@ Authors@R: c(
            comment = c(ROR = "02feahw73"))
   )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
-Description: A toolbox for quantitative chronology in archaeology. This
-    package provides functions for simple radiocarbon calibration and
-    chronological analysis.
+Description: Simple radiocarbon calibration and chronological analysis.
+    This package allows the calibration of radiocarbon ages and modern
+    carbon fraction values using multiple calibration curves. It allows
+    the calculation of highest density region intervals and credible
+    intervals. The package also provides tools for visualising results and
+    estimating statistical summaries.
 License: GPL (>= 3)
 URL: https://codeberg.org/tesselle/ananke,
     https://packages.tesselle.org/ananke/
 BugReports: https://codeberg.org/tesselle/ananke/issues
 Depends: 
-    R (>= 4.1),
     aion (>= 1.4.0),
+    R (>= 4.1)
 Imports: 
     arkhe (>= 1.10.0),
     graphics,
@@ -27,6 +30,7 @@ Imports:
     methods,
     utils
 Suggests: 
+    folio,
     knitr,
     markdown,
     rsvg,

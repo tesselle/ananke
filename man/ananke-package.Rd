@@ -6,7 +6,7 @@
 \alias{ananke}
 \title{ananke: Quantitative Chronology in Archaeology}
 \description{
-A toolbox for quantitative chronology in archaeology. This package provides functions for simple radiocarbon calibration and chronological analysis.
+Simple radiocarbon calibration and chronological analysis. This package allows the calibration of radiocarbon ages and modern carbon fraction values using multiple calibration curves. It allows the calculation of highest density region intervals and credible intervals. The package also provides tools for visualising results and estimating statistical summaries.
 }
 \details{
 \tabular{ll}{
