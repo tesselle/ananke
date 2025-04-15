@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "proxy_ensemble",
   signature = c("numeric"),
-  definition = function(positions, proxy_values, proxy_errors, step,
+  definition = function(positions, proxy_values, proxy_errors, proxy_step,
                         time_values, time_errors, calendar,
                         from = NULL, to = NULL, by = NULL, n = 30,
                         progress = getOption("ananke.progress"),
@@ -20,6 +20,7 @@ setMethod(
     arkhe::assert_decreasing(positions)
     arkhe::assert_length(proxy_values, k)
     arkhe::assert_length(proxy_errors, k)
+    arkhe::assert_length(proxy_step, 1)
     arkhe::assert_length(time_values, k)
     arkhe::assert_length(time_errors, k)
 
@@ -57,7 +58,7 @@ setMethod(
     if (verbose) cat(tr_("Computing p(x|zi) densities..."), sep = "\n")
     d <- 2 * max(proxy_errors)
     x_range <- range(c(range(proxy_values) - d, range(proxy_values) + d))
-    x_grid <- seq(from = x_range[[1L]], to = x_range[[2L]], by = step)
+    x_grid <- seq(from = x_range[[1L]], to = x_range[[2L]], by = proxy_step)
 
     x_z <- .mapply(
       FUN = function(mean, sd, x) {

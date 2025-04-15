@@ -13,7 +13,7 @@ proxy_ensemble(positions, ...)
   positions,
   proxy_values,
   proxy_errors,
-  step,
+  proxy_step,
   time_values,
   time_errors,
   calendar,
@@ -37,8 +37,9 @@ slice. It must be in decreasing order (i.e. in chronological order).}
 
 \item{proxy_errors}{A \code{\link{numeric}} vector giving the proxy uncertainties.}
 
-\item{step}{A length-one \code{\link{numeric}} vector specifying the step size
-(in units of \code{proxy}) at which proxy records densities are to be estimated.}
+\item{proxy_step}{A length-one \code{\link{numeric}} vector specifying the step size
+(in units of \code{proxy_values}) at which proxy records densities are to be
+estimated.}
 
 \item{time_values}{A \code{\link{numeric}} vector giving the calendar ages (in years).}
 
@@ -86,7 +87,7 @@ ngrip_record <- proxy_ensemble(
   positions = ngrip2010$depth,
   proxy_values = ngrip2010$delta,
   proxy_errors = 0.01,
-  step = 0.001,
+  proxy_step = 0.001,
   time_values = ngrip2010$age,
   time_errors = ngrip2010$MCE,
   calendar = b2k(), # /!\

@@ -590,13 +590,14 @@ NULL
 #'  slice. It must be in decreasing order (i.e. in chronological order).
 #' @param proxy_values A [`numeric`] vector giving the proxy values.
 #' @param proxy_errors A [`numeric`] vector giving the proxy uncertainties.
+#' @param proxy_step A length-one [`numeric`] vector specifying the step size
+#'  (in units of `proxy_values`) at which proxy records densities are to be
+#'  estimated.
 #' @param time_values A [`numeric`] vector giving the calendar ages (in years).
 #' @param time_errors A [`numeric`] vector giving the calendar age uncertainties
 #'  (in years).
 #' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
 #'  of `time` (see [aion::calendar()]).
-#' @param step A length-one [`numeric`] vector specifying the step size
-#'  (in units of `proxy`) at which proxy records densities are to be estimated.
 #' @param from A length-one [`numeric`] vector specifying the starting value of
 #'  the temporal sequence at which densities are to be estimated (in years).
 #' @param to A length-one [`numeric`] vector specifying the end value of the
