@@ -87,7 +87,7 @@ ngrip_record <- proxy_ensemble(
   positions = ngrip2010$depth,
   proxy_values = ngrip2010$delta,
   proxy_errors = 0.01,
-  proxy_step = 0.001,
+  proxy_step = 0.01,
   time_values = ngrip2010$age,
   time_errors = ngrip2010$MCE,
   calendar = b2k(), # /!\
