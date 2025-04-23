@@ -7,10 +7,24 @@
 
 [![Code
 coverage](https://packages.tesselle.org/ananke/coverage/badge.svg)](https://packages.tesselle.org/ananke/coverage/)
+[![Dependencies](https://tinyverse.netlify.app/badge/ananke)](https://cran.r-project.org/package=ananke)
+
 <a href="https://tesselle.r-universe.dev/ananke"
 class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/ananke"
 alt="r-universe" /></a>
+<a href="https://cran.r-project.org/package=ananke"
+class="pkgdown-release"><img
+src="https://www.r-pkg.org/badges/version/ananke"
+alt="CRAN Version" /></a> <a
+href="https://cran.r-project.org/web/checks/check_results_ananke.html"
+class="pkgdown-release"><img
+src="https://badges.cranchecks.info/worst/ananke.svg"
+alt="CRAN checks" /></a>
+<a href="https://cran.r-project.org/package=ananke"
+class="pkgdown-release"><img
+src="https://cranlogs.r-pkg.org/badges/ananke"
+alt="CRAN Downloads" /></a>
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the

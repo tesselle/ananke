@@ -17,6 +17,9 @@ identifiers:
 - description: The versioned DOI for version 0.0.1.
   type: doi
   value: 10.5281/zenodo.13236286
+- description: The versioned DOI for version 0.1.0.
+  type: doi
+  value: 10.5281/zenodo.15242585
 abstract: Simple radiocarbon calibration and chronological analysis. This package
   allows the calibration of radiocarbon ages and modern carbon fraction values using
   multiple calibration curves. It allows the calculation of highest density region
@@ -42,6 +45,7 @@ preferred-citation:
   notes: R package version 0.1.0
   url: https://packages.tesselle.org/ananke/
   doi: 10.5281/zenodo.13236285
+repository: https://CRAN.R-project.org/package=ananke
 repository-code: https://codeberg.org/tesselle/ananke
 url: https://packages.tesselle.org/ananke/
 contact:
@@ -141,6 +145,20 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2025'
+- type: software
+  title: folio
+  abstract: 'folio: Datasets for Teaching Archaeology and Paleontology'
+  notes: Suggests
+  url: https://packages.tesselle.org/folio/
+  repository: https://CRAN.R-project.org/package=folio
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  year: '2025'
+  doi: 10.32614/CRAN.package.folio
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'

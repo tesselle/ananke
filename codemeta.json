@@ -4,7 +4,7 @@
   "identifier": "ananke",
   "description": "Simple radiocarbon calibration and chronological analysis. This package allows the calibration of radiocarbon ages and modern carbon fraction values using multiple calibration curves. It allows the calculation of highest density region intervals and credible intervals. The package also provides tools for visualising results and estimating statistical summaries.",
   "name": "ananke: Quantitative Chronology in Archaeology",
-  "relatedLink": "https://packages.tesselle.org/ananke/",
+  "relatedLink": ["https://packages.tesselle.org/ananke/", "https://CRAN.R-project.org/package=ananke"],
   "codeRepository": "https://codeberg.org/tesselle/ananke",
   "issueTracker": "https://codeberg.org/tesselle/ananke/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -14,7 +14,13 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -44,6 +50,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "folio",
+      "name": "folio",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=folio"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
@@ -175,7 +193,7 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["time-series", "archaeology", "archaeological-science", "chronology", "radiocarbon-dates", "radiocarbon-calibration", "r-package"],
-  "fileSize": "3620.313KB",
+  "fileSize": "3628.231KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
