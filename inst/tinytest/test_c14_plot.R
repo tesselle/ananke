@@ -1,12 +1,8 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 if (at_home()) {
   using("tinysnapshot")
-  options(tinysnapshot_device = "svglite")
-  options(tinysnapshot_height = 7) # inches
-  options(tinysnapshot_width = 7)
-  options(tinysnapshot_tol = 200) # pixels
-  options(tinysnapshot_os = "Linux")
-
-  Sys.setenv(LANGUAGE = "en") # Force locale
+  source("helpers.R")
 
   data("ksarakil")
   cal <- c14_calibrate(
