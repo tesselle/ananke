@@ -19,8 +19,9 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 # ananke
 
 <!-- badges: start -->
-[![Code coverage](https://packages.tesselle.org/ananke/coverage/badge.svg)](https://packages.tesselle.org/ananke/coverage/)
-[![Dependencies](https://tinyverse.netlify.app/badge/ananke)](https://cran.r-project.org/package=ananke)
+[![status-badge](https://ci.codeberg.org/api/badges/14687/status.svg)](https://ci.codeberg.org/repos/14687){.pkgdown-devel}
+[![Code coverage](https://packages.tesselle.org/ananke/coverage/badge.svg)](https://packages.tesselle.org/ananke/coverage/){.pkgdown-devel}
+[![Dependencies](https://tinyverse.netlify.app/badge/ananke)](https://cran.r-project.org/package=ananke){.pkgdown-devel}
 
 [![r-universe](https://tesselle.r-universe.dev/badges/ananke)](https://tesselle.r-universe.dev/ananke){.pkgdown-devel}
 [![CRAN Version](https://www.r-pkg.org/badges/version/ananke)](https://cran.r-project.org/package=ananke){.pkgdown-release}
