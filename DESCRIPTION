@@ -18,6 +18,7 @@ Description: Simple radiocarbon calibration and chronological analysis.
     estimating statistical summaries.
 License: GPL (>= 3)
 URL: https://codeberg.org/tesselle/ananke,
+    https://tesselle.r-universe.dev/ananke,
     https://packages.tesselle.org/ananke/
 BugReports: https://codeberg.org/tesselle/ananke/issues
 Depends: 
